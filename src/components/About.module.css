@@ -1,0 +1,93 @@
+.aboutSection{
+  padding: 100px 0;
+  background:#f8f9fb;
+}
+
+.subtitle{
+  color:#0d3b66;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.title{
+  font-size:48px;
+  font-weight:700;
+  color:#334e68;
+  margin-bottom:20px;
+}
+
+.description{
+  color:#555;
+  line-height:1.7;
+  margin-bottom:25px;
+}
+
+.offerTitle{
+  font-weight:600;
+  margin-bottom:15px;
+}
+
+.offerList{
+  padding-left:20px;
+}
+
+.offerList li{
+  margin-bottom:10px;
+  color:#333;
+}
+
+.aboutImage{
+  width:100%;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.infoCard{
+  border:none;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  padding:20px;
+}
+.cardRow{
+  margin-top:60px;
+}
+
+.infoCard{
+  border:none;
+  border-radius:14px;
+  padding:25px;
+  height:100%;
+  background:#ffffff;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.infoCard:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 35px rgba(0,0,0,0.12);
+}
+
+.cardHeader{
+  display:flex;
+  align-items:center;
+  margin-bottom:15px;
+}
+
+.line{
+  width:5px;
+  height:22px;
+  background:#0d3b66;
+  margin-right:10px;
+  border-radius:4px;
+}
+
+.infoCard h4{
+  margin:0;
+  font-weight:600;
+  color:#334e68;
+}
+
+.infoCard p{
+  color:#555;
+  line-height:1.7;
+}

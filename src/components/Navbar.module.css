@@ -1,0 +1,25 @@
+.glassNavbar{
+  background: rgba(243, 247, 249, 0.69);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 12px 0;
+}
+
+.navLink{
+  color: rgb(5, 3, 19) !important;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.navLink:hover{
+  color: #ffc107 !important;
+}
+
+.applyBtn{
+  background: linear-gradient(45deg,#6413d4,#1a26d4);
+  border: none;
+  padding: 8px 18px;
+  font-weight: 600;
+  border-radius: 8px;
+}
