@@ -8,56 +8,56 @@ function Colleges() {
       image: "https://i.ibb.co/tTsyg6zm/Whats-App-Image-2026-03-20-at-2-39-37-PM.jpg",
    
       fees: "₹8640000.00",
-      link: "/MGM-kamote.html",
+      link: "/mgm-Kalamboli (1).html",
     },
     {
       name: "MGM Medical College, Kalamboli",
       image: "https://i.ibb.co/60Hm1trb/kalamboli.jpg",
     
       fees: "₹7200000.00",
-      link: "/MGM-kalamboli.html",
+      link: "/mgm-Kalamboli (1).html",
     },
     {
       name: "MGM Medical College, Nerul",
       image: "https://i.ibb.co/0R5n8HL4/MGM-nerulcollege.jpg",
 
       fees: "₹7200000.00",
-      link: "/MGM-Nerul.html",
+      link: "/mgm-nerul (1).html",
     },
     {
       name: "MGM Medical College, Chhatrapati Sambhaji Nagar",
       image: "https://i.ibb.co/cXrSF69L/sambhajinagar.jpg",
      
       fees: "₹10312500.00",
-      link: "/MGM-Sambhajinagar.html",
+      link: "/mgm-sambhajinagar (1).html",
     },
     {
       name: "MGM Medical College, Vashi",
       image: "https://i.ibb.co/PvjPkW5G/vashi-college.jpg",
       placement: "10 lakh",
    
-      link: "/MGM-Vashi.html",
+      link: "/mgm-vashi (1).html",
     },
     {
       name: "Dr. D.Y. Patil Medical College, Pune",
       image: "https://i.ibb.co/GfhkX873/Infrastructure-01.jpg",
       placement: "800000",
     
-      link: "/DY Patil-pune1 (1).html",
+      link: "public/DYPatil-pune1 (2).html",
     },
     {
       name: "Dr. D.Y. Patil Medical College, Nerul",
       image: "https://i.ibb.co/nsdpzwgY/122.jpg",
     
       fees: "₹7200000.00",
-       link: "/DY Patil-nerul1 (1).html",
+       link: "/DY Patil-nerul1 (2).html",
     },
     {
       name: "Terna Medical College, Nerul",
       image: "https://i.ibb.co/9kp250kK/mcv21363-Screenshot-1118.png",
     
       fees: "₹10312500.00",
-      link: "/Terna-medical-college (1).html",
+      link: "/Terna-medical-college (4).html",
     },
   ];
 
