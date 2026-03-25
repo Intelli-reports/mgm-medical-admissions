@@ -9,7 +9,7 @@ function Courses() {
   const courses = [
     {
       id: 1,
-      title: "MD",
+      title: "MBBS",
       desc: "Specialized support for MD admissions and advanced medical careers.",
       image: "/md.jpg",
       category: "Medical"
@@ -18,12 +18,12 @@ function Courses() {
       id: 2,
       title: "MS",
       desc: "Focused counseling for MS programs and specialized medical career paths.",
-      image: "/ms.jpg",
+      image: "public/image/ChatGPT Image Mar 20, 2026, 11_42_33 AM.png",
       category: "Medical"
     },
     {
       id: 3,
-      title: "MBBS",
+      title: "MD",
       desc: "Dedicated guidance for MBBS admissions and future doctor aspirations",
       image: "/mbbs.jpg",
       category: "Medical"

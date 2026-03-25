@@ -10,13 +10,16 @@ import Testimonials from "../components/Testimonials";
 import UpcomingEvents from "../components/UpcomingEvent";
 import Blogs from "../components/Blogs";
 
+
+
+
 function Home() {
   return (
     <>
-      <Navbar/>
-      <Hero />
+   
+      <Hero/>
       <About/>
-      
+     
       <Courses />
       <Colleges />
       <ExcellenceSection />

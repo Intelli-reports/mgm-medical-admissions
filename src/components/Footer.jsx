@@ -9,11 +9,10 @@ const Footer = () => {
 
           {/* Logo + Address */}
           <div className="col-md-4">
-            <img src="/logo.png" alt="logo" className={styles.logo} />
+            <img src="/image/logo.png" alt="logo" className={styles.logo} />
 
             <p className={styles.address}>
-              Office 4B, Mahalaxmi Metro Tower, Sector 4, Vaishali,
-              Ghaziabad, Uttar Pradesh 201019
+             Haware Infotech Park, A-1401,Sector 30, Near Vashi Railway Station, Vashi, Navi Mumbai - 400703.
             </p>
 
             <div className={styles.social}>
@@ -43,18 +42,17 @@ const Footer = () => {
               <li>MD</li>
               <li>MBBS</li>
               <li>MS</li>
-              <li>B-Tech</li>
               <li>MBS</li>
-              <li>PGDM</li>
+              
             </ul>
           </div>
 
           {/* Contact */}
           <div className="col-md-2">
             <h5>Contact</h5>
-            <p>📞 +91 9718 625 885</p>
-            <p>📞 +91 9315 348 766</p>
-            <p>✉ futurevision383@gmail.com</p>
+            <p>📞 +91 919324652984</p>
+           
+            <p>✉ balajieducationservices17@gmail.com</p>
           </div>
 
         </div>
@@ -62,8 +60,8 @@ const Footer = () => {
         <hr />
 
         <div className={styles.bottom}>
-          <p>© Copyright FUTURE VISION CAREER GUIDANCE All Rights Reserved</p>
-          <span>Designed by Ecom360</span>
+          <p>© Copyright MGM  MEDICAL MBBS  CAREER GUIDANCE All Rights Reserved</p>
+        
         </div>
       </div>
     </footer>

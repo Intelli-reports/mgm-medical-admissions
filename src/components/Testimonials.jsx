@@ -7,7 +7,7 @@ function Testimonials() {
   const reviews = [
     {
       name: "Ananya Sharma",
-      text: "Future Vision helped me choose the right career path with clear, honest, and professional guidance.",
+      text: "MGM MEDICAL MBBS CAREER GUIDANCE helped me choose the right career path with clear, honest, and professional guidance.",
       image: "/images/student1.jpg"
     },
     {

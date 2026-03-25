@@ -37,7 +37,7 @@ function About() {
           {/* Right Image */}
           <Col lg={6}>
             <img
-              src="/public/image/campus-1.webp"
+              src="https://i.ibb.co/60Hm1trb/kalamboli.jpg.jpg"
               alt="college"
               className={styles.aboutImage}
             />

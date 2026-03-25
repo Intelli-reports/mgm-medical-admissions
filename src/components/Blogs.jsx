@@ -15,7 +15,7 @@ function Blogs() {
 
             <Card className={styles.blogCard}>
               <div className={styles.imageWrapper}>
-                <Card.Img src="/public/image/outer_blog_1.webp" />
+                <Card.Img src="/image/outer_blog_1.webp" />
                 <span className={styles.tagRed}>MS Admission</span>
               </div>
 
@@ -33,7 +33,7 @@ function Blogs() {
 
             <Card className={styles.blogCard}>
               <div className={styles.imageWrapper}>
-                <Card.Img src="public/image/outer_blog_4.webp" />
+                <Card.Img src="/image/outer_blog_4.webp" />
                 <span className={styles.tagGreen}>NEET UG</span>
               </div>
 
@@ -53,7 +53,7 @@ function Blogs() {
             <Card className={styles.featureCard}>
 
               <div className={styles.imageWrapper}>
-                <Card.Img src="public/image/outer_blog_2.webp" />
+                <Card.Img src="/image/outer_blog_2.webp" />
                 <span className={styles.tagBlue}>MBBS</span>
               </div>
 
@@ -82,7 +82,7 @@ function Blogs() {
 
             <Card className={styles.blogCard}>
               <div className={styles.imageWrapper}>
-                <Card.Img src="public/image/outer_blog_3.webp" />
+                <Card.Img src="/image/outer_blog_3.webp" />
                 <span className={styles.tagGreen}>NEET-PG</span>
               </div>
 
@@ -100,7 +100,7 @@ function Blogs() {
 
             <Card className={styles.blogCard}>
               <div className={styles.imageWrapper}>
-                <Card.Img src="public/image/outer_blog_5.webp" />
+                <Card.Img src="/image/outer_blog_5.webp" />
                 <span className={styles.tagPurple}>MBBS</span>
               </div>
 

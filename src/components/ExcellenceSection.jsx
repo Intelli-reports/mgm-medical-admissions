@@ -11,11 +11,11 @@ function ExcellenceSection() {
           {/* LEFT SIDE */}
           <Col lg={6}>
             <h1 className={styles.title}>
-              Excellence in Education for Over <br /> 50 Years
+              Excellence in Education for Over <br /> 20+ Years
             </h1>
 
             <p className={styles.description}>
-              With excellence in education spanning over 50 years, Future Vision
+              With excellence in education spanning over 20 years, Future Vision
               Career Guidance stands as a trusted name in academic and career
               counseling. Our long-standing experience reflects deep
               understanding, proven expertise, and a strong commitment to

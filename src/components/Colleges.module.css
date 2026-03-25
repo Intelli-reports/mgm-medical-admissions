@@ -1,0 +1,120 @@
+.collegesSection {
+  background: #f8f9fa;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.collegesTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2d3d;
+  margin-bottom: 2.5rem;
+}
+
+.collegeCol {
+  margin-bottom: 30px;
+}
+
+.collegeCard {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  background: #fff;
+}
+
+.collegeCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.imageWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.collegeImg {
+  height: 220px;
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.4s ease;
+}
+
+.collegeCard:hover .collegeImg {
+  transform: scale(1.05);
+}
+
+.placementBadge {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: linear-gradient(135deg, #f7b500, #ffcc33);
+  color: #222;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.collegeBody {
+  padding: 22px 18px;
+}
+
+.collegeName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2d3d;
+  min-height: 50px;
+  margin-bottom: 10px;
+}
+
+.course {
+  color: #6c757d;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.fees {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.readMoreBtn {
+  background-color: #000 !important;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 16px;
+  border: none !important;
+  border-radius: 6px;
+}
+
+.readMoreBtn:hover {
+  background-color: #222 !important;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+@media (max-width: 991px) {
+  .collegeImg {
+    height: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .collegesTitle {
+    font-size: 1.6rem;
+  }
+
+  .collegeName {
+    min-height: auto;
+  }
+
+  .placementBadge {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}
