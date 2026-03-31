@@ -2958,12 +2958,88 @@ img { display: block; max-width: 100%; }
     font-size: 13px;
   }
 
-  .kp-quick-info p,
-  .kp-sidebar-predictor p,
-  .kp-sidebar-predictor label,
-  .kp-sidebar-rank-result,
-  .kp-sidebar-inquiry p,
-  .kp-sinq-success {
-    font-size: 12px;
+.kp-quick-info p,
+.kp-sidebar-predictor p,
+.kp-sidebar-predictor label,
+.kp-sidebar-rank-result,
+.kp-sidebar-inquiry p,
+.kp-sinq-success {
+  font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .legacy-hero {
+    min-height: auto !important;
+    display: block !important;
+    padding: 24px 0 28px !important;
+  }
+
+  .legacy-hero-content {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    align-items: initial !important;
+    gap: 0 !important;
+  }
+
+  .legacy-hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .legacy-hero-kicker {
+    margin: 0 0 12px !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.45 !important;
+  }
+
+  .legacy-hero-copy h1 {
+    margin: 0 auto 14px !important;
+    font-size: clamp(2.1rem, 8.8vw, 2.75rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .legacy-hero-title-line {
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  .legacy-hero-copy p {
+    margin: 0 auto !important;
+    max-width: 32ch !important;
+    font-size: 0.95rem !important;
+    line-height: 1.58 !important;
+  }
+
+  .legacy-hero-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    width: min(100%, 320px) !important;
+    margin: 18px auto 0 !important;
+    gap: 10px !important;
+  }
+
+  .legacy-btn,
+  .legacy-apply-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .legacy-hero-bottom {
+    display: none !important;
+  }
+
+  .legacy-about {
+    padding-top: 32px !important;
+  }
+
+  .legacy-about h2 {
+    font-size: clamp(2rem, 8vw, 2.7rem) !important;
+    line-height: 1.06 !important;
   }
 }
