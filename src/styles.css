@@ -2973,7 +2973,7 @@ img { display: block; max-width: 100%; }
     min-height: 100svh !important;
     display: flex !important;
     align-items: center !important;
-    padding: 96px 0 28px !important;
+    padding: 72px 0 24px !important;
   }
 
   .legacy-hero-content {
