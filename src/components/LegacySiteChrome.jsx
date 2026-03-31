@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { legacyNavGroups } from "../data/legacyBundleData";
 
+const admissionWhatsappUrl =
+  "https://wa.me/919179339042?text=Hello%2C%20I%20want%20admission%20guidance%20for%20MBBS%2C%20MD%20%26%20MS.";
+
 export function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
   if (element) {
@@ -204,9 +207,15 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
           <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
             Contact
           </Link>
-          <Link to="/whatsappPage" className="legacy-apply-btn" onClick={() => setMobileMenuOpen(false)}>
+          <a
+            href={admissionWhatsappUrl}
+            className="legacy-apply-btn"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+          >
             Apply Now
-          </Link>
+          </a>
         </nav>
       </div>
     </header>
