@@ -76,7 +76,11 @@ function LegacyBundleHome() {
         <div className="legacy-container legacy-hero-content">
           <div className="legacy-hero-copy">
             <p className="legacy-hero-kicker">ONE-STOP ADMISSION SUPPORT</p>
-            <h1>Start Your MBBS, MD &amp; MS Journey with MGM</h1>
+            <h1>
+              <span className="legacy-hero-title-line">Start Your MBBS,</span>
+              <span className="legacy-hero-title-line">MD &amp; MS Journey</span>
+              <span className="legacy-hero-title-line">with MGM</span>
+            </h1>
             <p>
               A structured guidance platform for students and parents navigating
               NEET UG admissions, college shortlisting, state-wise options, and
