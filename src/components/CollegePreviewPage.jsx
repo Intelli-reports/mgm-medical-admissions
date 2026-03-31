@@ -16,6 +16,44 @@ function tableHeaders(type) {
   return ["Course", "Duration", "Intake", "Annual Fees"];
 }
 
+const admissionWhatsappUrl =
+  "https://wa.me/919623208649?text=Admission%20Enquiry";
+const admissionPhone = "+91 9623208649";
+
+function ContactInlineIcon({ type }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.8",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  };
+
+  if (type === "phone") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path {...common} d="M6.5 4.5h3l1.2 3.3-1.9 1.8a15.7 15.7 0 0 0 5.6 5.6l1.8-1.9 3.3 1.2v3A2 2 0 0 1 17.6 20C10.8 19.6 4.4 13.2 4 6.4a2 2 0 0 1 2.5-1.9Z" />
+      </svg>
+    );
+  }
+
+  if (type === "mail") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect {...common} x="3.5" y="6" width="17" height="12" rx="2.2" />
+        <path {...common} d="m5.5 8 6.5 5 6.5-5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path {...common} d="M12 21s6-5.4 6-11a6 6 0 1 0-12 0c0 5.6 6 11 6 11Z" />
+      <circle {...common} cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
+
 function HighlightIcon({ label }) {
   const key = label.toLowerCase();
   const common = {
@@ -147,6 +185,11 @@ function CollegePreviewPage() {
   const collegeLabel = data?.brandName || data?.fullName;
   const logoSrc = data?.logo || "https://i.ibb.co/twXMG4DP/image.png";
   const logoAlt = `${collegeLabel} Logo`;
+  const phoneHref = `tel:${admissionPhone.replace(/[^+\d]/g, "")}`;
+  const emailHref = `mailto:${data?.email || ""}`;
+  const footerContactLines = data.footerLinks.contactBody.split("\n");
+  const [footerEmail = "", , ...footerAddressParts] = footerContactLines;
+  const footerAddress = footerAddressParts.join(" ");
 
   const rankEstimate = useMemo(() => {
     const score = Number(sideScore);
@@ -235,8 +278,23 @@ function CollegePreviewPage() {
             </div>
           </div>
           <div className="kp-header-contact">
-            <span>{data.phone}</span>
-            <small>{data.email}</small>
+            <div className="kp-header-contact-row">
+              <a href={phoneHref} className="kp-inline-contact">
+                <span className="kp-inline-contact-icon">
+                  <ContactInlineIcon type="phone" />
+                </span>
+                  <span>{admissionPhone}</span>
+              </a>
+              <a href={emailHref} className="kp-inline-contact">
+                <span className="kp-inline-contact-icon">
+                  <ContactInlineIcon type="mail" />
+                </span>
+                <span>{data.email}</span>
+              </a>
+            </div>
+            <a href={admissionWhatsappUrl} className="kp-apply-now" target="_blank" rel="noreferrer">
+              Apply Now
+            </a>
           </div>
         </div>
       </header>
@@ -595,7 +653,28 @@ function CollegePreviewPage() {
           </div>
           <div className="kp-footer-col">
             <h4>{data.footerLinks.contactTitle}</h4>
-            <p>{data.footerLinks.contactBody.split("\n").map((line) => <span key={line}>{line}<br /></span>)}</p>
+            <div className="kp-footer-contact">
+              <div className="kp-footer-contact-row">
+                <a href={`mailto:${footerEmail}`} className="kp-inline-contact">
+                  <span className="kp-inline-contact-icon">
+                    <ContactInlineIcon type="mail" />
+                  </span>
+                  <span>{footerEmail}</span>
+                </a>
+                <a href={`tel:${admissionPhone.replace(/[^+\d]/g, "")}`} className="kp-inline-contact">
+                  <span className="kp-inline-contact-icon">
+                    <ContactInlineIcon type="phone" />
+                  </span>
+                  <span>{admissionPhone}</span>
+                </a>
+              </div>
+              <div className="kp-footer-address">
+                <span className="kp-inline-contact-icon">
+                  <ContactInlineIcon type="location" />
+                </span>
+                <span>{footerAddress}</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="kp-copyright">Copyright {collegeLabel}. All Rights Reserved.</div>
