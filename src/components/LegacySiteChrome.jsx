@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { legacyNavGroups } from "../data/legacyBundleData";
 
 const admissionWhatsappUrl =
-  "https://wa.me/919179339042?text=Hello%2C%20I%20want%20admission%20guidance%20for%20MBBS%2C%20MD%20%26%20MS.";
+  "https://wa.me/919179339042?text=Admission%20Enquiry";
 
 export function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
