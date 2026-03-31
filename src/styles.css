@@ -2970,16 +2970,19 @@ img { display: block; max-width: 100%; }
 
 @media (max-width: 768px) {
   .legacy-hero {
-    min-height: auto !important;
-    display: block !important;
-    padding: 24px 0 28px !important;
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 96px 0 28px !important;
   }
 
   .legacy-hero-content {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
     width: 100% !important;
     text-align: center !important;
-    align-items: initial !important;
+    align-items: center !important;
     gap: 0 !important;
   }
 
