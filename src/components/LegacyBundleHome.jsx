@@ -76,7 +76,7 @@ function LegacyBundleHome() {
         <div className="legacy-container legacy-hero-content">
           <div className="legacy-hero-copy">
             <p className="legacy-hero-kicker">ONE-STOP ADMISSION SUPPORT</p>
-            <h1>NEET UG Counseling &amp; College Guidance 2026</h1>
+            <h1>Start Your MBBS, MD &amp; MS Journey with MGM</h1>
             <p>
               A structured guidance platform for students and parents navigating
               NEET UG admissions, college shortlisting, state-wise options, and
@@ -134,7 +134,7 @@ function LegacyBundleHome() {
               </ul>
             </div>
             <img
-              src="/image/ChatGPT Image Mar 20, 2026, 11_42_33 AM.png"
+              src="/image/mgm-admissions-office.png"
               alt="College guidance"
               className="legacy-about-image"
             />

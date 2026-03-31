@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { legacyNavGroups } from "../data/legacyBundleData";
 
@@ -29,6 +30,44 @@ export function LegacySmartLink({ to, className, children, onClick }) {
 }
 
 export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home" }) {
+  const [universityOpen, setUniversityOpen] = useState(false);
+  const [activeGroupTitle, setActiveGroupTitle] = useState("");
+  const [submenuDirection, setSubmenuDirection] = useState("right");
+  const dropdownRef = useRef(null);
+  const closeTimerRef = useRef(null);
+
+  useEffect(() => {
+    function handlePointerDown(event) {
+      if (!dropdownRef.current?.contains(event.target)) {
+        setUniversityOpen(false);
+        setActiveGroupTitle("");
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
+    };
+  }, []);
+
+  function cancelCloseTimer() {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }
+
+  function scheduleClose() {
+    cancelCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setUniversityOpen(false);
+      setActiveGroupTitle("");
+    }, 180);
+  }
+
   function handleAboutClick() {
     setMobileMenuOpen(false);
     if (aboutMode === "scroll") {
@@ -36,14 +75,50 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
     }
   }
 
+  function handleUniversityToggle() {
+    setUniversityOpen((open) => {
+      const nextOpen = !open;
+      if (!nextOpen) {
+        setActiveGroupTitle("");
+      }
+      return nextOpen;
+    });
+  }
+
+  function handleGroupSelect(title, event) {
+    const rowElement = event?.currentTarget;
+    if (rowElement instanceof HTMLElement) {
+      const rowRect = rowElement.getBoundingClientRect();
+      const submenuWidth = 480;
+      const gap = 12;
+      const spaceOnRight = window.innerWidth - rowRect.right;
+      const spaceOnLeft = rowRect.left;
+
+      if (spaceOnRight < submenuWidth + gap && spaceOnLeft > submenuWidth + gap) {
+        setSubmenuDirection("left");
+      } else {
+        setSubmenuDirection("right");
+      }
+    }
+
+    setActiveGroupTitle(title);
+    setUniversityOpen(true);
+  }
+
+  function handleUniversityLinkClick() {
+    setUniversityOpen(false);
+    setActiveGroupTitle("");
+    setMobileMenuOpen(false);
+  }
+
   return (
     <header className="legacy-navbar">
       <div className="legacy-container legacy-nav-inner">
         <Link to="/" className="legacy-logo">
           <span className="legacy-logo-mark legacy-logo-mark-image">
-            <img src="/image/logo.png" alt="Admission Elite logo" />
+            <img src="/image/logo.png" alt="BalaJi logo" />
           </span>
-          <span>Admission Elite</span>
+          <span>BalaJi</span>
         </Link>
 
         <button
@@ -71,21 +146,54 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
               About Us
             </Link>
           )}
-          <div className="legacy-dropdown">
-            <button type="button">University</button>
+          <div
+            ref={dropdownRef}
+            className={`legacy-dropdown ${universityOpen ? "is-open" : ""}`}
+            onMouseEnter={() => {
+              cancelCloseTimer();
+              setUniversityOpen(true);
+            }}
+            onMouseLeave={scheduleClose}
+          >
+            <button
+              type="button"
+              className="legacy-dropdown-trigger"
+              aria-expanded={universityOpen ? "true" : "false"}
+              onClick={handleUniversityToggle}
+            >
+              University <span className="legacy-dropdown-caret">v</span>
+            </button>
             <div className="legacy-dropdown-menu">
               {legacyNavGroups.map((group) => (
-                <div key={group.title} className="legacy-dropdown-group">
-                  <strong>{group.title}</strong>
-                  {group.items.map((item) => (
-                    <LegacySmartLink
-                      key={item.label}
-                      to={item.to}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </LegacySmartLink>
-                  ))}
+                <div
+                  key={group.title}
+                  className="legacy-dropdown-group-row"
+                  onMouseEnter={(event) => handleGroupSelect(group.title, event)}
+                >
+                  <button
+                    type="button"
+                    className={`legacy-dropdown-group-trigger ${activeGroupTitle === group.title ? "is-active" : ""}`}
+                    onFocus={(event) => handleGroupSelect(group.title, event)}
+                    onClick={(event) => handleGroupSelect(group.title, event)}
+                  >
+                    <span>{group.title}</span>
+                    <span className="legacy-dropdown-caret">v</span>
+                  </button>
+                  <div
+                    className={`legacy-dropdown-submenu legacy-dropdown-submenu-${submenuDirection} ${
+                      activeGroupTitle === group.title ? "is-open" : ""
+                    }`}
+                  >
+                    {group.items.map((item) => (
+                      <LegacySmartLink
+                        key={item.label}
+                        to={item.to}
+                        onClick={handleUniversityLinkClick}
+                      >
+                        {item.label}
+                      </LegacySmartLink>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>
@@ -111,8 +219,8 @@ export function LegacyFooter() {
       <div className="legacy-container legacy-footer-grid">
         <div>
           <div className="legacy-footer-brand">
-            <img src="/image/logo.png" alt="Admission Elite logo" />
-            <span>Admission Elite</span>
+            <img src="/image/logo.png" alt="BalaJi logo" />
+            <span>BalaJi</span>
           </div>
           <p>
             Haware Infotech Park, A-1401, Sector 30, Near Vashi Railway Station,
