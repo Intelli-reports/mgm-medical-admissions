@@ -816,6 +816,51 @@
   padding: 84px 0;
 }
 
+.legacy-seo-badge-section {
+  padding: 0 0 84px;
+  background: linear-gradient(180deg, #f7faff 0%, #ffffff 100%);
+}
+
+.legacy-seo-badge-card {
+  display: grid;
+  grid-template-columns: 1.1fr auto;
+  gap: 28px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(17, 55, 98, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 18px 40px rgba(15, 35, 64, 0.12);
+  padding: 28px;
+}
+
+.legacy-seo-badge-copy h2 {
+  margin: 0 0 12px;
+  color: #23395b;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.legacy-seo-badge-copy p:last-child {
+  margin-bottom: 0;
+  color: #5c7391;
+  line-height: 1.7;
+}
+
+.legacy-seo-badge-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: #f8fbff;
+  padding: 16px;
+  border: 1px solid rgba(17, 55, 98, 0.08);
+}
+
+.legacy-seo-badge-link img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .legacy-video-feature {
   background: #fff;
   border: 1px solid rgba(17, 55, 98, 0.08);
@@ -1220,6 +1265,10 @@
   .legacy-video-feature {
     padding: 18px;
     border-radius: 24px;
+  }
+
+  .legacy-seo-badge-card {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1758,6 +1807,15 @@
 
   .legacy-map-frame {
     height: 300px;
+  }
+
+  .legacy-seo-badge-section {
+    padding-bottom: 64px;
+  }
+
+  .legacy-seo-badge-card {
+    padding: 20px;
+    border-radius: 20px;
   }
 }
 

@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
+import SeoScoreBadge from "../components/common/SeoScoreBadge";
+import { LegacyFooter, LegacyNav, LegacySmartLink, scrollToSection } from "../components/layout/LegacySiteChrome";
+import SeoHead from "../components/layout/SeoHead";
 import { collegePreviewData } from "../data/collegePreviewData";
 import {
   legacyCourses,
@@ -8,9 +12,6 @@ import {
   legacyHeroFooter,
   legacyTestimonials
 } from "../data/legacyBundleData";
-import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
-import { LegacyFooter, LegacyNav, LegacySmartLink, scrollToSection } from "../components/layout/LegacySiteChrome";
-import SeoHead from "../components/layout/SeoHead";
 import { makeAbsoluteUrl } from "../config/site";
 
 function extractYouTubeId(url) {
@@ -338,6 +339,8 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+      <SeoScoreBadge />
 
       <LegacyFooter />
     </div>
