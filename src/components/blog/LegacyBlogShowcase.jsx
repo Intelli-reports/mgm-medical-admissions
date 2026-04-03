@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { legacyBlogs } from "../../data/legacyBundleData";
 
 function blogTagClass(tag) {
@@ -7,14 +8,18 @@ function blogTagClass(tag) {
 function BlogSideCard({ blog }) {
   return (
     <article className="legacy-blog-side-card">
-      <div className="legacy-blog-image-wrap">
-        <img src={blog.image} alt={blog.title} />
-        <span className={blogTagClass(blog.tag)}>{blog.tag}</span>
-      </div>
-      <div className="legacy-blog-body">
-        <h4>{blog.title}</h4>
-        <p className="legacy-blog-meta">{blog.date} • {blog.meta}</p>
-      </div>
+      <Link to="/blogs">
+        <div className="legacy-blog-image-wrap">
+          <img src={blog.image} alt={blog.title} />
+          <span className={blogTagClass(blog.tag)}>{blog.tag}</span>
+        </div>
+        <div className="legacy-blog-body">
+          <h4>{blog.title}</h4>
+          <p className="legacy-blog-meta">
+            {blog.date} • {blog.meta}
+          </p>
+        </div>
+      </Link>
     </article>
   );
 }
@@ -34,6 +39,7 @@ function LegacyBlogShowcase({ pageMode = false }) {
             Explore practical reads for students and parents navigating NEET counseling,
             college comparison, and admission decision-making.
           </p>
+          {!pageMode ? <Link to="/blogs">View all articles</Link> : null}
         </div>
 
         <div className="legacy-blog-editorial-grid">
@@ -44,15 +50,19 @@ function LegacyBlogShowcase({ pageMode = false }) {
           </div>
 
           <article className="legacy-blog-feature">
-            <div className="legacy-blog-image-wrap">
-              <img src={featuredBlog.image} alt={featuredBlog.title} />
-              <span className={blogTagClass(featuredBlog.tag)}>{featuredBlog.tag}</span>
-            </div>
-            <div className="legacy-blog-body">
-              <h3>{featuredBlog.title}</h3>
-              <p className="legacy-blog-meta">{featuredBlog.date} • {featuredBlog.meta}</p>
-              <p>{featuredBlog.excerpt}</p>
-            </div>
+            <Link to="/blogs">
+              <div className="legacy-blog-image-wrap">
+                <img src={featuredBlog.image} alt={featuredBlog.title} />
+                <span className={blogTagClass(featuredBlog.tag)}>{featuredBlog.tag}</span>
+              </div>
+              <div className="legacy-blog-body">
+                <h3>{featuredBlog.title}</h3>
+                <p className="legacy-blog-meta">
+                  {featuredBlog.date} • {featuredBlog.meta}
+                </p>
+                <p>{featuredBlog.excerpt}</p>
+              </div>
+            </Link>
           </article>
 
           <div className="legacy-blog-stack">

@@ -6,11 +6,12 @@ import {
   legacyEvents,
   legacyFeaturedColleges,
   legacyHeroFooter,
-  legacyHeroStats,
   legacyTestimonials
 } from "../data/legacyBundleData";
 import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
 import { LegacyFooter, LegacyNav, LegacySmartLink, scrollToSection } from "../components/layout/LegacySiteChrome";
+import SeoHead from "../components/layout/SeoHead";
+import { makeAbsoluteUrl } from "../config/site";
 
 function extractYouTubeId(url) {
   const match = url.match(/embed\/([^?&/]+)/);
@@ -18,7 +19,10 @@ function extractYouTubeId(url) {
 }
 
 function toPlayableEmbedUrl(url) {
-  const safeUrl = url.replace("https://www.youtube.com/embed/", "https://www.youtube-nocookie.com/embed/");
+  const safeUrl = url.replace(
+    "https://www.youtube.com/embed/",
+    "https://www.youtube-nocookie.com/embed/"
+  );
   return `${safeUrl}${safeUrl.includes("?") ? "&" : "?"}autoplay=1&rel=0`;
 }
 
@@ -54,30 +58,57 @@ function HomePage() {
   const homeVideos = buildHomeVideoItems();
   const [activeVideo, setActiveVideo] = useState(homeVideos[0] || null);
 
+  const homeSchema = [
+    {
+      "@type": "WebSite",
+      name: "BalaJi Admission Guidance",
+      url: makeAbsoluteUrl("/")
+    },
+    {
+      "@type": "Organization",
+      name: "BalaJi Admission Guidance",
+      url: makeAbsoluteUrl("/")
+    }
+  ];
+
   return (
     <div className="legacy-page">
-      <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} aboutMode="scroll" />
+      <SeoHead
+        title="NEET UG Counseling and Medical College Guidance 2026"
+        description="Medical admission guidance for NEET UG counseling, college shortlisting, state-wise options, MBBS fees, and detailed medical college research."
+        canonicalPath="/"
+        keywords={[
+          "NEET UG counseling 2026",
+          "medical college guidance",
+          "MBBS admission guidance",
+          "medical college fees and cutoff",
+          "state wise medical college seats"
+        ]}
+        schema={homeSchema}
+      />
+
+      <LegacyNav
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        aboutMode="scroll"
+      />
 
       <section className="legacy-hero">
         <video autoPlay loop muted playsInline className="legacy-hero-video">
-          <source
-            src="/video/istockphoto-1498919348-640_adpp_is.mp4"
-            type="video/mp4"
-          />
+          <source src="/video/istockphoto-1498919348-640_adpp_is.mp4" type="video/mp4" />
         </video>
         <div className="legacy-hero-overlay" />
         <div className="legacy-container legacy-hero-content">
           <div className="legacy-hero-copy">
             <p className="legacy-hero-kicker">ONE-STOP ADMISSION SUPPORT</p>
             <h1>
-              <span className="legacy-hero-title-line">Start Your MBBS,</span>
-              <span className="legacy-hero-title-line">MD &amp; MS Journey</span>
-              <span className="legacy-hero-title-line">with MGM</span>
+              <span className="legacy-hero-title-line">NEET UG Counseling &amp;</span>
+              <span className="legacy-hero-title-line">College Guidance 2026</span>
             </h1>
             <p>
-              A structured guidance platform for students and parents navigating
-              NEET UG admissions, college shortlisting, state-wise options, and
-              detailed college research with more clarity and confidence.
+              A structured guidance platform for students and parents navigating NEET UG
+              admissions, college shortlisting, state-wise options, and detailed college
+              research with more clarity and confidence.
             </p>
             <div className="legacy-hero-buttons">
               <button
@@ -87,10 +118,7 @@ function HomePage() {
               >
                 Explore Colleges
               </button>
-              <Link
-                to="/contact"
-                className="legacy-btn legacy-btn-dark legacy-link-button"
-              >
+              <Link to="/contact" className="legacy-btn legacy-btn-dark legacy-link-button">
                 Talk to Counselor
               </Link>
             </div>
@@ -116,51 +144,30 @@ function HomePage() {
               <p className="legacy-section-sub">Our Story</p>
               <h2>Inspiring Futures, One Career at a Time</h2>
               <p>
-                Welcome to Future Vision Career Guidance, where we shape
-                tomorrow&apos;s leaders and innovators. We believe every student
-                deserves a clear and purposeful career path. Our experienced
-                career counselors and industry professionals guide individuals at
-                every stage of their academic and professional journey.
+                We guide students and parents through medical admission decision-making with
+                clear counseling, college comparison support, and practical next-step planning.
+                The focus is simple: reduce confusion and help families move with more confidence.
               </p>
-              <h4>What We Offer:</h4>
+              <h3>What We Offer</h3>
               <ul>
-                <li>Personalized Career Counseling</li>
-                <li>Career Assessments &amp; Planning</li>
-                <li>College &amp; Career Path Guidance</li>
-                <li>Your future begins now. Let&apos;s create it together.</li>
+                <li>Personalized career counseling</li>
+                <li>NEET counseling and admission planning</li>
+                <li>College shortlisting and comparison support</li>
+                <li>Clear guidance for fees, cutoff trends, and reporting steps</li>
               </ul>
             </div>
             <img
               src="/image/mgm-admissions-office.png"
-              alt="College guidance"
+              alt="Medical admission counseling support"
               className="legacy-about-image"
             />
-          </div>
-
-          <div className="legacy-mission-grid">
-            <article className="legacy-info-card">
-              <h4>Our Mission</h4>
-              <p>
-                To become a trusted career guidance partner, empowering students
-                to achieve their dreams through informed decisions, expert
-                counseling, and continuous support.
-              </p>
-            </article>
-            <article className="legacy-info-card">
-              <h4>Our Vision</h4>
-              <p>
-                To guide individuals with personalized career solutions, helping
-                them choose the right education path, build skills, and create
-                successful future-ready careers.
-              </p>
-            </article>
           </div>
         </div>
       </section>
 
       <section id="courses" className="legacy-courses">
         <div className="legacy-container">
-          <h2>Featured Courses</h2>
+          <h2>Featured Medical Courses and Guidance Tracks</h2>
           <div className="legacy-course-grid">
             {legacyCourses.map((course) => (
               <article
@@ -174,9 +181,9 @@ function HomePage() {
                     <div className="legacy-course-arrow">→</div>
                     <span>Medical</span>
                   </div>
-                  <h4>{course.title}</h4>
+                  <h3>{course.title}</h3>
                   <p>{course.text}</p>
-                  <span>Read -&gt;</span>
+                  <Link to="/blogs">Explore guidance →</Link>
                 </div>
               </article>
             ))}
@@ -186,15 +193,15 @@ function HomePage() {
 
       <section id="colleges" className="legacy-colleges">
         <div className="legacy-container">
-          <h2>Best Colleges of Medical</h2>
+          <h2>Featured Medical Colleges, Fees and Admission Pages</h2>
           <div className="legacy-college-grid">
             {legacyFeaturedColleges.map((college) => (
               <article key={college.name} className="legacy-college-card">
                 <img src={college.image} alt={college.name} />
                 <div className="legacy-college-body">
-                  <h4>{college.name}</h4>
-                  <p>MBBS MS MD</p>
-                  <LegacySmartLink to={college.route}>Read More -&gt;</LegacySmartLink>
+                  <h3>{college.name}</h3>
+                  <p>MBBS, MD and MS admission guidance</p>
+                  <LegacySmartLink to={college.route}>View college details →</LegacySmartLink>
                 </div>
               </article>
             ))}
@@ -206,43 +213,33 @@ function HomePage() {
         <div className="legacy-container legacy-excellence-grid">
           <div>
             <h2>
-              Excellence in Education for Over <br /> 20+ Years
+              Admission guidance backed by experience, structure,
+              <br /> and practical decision support
             </h2>
             <p>
-              With excellence in education spanning over 20 years, Future Vision
-              Career Guidance stands as a trusted name in academic and career
-              counseling. Our long-standing experience reflects deep
-              understanding, proven expertise, and a strong commitment to
-              student success.
+              We help students review medical colleges more clearly, understand realistic
+              options, and plan admission decisions with less guesswork. The website combines
+              counseling support with detailed college pages so each next step is easier to assess.
             </p>
             <div className="legacy-hero-buttons">
-              <button type="button" className="legacy-btn legacy-btn-primary">
-                Learn More
-              </button>
-              <button type="button" className="legacy-btn legacy-btn-outline">
-                Virtual Tour
-              </button>
+              <Link to="/contact" className="legacy-btn legacy-btn-primary legacy-link-button">
+                Talk to Counselor
+              </Link>
+              <Link to="/blogs" className="legacy-btn legacy-btn-outline legacy-link-button">
+                Read Admission Articles
+              </Link>
             </div>
-          </div>
-          <div className="legacy-mini-stats">
-            {legacyHeroStats.map((item) => (
-              <article key={item.label} className="legacy-mini-stat">
-                <div className="legacy-mini-icon">{item.label.slice(0, 1)}</div>
-                <h3>{item.value}</h3>
-                <p>{item.label}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
 
       <section className="legacy-testimonials">
         <div className="legacy-container">
-          <h2>What Our Students Say</h2>
+          <h2>What Students and Parents Say</h2>
           <div className="legacy-testimonial-grid">
             {legacyTestimonials.map((item) => (
               <article key={item.name} className="legacy-testimonial-card">
-                <p>"{item.text}"</p>
+                <p>&quot;{item.text}&quot;</p>
                 <div className="legacy-testimonial-user">
                   <img src={item.image} alt={item.name} />
                   <div>
@@ -256,31 +253,35 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="legacy-events">
+      <section id="events" className="legacy-events">
         <div className="legacy-container">
-          <h2>Upcoming events</h2>
+          <h2>Upcoming counseling events and admission sessions</h2>
           {legacyEvents.map((event, index) => (
             <div key={event.title}>
               <article className="legacy-event-item">
                 <p className="legacy-event-date">• {event.date}</p>
-                <h4>{event.title}</h4>
+                <h3>{event.title}</h3>
                 <p>{event.text}</p>
-                <span>10:00 AM-10:00 PM | Read More...</span>
+                <Link to="/contact">Talk to counselor about this event</Link>
               </article>
               {index < legacyEvents.length - 1 ? <hr className="legacy-divider" /> : null}
             </div>
           ))}
         </div>
       </section>
-      <LegacyBlogShowcase />
 
-      <section className="legacy-videos">
+      <div id="blogs">
+        <LegacyBlogShowcase />
+      </div>
+
+      <section id="videos" className="legacy-videos">
         <div className="legacy-container">
           <div className="legacy-section-heading">
             <p className="legacy-section-sub">Video Guidance</p>
             <h2>Latest videos and counselling insights</h2>
             <p>
-              Watch admission guidance videos sourced from the current college pages without leaving the homepage.
+              Watch admission guidance videos sourced from the current college pages without
+              leaving the homepage.
             </p>
           </div>
 
@@ -344,4 +345,3 @@ function HomePage() {
 }
 
 export default HomePage;
-

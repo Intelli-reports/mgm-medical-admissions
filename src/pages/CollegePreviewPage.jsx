@@ -1,6 +1,8 @@
-import { Link, useParams } from "react-router-dom";
+﻿import { Link, useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { collegePreviewData } from "../data/collegePreviewData";
+import SeoHead from "../components/layout/SeoHead";
+import { DEFAULT_OG_IMAGE, makeAbsoluteUrl } from "../config/site";
 
 function estimateRank(score) {
   return Math.round(Math.max(1, (720 - score) * 115));
@@ -236,6 +238,39 @@ function CollegePreviewPage() {
     );
   }
 
+  const seoDescription = `${data.fullName} admission guide with fees, cutoff trends, eligibility, facilities, videos, FAQs, and contact details for ${data.locationLine}.`;
+  const collegeSchema = [
+    {
+      "@type": "CollegeOrUniversity",
+      name: data.fullName,
+      url: makeAbsoluteUrl(`/preview/${slug}`),
+      image: makeAbsoluteUrl(data.image || DEFAULT_OG_IMAGE),
+      telephone: data.helpLine || data.phone,
+      email: data.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: data.locationLine
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: makeAbsoluteUrl("/")
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: data.fullName,
+          item: makeAbsoluteUrl(`/preview/${slug}`)
+        }
+      ]
+    }
+  ];
+
   function submitInquiry(event) {
     event.preventDefault();
     if (!inquiry.name.trim() || !inquiry.phone.trim()) return;
@@ -265,6 +300,20 @@ function CollegePreviewPage() {
 
   return (
     <div className="kp-page" style={themeStyle}>
+      <SeoHead
+        title={`${data.fullName} MBBS Admission 2026, Fees, Cutoff and Contact`}
+        description={seoDescription}
+        canonicalPath={`/preview/${slug}`}
+        image={data.image || DEFAULT_OG_IMAGE}
+        keywords={[
+          `${data.fullName} MBBS admission`,
+          `${data.shortName} fees`,
+          `${data.shortName} cutoff`,
+          `${data.shortName} contact`,
+          `${data.shortName} admission 2026`
+        ]}
+        schema={collegeSchema}
+      />
       <header className="kp-header">
         <div className="kp-container kp-header-content">
           <div className="kp-logo-area">
@@ -311,11 +360,11 @@ function CollegePreviewPage() {
 
       <div className="kp-container kp-main-layout">
         <main className="kp-left-content">
-          <div className="kp-college-header">
+          <div id="overview" className="kp-college-header">
             <Link to="/" className="kp-back-arrow-btn">
               ← Back
             </Link>
-            <h2>{data.titleLine}</h2>
+            <h2>{data.shortName} admission guide, fees, cutoff and facilities</h2>
             <span className="kp-location-tag">{data.locationLine}</span>
           </div>
 
@@ -323,7 +372,7 @@ function CollegePreviewPage() {
 
           <img className="kp-college-image" src={data.image} alt={`${data.fullName} Campus`} />
 
-          <div className="kp-video-section">
+          <div id="videos" className="kp-video-section">
             <h3>{collegeLabel} - Video Overview</h3>
             <div className="kp-video-container">
               <iframe
@@ -335,7 +384,7 @@ function CollegePreviewPage() {
             </div>
           </div>
 
-          <div className="kp-upcoming-events">
+          <div id="events" className="kp-upcoming-events">
             <h3>Upcoming Events</h3>
             <div className="kp-events-scroll">
               {data.events.map(([month, year, title, meta]) => (
@@ -354,7 +403,7 @@ function CollegePreviewPage() {
             </div>
           </div>
 
-          <div className="kp-highlights-grid">
+          <div id="details" className="kp-highlights-grid">
             {data.highlights.map(([label, value]) => (
               <div key={label} className="kp-highlight-card">
                 <div className="kp-highlight-icon">
@@ -472,8 +521,8 @@ function CollegePreviewPage() {
               <strong>Download Free PDF Guide:</strong> Includes college list, important dates,
               and step-by-step process.
             </p>
-            <Link to="/" className="kp-cta-button">
-              Download Free Guide
+            <Link to="/contact" className="kp-cta-button">
+              Request Free Guide
             </Link>
           </div>
 
@@ -495,7 +544,7 @@ function CollegePreviewPage() {
             </div>
           </div>
 
-          <div className="kp-faq-section">
+          <div id="faq" className="kp-faq-section">
             <h3>Frequently Asked Questions - {data.fullName}</h3>
             {data.faqs.map(([question, answer], index) => (
               <div className="kp-faq-item" key={question}>
@@ -611,7 +660,7 @@ function CollegePreviewPage() {
             {submitted ? <div className="kp-sinq-success">Thank you! We&apos;ll call you soon.</div> : null}
           </form>
 
-          <div className="kp-quick-info">
+          <div id="contact" className="kp-quick-info">
             <h3>Quick Contact</h3>
             {data.quickContact.map(([label, value]) => (
               <p key={label}>
@@ -634,11 +683,11 @@ function CollegePreviewPage() {
           <div className="kp-footer-col">
             <h4>Quick Links</h4>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/">What We Do</Link></li>
-              <li><Link to="/">College Predictor</Link></li>
-              <li><Link to="/">All Colleges</Link></li>
-              <li><Link to="/contact">Contact Us</Link></li>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#details">Courses and details</a></li>
+              <li><a href="#videos">Videos</a></li>
+              <li><a href="#faq">FAQs</a></li>
+              <li><a href="#contact">Quick contact</a></li>
             </ul>
           </div>
           <div className="kp-footer-col">
@@ -684,3 +733,5 @@ function CollegePreviewPage() {
 }
 
 export default CollegePreviewPage;
+
+

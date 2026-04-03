@@ -201,7 +201,7 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
               ))}
             </div>
           </div>
-          <Link to="/Blogs" onClick={() => setMobileMenuOpen(false)}>
+          <Link to="/blogs" onClick={() => setMobileMenuOpen(false)}>
             Blogs
           </Link>
           <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
@@ -247,7 +247,7 @@ export function LegacyFooter() {
           <div className="legacy-footer-links">
             <Link to="/">Home</Link>
             <Link to="/">About Us</Link>
-            <Link to="/Blogs">Blogs</Link>
+            <Link to="/blogs">Blogs</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </div>

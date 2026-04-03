@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
+import SeoHead from "../components/layout/SeoHead";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
 
 function ContactInfoIcon({ type }) {
   if (type === "address") {
@@ -82,9 +84,38 @@ function ContactPage() {
       href: "tel:+919324652984"
     }
   ];
+  const contactSchema = [
+    {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: makeAbsoluteUrl("/"),
+      email: CONTACT_EMAIL,
+      telephone: CONTACT_PHONE,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: CONTACT_ADDRESS
+      }
+    },
+    {
+      "@type": "ContactPage",
+      name: "Contact BalaJi Admission Guidance",
+      url: makeAbsoluteUrl("/contact")
+    }
+  ];
 
   return (
     <div className="legacy-page">
+      <SeoHead
+        title="Contact BalaJi Admission Guidance"
+        description="Contact BalaJi Admission Guidance in Vashi, Navi Mumbai for medical college counseling, college shortlisting, and admission support."
+        canonicalPath="/contact"
+        keywords={[
+          "contact admission counselor",
+          "medical admission guidance contact",
+          "Vashi Navi Mumbai admission support"
+        ]}
+        schema={contactSchema}
+      />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <section className="legacy-contact-hero">

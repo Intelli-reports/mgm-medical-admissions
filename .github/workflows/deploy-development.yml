@@ -27,6 +27,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          VITE_SITE_URL: https://mgmmbbsmdms.com
         run: npm run build
 
       - name: Upload build to cPanel
