@@ -2,13 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { collegePreviewData } from "../data/collegePreviewData";
 import {
-  legacyBlogs,
   legacyCourses,
   legacyEvents,
   legacyFeaturedColleges,
   legacyHeroFooter,
   legacyHeroStats,
-  legacyNavGroups,
   legacyTestimonials
 } from "../data/legacyBundleData";
 import LegacyBlogShowcase from "./LegacyBlogShowcase";
@@ -51,12 +49,7 @@ function buildHomeVideoItems() {
     .slice(0, 6);
 }
 
-function blogTagClass(tag) {
-  return `legacy-blog-tag legacy-blog-tag-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
-}
-
 function LegacyBundleHome() {
-  const [featuredBlog, ...sideBlogs] = legacyBlogs;
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const homeVideos = buildHomeVideoItems();
   const [activeVideo, setActiveVideo] = useState(homeVideos[0] || null);
@@ -279,45 +272,7 @@ function LegacyBundleHome() {
           ))}
         </div>
       </section>
-
       <LegacyBlogShowcase />
-
-      <section className="legacy-blogs" style={{ display: "none" }}>
-        <div className="legacy-container">
-          <h2>Blogs</h2>
-          <div className="legacy-blog-page-grid">
-            <article className="legacy-blog-feature">
-              <div className="legacy-blog-image-wrap">
-                <img src={featuredBlog.image} alt={featuredBlog.title} />
-                <span>{featuredBlog.tag}</span>
-              </div>
-              <div className="legacy-blog-body">
-                <h3>{featuredBlog.title}</h3>
-                <p>
-                  Guidance-led reading for students and parents trying to compare
-                  colleges, understand counseling rounds, and plan realistic next
-                  steps.
-                </p>
-              </div>
-            </article>
-
-            <div className="legacy-blog-side-grid">
-              {sideBlogs.map((blog) => (
-                <article key={blog.title} className="legacy-blog-card">
-                  <div className="legacy-blog-image-wrap">
-                    <img src={blog.image} alt={blog.title} />
-                    <span>{blog.tag}</span>
-                  </div>
-                  <div className="legacy-blog-body">
-                    <h4>{blog.title}</h4>
-                    <p>Admissions • Guidance • College planning</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section className="legacy-videos">
         <div className="legacy-container">
@@ -389,3 +344,4 @@ function LegacyBundleHome() {
 }
 
 export default LegacyBundleHome;
+
