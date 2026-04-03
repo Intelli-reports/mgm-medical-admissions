@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LegacyFooter, LegacyNav } from "./LegacySiteChrome";
+import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
 
 function ContactInfoIcon({ type }) {
   if (type === "address") {
@@ -57,7 +57,7 @@ function ContactInfoIcon({ type }) {
   );
 }
 
-function LegacyContactPage() {
+function ContactPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const info = [
     {
@@ -144,4 +144,4 @@ function LegacyContactPage() {
   );
 }
 
-export default LegacyContactPage;
+export default ContactPage;

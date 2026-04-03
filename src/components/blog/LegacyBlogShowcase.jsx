@@ -1,4 +1,4 @@
-import { legacyBlogs } from "../data/legacyBundleData";
+import { legacyBlogs } from "../../data/legacyBundleData";
 
 function blogTagClass(tag) {
   return `legacy-blog-tag legacy-blog-tag-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;

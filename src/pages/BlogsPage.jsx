@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { LegacyFooter, LegacyNav } from "./LegacySiteChrome";
-import LegacyBlogShowcase from "./LegacyBlogShowcase";
+import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
+import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
 
-function LegacyBlogsPage() {
+function BlogsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -14,4 +14,4 @@ function LegacyBlogsPage() {
   );
 }
 
-export default LegacyBlogsPage;
+export default BlogsPage;

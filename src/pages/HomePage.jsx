@@ -9,8 +9,8 @@ import {
   legacyHeroStats,
   legacyTestimonials
 } from "../data/legacyBundleData";
-import LegacyBlogShowcase from "./LegacyBlogShowcase";
-import { LegacyFooter, LegacyNav, LegacySmartLink, scrollToSection } from "./LegacySiteChrome";
+import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
+import { LegacyFooter, LegacyNav, LegacySmartLink, scrollToSection } from "../components/layout/LegacySiteChrome";
 
 function extractYouTubeId(url) {
   const match = url.match(/embed\/([^?&/]+)/);
@@ -49,7 +49,7 @@ function buildHomeVideoItems() {
     .slice(0, 6);
 }
 
-function LegacyBundleHome() {
+function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const homeVideos = buildHomeVideoItems();
   const [activeVideo, setActiveVideo] = useState(homeVideos[0] || null);
@@ -343,5 +343,5 @@ function LegacyBundleHome() {
   );
 }
 
-export default LegacyBundleHome;
+export default HomePage;
 

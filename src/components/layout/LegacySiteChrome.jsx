@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { legacyNavGroups } from "../data/legacyBundleData";
+import { legacyNavGroups } from "../../data/legacyBundleData";
 
 const admissionWhatsappUrl =
   "https://wa.me/919179339042?text=Admission%20Enquiry";
