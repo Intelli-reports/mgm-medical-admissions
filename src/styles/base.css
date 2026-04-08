@@ -1,0 +1,160 @@
+﻿:root {
+  --primary: #6366f1;
+  --secondary: #a855f7;
+  --accent: #f59e0b;
+  --ink: #203451;
+  --ink-soft: #5d728c;
+  --line: rgba(135, 176, 226, 0.22);
+  --shadow: 0 18px 42px rgba(93, 124, 163, 0.12);
+  --grad: linear-gradient(135deg, #6366f1 0%, #a855f7 55%, #f59e0b 100%);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(106, 176, 226, 0.3), transparent 24%),
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 22%),
+    linear-gradient(180deg, #f9fbff 0%, #f4f7fc 52%, #edf4ff 100%);
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { width: min(1280px, calc(100% - 32px)); margin: 0 auto; }
+.ticker-wrap { background: var(--grad); color: #fff; overflow: hidden; white-space: nowrap; font-weight: 700; font-size: .86rem; letter-spacing: .08em; text-transform: uppercase; }
+.ticker { display: inline-block; padding: 12px 0; animation: ticker 32s linear infinite; }
+@keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+.site-header { position: sticky; top: 0; z-index: 20; background: rgba(255,255,255,.82); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+.header-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; }
+.brand { font-size: 1.9rem; font-weight: 800; color: var(--ink); }
+.brand span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.site-nav { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; color: var(--ink-soft); font-weight: 600; }
+.header-cta,.primary-btn,.secondary-btn,.card-btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 14px 22px; font-weight: 700; transition: transform .2s ease, box-shadow .2s ease; }
+.header-cta,.primary-btn,.card-btn { background: var(--grad); color: #fff; box-shadow: 0 16px 30px rgba(99,102,241,.22); }
+.secondary-btn { background: rgba(255,255,255,.86); border: 1px solid var(--line); color: var(--ink); }
+.header-cta:hover,.primary-btn:hover,.secondary-btn:hover,.card-btn:hover { transform: translateY(-2px); }
+.page-shell,.college-page-shell { padding-bottom: 56px; }
+.hero-section,.college-hero { padding: 42px 0 24px; }
+.hero-card,.predictor-panel,.contact-panel,.detail-panel { background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(236,242,255,.96)); border: 1px solid var(--line); border-radius: 32px; box-shadow: var(--shadow); }
+.hero-card { padding: 48px 36px; text-align: center; }
+.hero-kicker { display: inline-block; margin-bottom: 16px; color: var(--accent); font-weight: 800; letter-spacing: .25em; text-transform: uppercase; }
+.hero-card h1,.college-hero-copy h1,.section-head h2 { margin: 0 0 18px; line-height: .95; font-size: clamp(2.6rem, 6vw, 5.2rem); }
+.hero-card h1 span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-card p,.section-head p,.college-hero-copy p,.contact-panel p { color: var(--ink-soft); max-width: 860px; margin: 0 auto; line-height: 1.7; font-size: 1.05rem; }
+.hero-actions { margin-top: 28px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.hero-pill-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 28px; }
+.hero-pill,.contact-card { background: rgba(255,255,255,.85); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); padding: 18px; }
+.hero-pill strong,.contact-card strong,.highlight-card strong,.detail-list strong,.cutoff-card strong,.mini-college-card strong,.stat-block strong { display: block; }
+.hero-pill span,.contact-card span,.highlight-card span,.detail-list span,.cutoff-card span,.mini-college-card span,.stat-block span { color: var(--ink-soft); }
+.stats-bar { margin-top: 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.stat-block { background: rgba(255,255,255,.88); border: 1px solid var(--line); border-radius: 24px; padding: 24px 18px; text-align: center; box-shadow: var(--shadow); }
+.stat-block strong { font-size: 2.2rem; color: var(--accent); }
+.section { padding: 22px 0; }
+.section-head { text-align: center; margin-bottom: 24px; }
+.section-head.section-head-left { text-align: left; }
+.section-head h2 { font-size: clamp(2rem, 4vw, 3.2rem); margin-bottom: 10px; }
+.service-grid,.college-grid,.highlight-grid,.contact-grid { display: grid; gap: 18px; }
+.service-grid { grid-template-columns: repeat(3, 1fr); }
+.service-card,.college-card,.highlight-card,.mini-college-card { background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); }
+.service-card { padding: 24px; text-align: center; }
+.service-icon { width: 62px; height: 62px; margin: 0 auto 16px; border-radius: 18px; display: grid; place-items: center; background: var(--grad); color: #fff; font-weight: 800; }
+.service-card h3 { margin: 0 0 10px; }
+.service-card p { margin: 0; color: var(--ink-soft); }
+.predictor-panel,.contact-panel { padding: 28px; }
+.predictor-grid,.college-detail-grid,.college-hero-grid { display: grid; gap: 18px; }
+.predictor-grid { grid-template-columns: 1fr 1fr; }
+.predictor-form,.predictor-result { background: rgba(255,255,255,.78); border: 1px solid var(--line); border-radius: 22px; padding: 22px; }
+.predictor-form label { display: block; margin-bottom: 10px; font-weight: 700; }
+.predictor-form input { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); font: inherit; }
+.predictor-form small { display: block; margin-top: 12px; color: var(--ink-soft); line-height: 1.6; }
+.result-top { display: flex; justify-content: space-between; gap: 12px; align-items: end; }
+.result-top strong { font-size: 3rem; color: var(--primary); }
+.result-bar { height: 12px; margin: 18px 0; border-radius: 999px; background: #dce7fb; overflow: hidden; }
+.result-bar div { height: 100%; border-radius: inherit; background: var(--grad); }
+.college-grid { grid-template-columns: repeat(3, 1fr); }
+.college-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 28px 28px 0 0; }
+.college-card-body { padding: 20px; }
+.college-card-body h3 { margin: 12px 0 10px; }
+.college-card-body p { margin: 0 0 14px; color: var(--ink-soft); line-height: 1.7; }
+.tag-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag-row span { padding: 8px 12px; border-radius: 999px; background: rgba(99,102,241,.08); border: 1px solid rgba(99,102,241,.12); color: var(--ink); font-size: .84rem; font-weight: 700; }
+.metric-grid,.cutoff-grid,.detail-list,.contact-grid,.mini-college-grid { display: grid; gap: 12px; }
+.metric-grid { grid-template-columns: repeat(2, 1fr); margin-bottom: 16px; }
+.metric-grid div,.cutoff-card,.contact-card { background: rgba(248,250,255,.9); border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+.card-btn { width: 100%; }
+.contact-grid { grid-template-columns: repeat(4, 1fr); }
+.college-hero-grid { grid-template-columns: 1.1fr .9fr; align-items: center; }
+.college-hero-copy,.college-hero-media { background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 32px; box-shadow: var(--shadow); }
+.college-hero-copy { padding: 32px; }
+.crumbs { margin-bottom: 12px; font-size: .92rem; }
+.college-hero-media { overflow: hidden; }
+.college-hero-media img { width: 100%; height: 100%; min-height: 360px; object-fit: cover; }
+.highlight-grid { grid-template-columns: repeat(4, 1fr); }
+.highlight-card { display: flex; gap: 14px; align-items: center; padding: 18px; min-height: 112px; }
+.highlight-icon { width: 52px; height: 52px; min-width: 52px; border-radius: 16px; display: grid; place-items: center; background: rgba(239,68,68,.08); color: #ef4444; font-weight: 800; }
+.college-detail-grid { grid-template-columns: 1fr 1fr; }
+.detail-panel { padding: 24px; }
+.detail-panel h3 { margin-top: 0; }
+.detail-list { grid-template-columns: repeat(2, 1fr); }
+.cutoff-grid { grid-template-columns: repeat(2, 1fr); }
+.cutoff-card small { display: block; margin-top: 8px; color: var(--ink-soft); line-height: 1.5; }
+.mini-college-grid { grid-template-columns: repeat(4, 1fr); }
+.mini-college-card { display: block; overflow: hidden; }
+.mini-college-card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.mini-college-card div { padding: 14px; }
+.missing-page { padding: 64px 0; }
+.site-footer { border-top: 1px solid var(--line); background: #11243a; color: #fff; }
+.footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 28px 0; }
+.footer-inner p { max-width: 560px; color: rgba(255,255,255,.78); }
+.footer-links { display: flex; gap: 16px; flex-wrap: wrap; align-items: start; }
+@media (max-width: 1100px) {
+  .hero-pill-grid,.contact-grid,.highlight-grid,.mini-college-grid { grid-template-columns: repeat(2, 1fr); }
+  .service-grid,.college-grid,.college-hero-grid,.college-detail-grid,.predictor-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .header-inner { flex-direction: column; align-items: flex-start; }
+  .site-nav { gap: 12px; }
+  .hero-card { padding: 34px 20px; }
+  .stats-bar,.hero-pill-grid,.metric-grid,.detail-list,.cutoff-grid,.highlight-grid,.contact-grid,.mini-college-grid { grid-template-columns: 1fr; }
+  .hero-card h1,.college-hero-copy h1 { font-size: 2.8rem; }
+}
+
+.legacy-page {
+  background: #f6f9fd;
+  color: #233b5d;
+}
+
+.route-shell {
+  animation: routeFadeSlide 0.34s ease both;
+  will-change: opacity, transform;
+}
+
+@keyframes routeFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-shell {
+    animation: none;
+  }
+
+  .legacy-dropdown-menu,
+  .legacy-dropdown-submenu,
+  .legacy-dropdown-trigger,
+  .legacy-dropdown-caret,
+  .legacy-dropdown-group-trigger,
+  .legacy-dropdown-submenu a {
+    transition: none;
+  }
+}
+
