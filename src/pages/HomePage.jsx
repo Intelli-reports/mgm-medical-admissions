@@ -101,7 +101,7 @@ function HomePage() {
         <div className="legacy-hero-overlay" />
         <div className="legacy-container legacy-hero-content">
           <div className="legacy-hero-copy">
-            <p className="legacy-hero-kicker">ONE-STOP ADMISSION SUPPORT</p>
+            <p className="legacy-hero-kicker">ONE-STOP ADMISSION SUPPORT FROM BALJI SERVICE EDUCATION </p>
             <h1>
               <span className="legacy-hero-title-line">NEET UG Counseling &amp;</span>
               <span className="legacy-hero-title-line">College Guidance 2026</span>
