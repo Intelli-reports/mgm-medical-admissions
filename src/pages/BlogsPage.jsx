@@ -10,7 +10,7 @@ function BlogsPage() {
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Admission Blogs and NEET Guidance Updates",
+    name: "Admission Blogs and NEET Guidance Updates 2026",
     url: makeAbsoluteUrl("/blogs"),
     about: legacyBlogs.map((blog) => blog.title)
   };
