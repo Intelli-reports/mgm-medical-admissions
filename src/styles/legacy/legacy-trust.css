@@ -1,0 +1,143 @@
+.legacy-trust-section,
+.legacy-team-section,
+.legacy-proof-section {
+  padding: 84px 0;
+}
+
+.legacy-trust-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.legacy-trust-card,
+.legacy-team-card,
+.legacy-proof-card {
+  background: var(--legacy-surface);
+  border-radius: var(--legacy-radius-card);
+  box-shadow: var(--legacy-shadow-md);
+  border: 1px solid var(--legacy-line);
+  padding: 26px;
+}
+
+.legacy-trust-label,
+.legacy-team-role {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.legacy-trust-label {
+  color: var(--legacy-ink-500);
+}
+
+.legacy-team-role {
+  color: #1d6b7f;
+}
+
+.legacy-trust-card h3,
+.legacy-team-card h3,
+.legacy-proof-card h3 {
+  margin: 0 0 12px;
+  color: var(--legacy-ink-900);
+  line-height: 1.4;
+}
+
+.legacy-trust-card h3 {
+  font-size: 1.05rem;
+}
+
+.legacy-team-card p,
+.legacy-proof-card p {
+  margin: 0;
+  color: var(--legacy-ink-700);
+  line-height: 1.7;
+}
+
+.legacy-trust-link {
+  display: inline-flex;
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #ecf4f7;
+  color: var(--legacy-ink-900);
+  font-weight: 700;
+}
+
+.legacy-team-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.legacy-proof-grid {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.legacy-proof-card-dark {
+  background:
+    linear-gradient(160deg, rgba(11, 42, 74, 0.97), rgba(20, 68, 110, 0.97)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.16), transparent 42%);
+  color: #fff;
+}
+
+.legacy-proof-card-dark h2 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+.legacy-proof-card-dark .legacy-section-sub {
+  color: #ffd84d;
+}
+
+.legacy-proof-card-dark p {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.legacy-proof-outline {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.legacy-proof-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #4f6783;
+  line-height: 1.8;
+}
+
+.legacy-testimonial-card {
+  padding: 24px;
+}
+
+.legacy-testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.legacy-testimonial-user img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.legacy-testimonial-user span {
+  color: #f4b400;
+}
+
+.legacy-event-item {
+  margin-bottom: 30px;
+}
+
+.legacy-event-date {
+  font-size: 0.96rem;
+}
+
+.legacy-event-item span {
+  color: #2f4156;
+  font-weight: 700;
+}
+

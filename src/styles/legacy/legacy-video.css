@@ -1,0 +1,219 @@
+
+
+.legacy-blog-page-grid {
+
+  display: grid;
+
+  grid-template-columns: 1.15fr 0.85fr;
+
+  gap: 24px;
+
+}
+
+
+
+.legacy-blog-feature {
+
+  background: var(--legacy-surface);
+
+  border-radius: var(--legacy-radius-card);
+
+  box-shadow: var(--legacy-shadow-md);
+
+  border: 1px solid var(--legacy-line);
+
+  overflow: hidden;
+
+}
+
+
+
+.legacy-blog-feature .legacy-blog-image-wrap img {
+
+  height: 380px;
+
+}
+
+
+
+.legacy-blog-feature h3 {
+
+  margin-top: 0;
+
+  margin-bottom: 12px;
+
+  font-size: 1.8rem;
+
+}
+
+
+
+.legacy-blog-side-grid {
+
+  display: grid;
+
+  gap: 18px;
+
+}
+
+
+
+.legacy-blog-image-wrap {
+
+  position: relative;
+
+}
+
+
+
+.legacy-blog-image-wrap img {
+
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 16px 16px 0 0;
+
+}
+
+
+
+.legacy-blog-image-wrap span {
+
+  position: absolute;
+
+  top: 14px;
+
+  left: 14px;
+
+  background: #e74c3c;
+
+  color: #fff;
+
+  border-radius: 6px;
+
+  padding: 6px 10px;
+
+  font-size: 0.78rem;
+
+}
+
+
+
+.legacy-blog-body {
+
+  padding: 16px;
+
+}
+
+
+
+@media (max-width: 1100px) {
+
+  .legacy-blog-editorial-grid,
+
+  .legacy-blog-grid,
+
+  .legacy-blog-page-grid {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+}
+
+
+
+@media (min-width: 761px) and (max-width: 1024px) {
+
+  .legacy-blog-page-grid,
+
+  .legacy-blog-editorial-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+
+  .legacy-blog-stack {
+
+    grid-template-columns: 1fr 1fr;
+
+  }
+
+}
+
+
+
+@media (max-width: 760px) {
+
+  .legacy-blog-editorial-grid,
+
+  .legacy-blog-grid,
+
+  .legacy-blog-page-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+
+  .legacy-blog-stack {
+
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+
+  }
+
+
+
+  .legacy-blogs {
+
+    padding: 64px 0;
+
+  }
+
+
+
+  .legacy-blogs h2 {
+
+    font-size: clamp(1.95rem, 8vw, 2.65rem);
+
+    line-height: 1.06;
+
+  }
+
+
+
+  .legacy-blog-feature,
+
+  .legacy-blog-card,
+
+  .legacy-blog-side-card {
+
+    border-radius: 18px;
+
+  }
+
+
+
+  .legacy-blog-feature .legacy-blog-image-wrap img {
+
+    height: 300px;
+
+  }
+
+
+
+  .legacy-blog-side-card .legacy-blog-image-wrap img {
+
+    height: 210px;
+
+  }
+
+}

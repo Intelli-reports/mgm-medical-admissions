@@ -141,6 +141,7 @@ function homeFallback() {
       <p>BalaJi Admission Guidance helps students and parents with NEET UG counseling, medical college shortlisting, MBBS fee comparison, cutoff research, and admission planning across multiple medical colleges.</p>
       <p>This website includes medical college detail pages, admission guidance articles, contact support, state-wise admission context, and counseling-focused content for MBBS aspirants.</p>
       <nav>
+        <a href="/about">About Us</a>
         <a href="/blogs">Admission Blogs</a>
         <a href="/contact">Contact BalaJi Admission Guidance</a>
       </nav>
@@ -152,6 +153,22 @@ function homeFallback() {
         <h2>Admission support topics</h2>
         <p>Students use this platform to review college facilities, fees, intake, NRI quota information, videos, FAQs, and counseling strategy before making final admission decisions.</p>
       </section>
+    </main>
+  `;
+}
+
+function aboutFallback() {
+  return `
+    <main class="seo-fallback">
+      <h1>About BalaJi Admission Guidance</h1>
+      <p>BalaJi Admission Guidance supports students and parents with NEET UG counseling, medical college shortlisting, fee comparison, and admission planning from its office in Vashi, Navi Mumbai.</p>
+      <p>The website publishes direct contact information, office location details, college research pages, and trust-focused legal pages so families can evaluate the business more clearly before making contact.</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/contact">Contact</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+      </nav>
     </main>
   `;
 }
@@ -175,6 +192,7 @@ function blogsFallback() {
       <p>Read guidance articles on NEET counseling, MBBS admissions, choice locking, quota planning, backup strategy, and college comparison for medical admissions.</p>
       <nav>
         <a href="/">Home</a>
+        <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </nav>
       <section>${blogItems}</section>
@@ -194,7 +212,65 @@ function contactFallback() {
       </ul>
       <nav>
         <a href="/">Home</a>
+        <a href="/about">About</a>
         <a href="/blogs">Blogs</a>
+      </nav>
+    </main>
+  `;
+}
+
+function blogArticleFallback(blog) {
+  const sectionItems = blog.sections
+    .map(
+      (section) => `
+        <section>
+          <h2>${escapeHtml(section.heading)}</h2>
+          ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+        </section>
+      `
+    )
+    .join("");
+
+  const takeawayItems = blog.takeaways.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+
+  return `
+    <main class="seo-fallback">
+      <p><a href="/blogs">Back to all blogs</a></p>
+      <h1>${escapeHtml(blog.title)}</h1>
+      <p>${escapeHtml(blog.date)} &bull; ${escapeHtml(blog.meta)}</p>
+      <p>${escapeHtml(blog.intro)}</p>
+      ${sectionItems}
+      <section>
+        <h2>Key takeaways</h2>
+        <ul>${takeawayItems}</ul>
+      </section>
+    </main>
+  `;
+}
+
+function privacyFallback() {
+  return `
+    <main class="seo-fallback">
+      <h1>Privacy Policy</h1>
+      <p>This privacy policy explains how BalaJi Admission Guidance handles website enquiries, phone and email contact information, and communication initiated through the website.</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/contact">Contact</a>
+        <a href="/terms-and-conditions">Terms &amp; Conditions</a>
+      </nav>
+    </main>
+  `;
+}
+
+function termsFallback() {
+  return `
+    <main class="seo-fallback">
+      <h1>Terms and Conditions</h1>
+      <p>These terms describe the purpose of the website, the non-guaranteed nature of admission outcomes, and the need to verify final decisions with official authorities and institutions.</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/privacy-policy">Privacy Policy</a>
       </nav>
     </main>
   `;
@@ -258,6 +334,17 @@ generatedPages.set(
   })
 );
 
+generatedPages.set(
+  "/about",
+  withSeo(template, {
+    title: "About BalaJi Admission Guidance",
+    description:
+      "Learn about BalaJi Admission Guidance, our office in Vashi, Navi Mumbai, and the trust signals behind our medical admission counseling website.",
+    canonicalPath: "/about",
+    bodyHtml: aboutFallback()
+  })
+);
+
 const blogsHtml = withSeo(template, {
   title: "Admission Blogs, NEET Updates and Counseling Articles",
   description:
@@ -269,6 +356,19 @@ const blogsHtml = withSeo(template, {
 generatedPages.set("/blogs", blogsHtml);
 generatedPages.set("/Blogs", blogsHtml);
 
+for (const blog of legacyBlogs) {
+  generatedPages.set(
+    `/blogs/${blog.slug}`,
+    withSeo(template, {
+      title: blog.title,
+      description: blog.excerpt,
+      canonicalPath: `/blogs/${blog.slug}`,
+      image: blog.image,
+      bodyHtml: blogArticleFallback(blog)
+    })
+  );
+}
+
 generatedPages.set(
   "/contact",
   withSeo(template, {
@@ -277,6 +377,28 @@ generatedPages.set(
       "Contact BalaJi Admission Guidance in Vashi, Navi Mumbai for medical college counseling, college shortlisting, and admission support.",
     canonicalPath: "/contact",
     bodyHtml: contactFallback()
+  })
+);
+
+generatedPages.set(
+  "/privacy-policy",
+  withSeo(template, {
+    title: "Privacy Policy",
+    description:
+      "Read the BalaJi Admission Guidance privacy policy for website enquiries, communication handling, and contact information.",
+    canonicalPath: "/privacy-policy",
+    bodyHtml: privacyFallback()
+  })
+);
+
+generatedPages.set(
+  "/terms-and-conditions",
+  withSeo(template, {
+    title: "Terms & Conditions",
+    description:
+      "Read the BalaJi Admission Guidance terms and conditions for website use, counseling content, and contact information.",
+    canonicalPath: "/terms-and-conditions",
+    bodyHtml: termsFallback()
   })
 );
 

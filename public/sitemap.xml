@@ -6,12 +6,52 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://mgmmbbsmdms.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mgmmbbsmdms.com/blogs</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mgmmbbsmdms.com/blogs/what-parents-should-check-before-mbbs-choice-locking</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/blogs/how-to-compare-private-medical-colleges-without-getting-lost</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/blogs/understanding-counselling-rounds-without-panic</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/blogs/when-deemed-university-mbbs-makes-sense</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/blogs/nri-oci-admission-questions-families-should-clarify-early</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mgmmbbsmdms.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/privacy-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mgmmbbsmdms.com/terms-and-conditions</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

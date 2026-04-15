@@ -1,0 +1,208 @@
+.legacy-about,
+.legacy-colleges,
+.legacy-events,
+.legacy-testimonials,
+.legacy-excellence,
+.legacy-courses {
+  padding: 84px 0;
+}
+
+.legacy-about-grid,
+.legacy-excellence-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.legacy-section-sub {
+  color: #47687b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.legacy-about h2,
+.legacy-courses h2,
+.legacy-colleges h2,
+.legacy-testimonials h2,
+.legacy-events h2,
+.legacy-excellence h2 {
+  margin: 0 0 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--legacy-ink-900);
+}
+
+.legacy-about p,
+.legacy-excellence p,
+.legacy-event-item p {
+  color: var(--legacy-ink-700);
+  line-height: 1.7;
+}
+
+.legacy-colleges h2 {
+  text-align: center;
+}
+
+.legacy-about ul {
+  padding-left: 22px;
+}
+
+.legacy-about-image {
+  width: 100%;
+  min-height: 420px;
+  border-radius: var(--legacy-radius-card);
+  object-fit: cover;
+  box-shadow: var(--legacy-shadow-md);
+}
+
+.legacy-mission-grid,
+.legacy-college-grid,
+.legacy-testimonial-grid,
+.legacy-mini-stats,
+.legacy-contact-grid,
+.legacy-trust-grid,
+.legacy-team-grid,
+.legacy-proof-grid {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+}
+
+.legacy-mission-grid {
+  grid-template-columns: 1fr 1fr;
+  margin-top: 42px;
+}
+
+.legacy-info-card,
+.legacy-college-card,
+.legacy-testimonial-card,
+.legacy-mini-stat,
+.legacy-contact-card {
+  background: var(--legacy-surface);
+  border-radius: var(--legacy-radius-card);
+  box-shadow: var(--legacy-shadow-md);
+  border: 1px solid var(--legacy-line);
+}
+
+.legacy-info-card,
+.legacy-mini-stat {
+  padding: 26px;
+}
+
+.legacy-info-card h4,
+.legacy-college-body h4,
+.legacy-event-item h4,
+.legacy-contact-card h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.legacy-course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.legacy-course-card {
+  position: relative;
+  min-height: 320px;
+  padding: 28px;
+  border-radius: var(--legacy-radius-card);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.legacy-course-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 19, 31, 0.18), rgba(8, 19, 31, 0.86));
+}
+
+.legacy-course-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: end;
+}
+
+.legacy-course-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.legacy-course-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(45deg, #274c77, #1b263b);
+}
+
+.legacy-course-content h4 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+}
+
+.legacy-course-content p {
+  margin: 0 0 14px;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.legacy-college-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.legacy-college-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--legacy-radius-card) var(--legacy-radius-card) 0 0;
+}
+
+.legacy-college-body {
+  padding: 18px;
+}
+
+.legacy-college-body p {
+  color: var(--legacy-ink-700);
+}
+
+.legacy-college-body a {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--legacy-ink-900);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--legacy-radius-button);
+}
+
+.legacy-excellence-grid {
+  align-items: start;
+}
+
+.legacy-mini-stats {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.legacy-mini-stat {
+  text-align: center;
+}
+
+.legacy-mini-stat h3 {
+  margin: 14px 0 8px;
+}
+
+.legacy-testimonial-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+

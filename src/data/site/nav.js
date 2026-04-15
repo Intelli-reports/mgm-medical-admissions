@@ -1,6 +1,6 @@
 export const legacyNavGroups = [
   {
-    "title": "MGM University",
+    "title": "MGM",
     "items": [
       {
         "label": "MGM Medical College, Kamothe",
@@ -25,7 +25,7 @@ export const legacyNavGroups = [
     ]
   },
   {
-    "title": "DY Patil University",
+    "title": "DY Patil",
     "items": [
       {
         "label": "Dr. D.Y. Patil Medical College, Pune",
@@ -38,7 +38,7 @@ export const legacyNavGroups = [
     ]
   },
   {
-    "title": "Terna University",
+    "title": "Terna",
     "items": [
       {
         "label": "Terna Medical College, Nerul",
