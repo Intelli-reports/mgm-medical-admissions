@@ -5,6 +5,7 @@ import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/Le
 import SeoHead from "../components/layout/SeoHead";
 import { legacyBlogs } from "../data/legacyBundleData";
 import { SITE_NAME, makeAbsoluteUrl } from "../config/site";
+import { bannerReveal, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
 
 function BlogsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ function BlogsPage() {
       />
       <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-      <section className="legacy-blog-list-banner">
+      <motion.section className="legacy-blog-list-banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
         <div className="legacy-blog-list-banner-media">
           <img src="/image/outer_blog_2.webp" alt="Admission blog updates" />
         </div>
@@ -40,24 +41,28 @@ function BlogsPage() {
         <div className="legacy-container legacy-blog-list-banner-inner">
           <motion.div
             className="legacy-blog-list-banner-copy"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
           >
-            <p className="legacy-blog-list-banner-kicker">Blog Updates</p>
-            <h1>Admission blog</h1>
-            <p>
+            <motion.p className="legacy-blog-list-banner-kicker" variants={staggerItem}>
+              Blog Updates
+            </motion.p>
+            <motion.h1 variants={headlineReveal}>Admission blog</motion.h1>
+            <motion.p variants={staggerItem}>
               Practical reads on NEET counseling, college comparison, MBBS pathways, and
               admission decisions for students and parents.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
       <motion.div
         className="legacy-container"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, delay: 0.08 }}
+        variants={sectionReveal}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
       >
         <div className="legacy-blog-list-pill">Home / Blogs / Admission blog</div>
       </motion.div>

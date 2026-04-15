@@ -7,7 +7,7 @@ import SeoHead from "../components/layout/SeoHead";
 import { findLegacyBlogBySlug, legacyBlogs } from "../data/legacyBundleData";
 import { CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
 import { buildWhatsAppUrl } from "../utils/enquiry";
-import { cardHover, pageReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
+import { bannerReveal, cardHover, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
 
 function BlogArticlePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -65,7 +65,7 @@ function BlogArticlePage() {
       <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
-      <motion.section className="legacy-blog-banner" variants={pageReveal} initial="hidden" animate="show">
+      <motion.section className="legacy-blog-banner" variants={bannerReveal} initial="hidden" animate="show">
         <div className="legacy-blog-banner-media">
           <img src={blog.image} alt={blog.title} />
         </div>
@@ -83,7 +83,7 @@ function BlogArticlePage() {
             >
               {blog.tag}
             </motion.span>
-            <motion.h1 variants={staggerItem}>{blog.title}</motion.h1>
+            <motion.h1 variants={headlineReveal}>{blog.title}</motion.h1>
           </motion.div>
         </div>
       </motion.section>

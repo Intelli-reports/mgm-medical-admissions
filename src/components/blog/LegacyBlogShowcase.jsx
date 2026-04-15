@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { legacyBlogs } from "../../data/legacyBundleData";
-import { cardHover, sectionReveal, staggerContainer, staggerItem } from "../../utils/motion";
+import { cardHover, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../../utils/motion";
 
 function blogTagClass(tag) {
   return `legacy-blog-tag legacy-blog-tag-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
@@ -51,7 +51,7 @@ function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
             viewport={{ once: true, amount: 0.25 }}
           >
             <p className="legacy-section-sub">{pageMode ? "Blog Updates" : "Latest Articles"}</p>
-            {pageMode ? <h2>Admission blog</h2> : null}
+            {pageMode ? <motion.h2 variants={headlineReveal}>Admission blog</motion.h2> : null}
             {!pageMode ? <Link to="/blogs">View all articles</Link> : null}
           </motion.div>
         ) : null}

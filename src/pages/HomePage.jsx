@@ -29,7 +29,7 @@ import {
   legalLinks
 } from "../data/site/trust";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
-import { cardHover, pageReveal, sectionReveal, softTap, staggerContainer, staggerItem } from "../utils/motion";
+import { bannerReveal, cardHover, headlineReveal, sectionReveal, softTap, staggerContainer, staggerItem } from "../utils/motion";
 
 function extractYouTubeId(url) {
   const match = url.match(/embed\/([^?&/]+)/);
@@ -476,7 +476,7 @@ function HomePage() {
         />
       </div>
 
-      <section className="portal-home-hero">
+      <motion.section className="portal-home-hero" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
         <div className="portal-hero-stage" style={heroStageStyle}>
           <img
             src="/image/mgm-college.png"
@@ -489,8 +489,8 @@ function HomePage() {
               <motion.span className="portal-home-kicker" variants={staggerItem}>
                 Medical Admission Guidance Portal
               </motion.span>
-              <motion.h1 variants={staggerItem}>BalaJi Admission Guidance</motion.h1>
-              <motion.h2 variants={staggerItem}>India&apos;s Leading Medical Admissions Guidance Portal</motion.h2>
+              <motion.h1 variants={headlineReveal}>BalaJi Admission Guidance</motion.h1>
+              <motion.h2 variants={headlineReveal}>India&apos;s Leading Medical Admissions Guidance Portal</motion.h2>
               <motion.p className="portal-home-subtitle" variants={staggerItem}>
                 Expert guidance for MBBS, MD/MS, private, deemed, management, and NRI
                 quota admissions to top medical colleges.
@@ -530,7 +530,7 @@ function HomePage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       <motion.section className="portal-main-section" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
         <div className="legacy-container portal-shot-grid">
@@ -890,14 +890,16 @@ function HomePage() {
         </div>
       </motion.section>
 
-      <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={pageReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+      <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-promo-banner-media">
           <img src="/image/mgm-college.png" alt="MGM and DY Patil medical college guidance" />
         </div>
         <div className="portal-promo-banner-overlay" />
         <div className="legacy-container portal-promo-banner-inner">
           <div className="portal-promo-banner-copy">
-            <h2>MGM, DY Patil, and all college guidance in one place</h2>
+            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
+              MGM, DY Patil, and all college guidance in one place
+            </motion.h2>
             <p>
               Dedicated support for MGM and DY Patil colleges, with guidance across private,
               deemed, state, and management options for the rest of the medical colleges.
@@ -916,7 +918,7 @@ function HomePage() {
         </div>
       </motion.section>
 
-      <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={pageReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+      <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-register-banner-media">
           <img src="/image/register-guidance-banner.png" alt="Register for MGM and DY Patil guidance" />
         </div>
@@ -924,7 +926,9 @@ function HomePage() {
         <div className="legacy-container portal-register-banner-inner">
           <div className="portal-register-card">
             <span className="portal-register-kicker">Register Now To Apply</span>
-            <h2>Register for MGM, DY Patil, and all college guidance</h2>
+            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
+              Register for MGM, DY Patil, and all college guidance
+            </motion.h2>
 
             <form className="portal-register-form" onSubmit={handleRegisterSubmit}>
               <input
