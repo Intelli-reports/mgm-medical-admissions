@@ -5190,6 +5190,96 @@
   line-height: 1.26;
 }
 
+.portal-proof-strip {
+  margin-top: 16px;
+}
+
+.portal-proof-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.portal-proof-mini {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #dce6ec;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #f7fbfe);
+}
+
+.portal-proof-mini-founder {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.portal-founder-avatar {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #2284aa, #1f7193);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.portal-proof-mini strong {
+  display: block;
+  margin: 0 0 4px;
+  color: #243544;
+  font-size: 0.96rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.portal-proof-mini span {
+  display: block;
+  color: #5b7486;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.portal-proof-mini p {
+  margin: 10px 0 0;
+  color: #587184;
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.portal-proof-mini-office img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.portal-proof-mini-office a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #1b7194;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.portal-proof-mini-team ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  color: #28455a;
+  display: grid;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
 @media (max-width: 1080px) {
   .portal-shot-grid {
     grid-template-columns: 1fr;
@@ -5199,6 +5289,10 @@
     position: static;
     top: auto;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portal-proof-strip-grid {
+    grid-template-columns: 1fr;
   }
 }
 

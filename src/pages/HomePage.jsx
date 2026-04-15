@@ -21,9 +21,7 @@ import { legacyBlogs } from "../data/legacyBundleData";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, makeAbsoluteUrl } from "../config/site";
 import {
   GOOGLE_MAPS_URL,
-  legalLinks,
-  organizationOverview,
-  teamProfiles
+  legalLinks
 } from "../data/site/trust";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
 
@@ -771,45 +769,6 @@ function HomePage() {
                 ))}
               </div>
             </motion.section>
-
-            <section className="portal-panel portal-proof-card-wrap">
-              <div className="portal-section-head">
-                <span className="legacy-section-sub">Founder + Team + Office Proof</span>
-                <h2>Real identity, office context, and counseling structure</h2>
-              </div>
-
-              <div className="portal-proof-grid">
-                <article className="portal-proof-card portal-founder-proof">
-                  <div className="portal-founder-avatar">RS</div>
-                  <div>
-                    <strong>Rahul Singh</strong>
-                    <span>Founder &amp; Lead Consultant</span>
-                    <p>{teamProfiles[0].text}</p>
-                  </div>
-                </article>
-
-                <article className="portal-proof-card portal-office-proof">
-                  <img src={organizationOverview.image} alt="BalaJi admissions office" />
-                  <div>
-                    <strong>Visit our Vashi office</strong>
-                    <p>{CONTACT_ADDRESS}</p>
-                    <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">
-                      Open Google Maps
-                    </a>
-                  </div>
-                </article>
-
-                <article className="portal-proof-card portal-team-proof">
-                  <strong>Expert team support</strong>
-                  <ul>
-                    {teamProfiles.slice(1).map((profile) => (
-                      <li key={profile.name}>{profile.name}</li>
-                    ))}
-                  </ul>
-                  <p>Guidance, research, and parent communication support are handled as separate working streams.</p>
-                </article>
-              </div>
-            </section>
 
             <section className="portal-panel portal-resources-card">
               <div className="portal-section-head">

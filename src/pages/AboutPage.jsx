@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LegacyFooter, LegacyNav, LegacySmartLink } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import {
+  GOOGLE_MAPS_URL,
   googleTrustBlock,
   organizationOverview,
   teamProfiles,
@@ -128,6 +129,45 @@ function AboutPage() {
                 <p>{profile.text}</p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="legacy-proof-section">
+        <div className="legacy-container">
+          <div className="portal-shot-panel portal-proof-strip">
+            <h2>FOUNDER + TEAM + OFFICE PROOF</h2>
+
+            <div className="portal-proof-strip-grid">
+              <article className="portal-proof-mini portal-proof-mini-founder">
+                <div className="portal-founder-avatar">RS</div>
+                <div>
+                  <strong>Rahul Singh</strong>
+                  <span>Founder &amp; Lead Consultant</span>
+                  <p>Student-first counseling guidance and shortlist review.</p>
+                </div>
+              </article>
+
+              <article className="portal-proof-mini portal-proof-mini-office">
+                <img src={organizationOverview.image} alt="BalaJi admissions office" />
+                <div>
+                  <strong>Visit our Vashi office</strong>
+                  <p>{CONTACT_ADDRESS}</p>
+                  <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">
+                    Open Google Maps
+                  </a>
+                </div>
+              </article>
+
+              <article className="portal-proof-mini portal-proof-mini-team">
+                <strong>Expert team support</strong>
+                <ul>
+                  {teamProfiles.slice(1).map((profile) => (
+                    <li key={profile.name}>{profile.name}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
           </div>
         </div>
       </section>
