@@ -1,76 +1,71 @@
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { legacyBlogs } from "../../data/legacyBundleData";
+import { cardHover, sectionReveal, staggerContainer, staggerItem } from "../../utils/motion";
 
 function blogTagClass(tag) {
   return `legacy-blog-tag legacy-blog-tag-${tag.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 }
 
-function BlogSideCard({ blog }) {
+function BlogRowCard({ blog, delay = 0, featured = false }) {
   return (
-    <article className="legacy-blog-side-card">
-      <Link to="/blogs">
+    <motion.article
+      className={`legacy-blog-row-card ${featured ? "is-featured" : ""}`}
+      variants={staggerItem}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ delay }}
+      whileHover={cardHover}
+    >
+      <Link to={`/blogs/${blog.slug}`}>
         <div className="legacy-blog-image-wrap">
           <img src={blog.image} alt={blog.title} />
           <span className={blogTagClass(blog.tag)}>{blog.tag}</span>
+          <div className="legacy-blog-image-overlay" />
         </div>
         <div className="legacy-blog-body">
+          {featured ? <span className="legacy-blog-feature-kicker">Featured article</span> : null}
           <h4>{blog.title}</h4>
           <p className="legacy-blog-meta">
             {blog.date} &bull; {blog.meta}
           </p>
+          <p className="legacy-blog-excerpt">{blog.excerpt}</p>
+          <span className="legacy-blog-readmore">Read article</span>
         </div>
       </Link>
-    </article>
+    </motion.article>
   );
 }
 
-function LegacyBlogShowcase({ pageMode = false }) {
-  const [featuredBlog, ...sideBlogs] = legacyBlogs;
-  const leftBlogs = sideBlogs.slice(0, 2);
-  const rightBlogs = sideBlogs.slice(2, 4);
-
+function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
   return (
     <section className={pageMode ? "legacy-blog-page" : "legacy-blogs"}>
       <div className="legacy-container">
-        <div className="legacy-section-heading">
-          <p className="legacy-section-sub">{pageMode ? "Blog Updates" : "Latest Articles"}</p>
-          <h2>{pageMode ? "Admission blog" : "Admission guidance, updates, and strategy reads"}</h2>
-          <p>
-            Explore practical reads for students and parents navigating NEET counseling,
-            college comparison, and admission decision-making.
-          </p>
-          {!pageMode ? <Link to="/blogs">View all articles</Link> : null}
-        </div>
+        {!(pageMode && hidePageHeader) ? (
+          <motion.div
+            className="legacy-section-heading"
+            variants={sectionReveal}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <p className="legacy-section-sub">{pageMode ? "Blog Updates" : "Latest Articles"}</p>
+            {pageMode ? <h2>Admission blog</h2> : null}
+            {!pageMode ? <Link to="/blogs">View all articles</Link> : null}
+          </motion.div>
+        ) : null}
 
-        <div className="legacy-blog-editorial-grid">
-          <div className="legacy-blog-stack">
-            {leftBlogs.map((blog) => (
-              <BlogSideCard key={blog.title} blog={blog} />
-            ))}
-          </div>
-
-          <article className="legacy-blog-feature">
-            <Link to="/blogs">
-              <div className="legacy-blog-image-wrap">
-                <img src={featuredBlog.image} alt={featuredBlog.title} />
-                <span className={blogTagClass(featuredBlog.tag)}>{featuredBlog.tag}</span>
-              </div>
-              <div className="legacy-blog-body">
-                <h3>{featuredBlog.title}</h3>
-                <p className="legacy-blog-meta">
-                  {featuredBlog.date} &bull; {featuredBlog.meta}
-                </p>
-                <p>{featuredBlog.excerpt}</p>
-              </div>
-            </Link>
-          </article>
-
-          <div className="legacy-blog-stack">
-            {rightBlogs.map((blog) => (
-              <BlogSideCard key={blog.title} blog={blog} />
-            ))}
-          </div>
-        </div>
+        <motion.div className="legacy-blog-list" variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.18 }}>
+          {legacyBlogs.map((blog, index) => (
+            <BlogRowCard
+              key={blog.title}
+              blog={blog}
+              featured={index === 0}
+              delay={0.04 * index}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

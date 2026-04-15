@@ -1,20 +1,25 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
+  ArrowUpRight,
   BadgeDollarSign,
   ChevronDown,
+  Clapperboard,
   ClipboardList,
   FileCheck2,
+  Globe2,
   MapPinned,
+  MapPlus,
   NotebookText,
   PhoneCall,
+  PlayCircle,
   Search,
   UserRound
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
 import SeoScoreBadge from "../components/common/SeoScoreBadge";
-import { LegacyFooter, LegacySmartLink } from "../components/layout/LegacySiteChrome";
+import { LegacyFooter, LegacyNav, LegacySmartLink, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { collegePreviewData } from "../data/collegePreviewData";
 import { legacyBlogs } from "../data/legacyBundleData";
@@ -24,6 +29,7 @@ import {
   legalLinks
 } from "../data/site/trust";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
+import { cardHover, pageReveal, sectionReveal, softTap, staggerContainer, staggerItem } from "../utils/motion";
 
 function extractYouTubeId(url) {
   const match = url.match(/embed\/([^?&/]+)/);
@@ -138,40 +144,6 @@ function PortalIcon({ type }) {
         />
       </>
     ),
-    fees: (
-      <path
-        d="M12 3v18M16.5 7.2c0-1.7-1.8-3.2-4.5-3.2S7.5 5.5 7.5 7.2s1.5 2.8 4.5 3.5 4.5 1.8 4.5 3.5-1.8 3.2-4.5 3.2-4.5-1.5-4.5-3.2"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-    clipboard: (
-      <path
-        d="M9 4.5h6m-6 0A1.5 1.5 0 0 0 7.5 6v12A1.5 1.5 0 0 0 9 19.5h6A1.5 1.5 0 0 0 16.5 18V6A1.5 1.5 0 0 0 15 4.5m-6 0A1.5 1.5 0 0 1 10.5 3h3A1.5 1.5 0 0 1 15 4.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    ),
-    documents: (
-      <>
-        <path
-          d="M8 4.5h6l3 3V19a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19V6A1.5 1.5 0 0 1 8.5 4.5Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M14 4.5V8h3" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M10 12h4M10 15h4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-      </>
-    ),
     notes: (
       <path
         d="M4.5 7.5h15M7.5 12h9m-9 4.5h9M6.5 4.5h11A1.5 1.5 0 0 1 19 6v12a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18V6a1.5 1.5 0 0 1 1.5-1.5Z"
@@ -227,18 +199,20 @@ function HomePage() {
     budget: ""
   });
   const [quickDeskStatus, setQuickDeskStatus] = useState({ type: "idle", message: "" });
+  const [registerForm, setRegisterForm] = useState({
+    fullName: "",
+    email: "",
+    mobile: "",
+    city: "",
+    course: "MBBS"
+  });
+  const [registerStatus, setRegisterStatus] = useState({ type: "idle", message: "" });
   const [directoryQuery, setDirectoryQuery] = useState("");
   const [directoryFilter, setDirectoryFilter] = useState("all");
   const homeVideos = buildHomeVideoItems();
   const [activeVideo, setActiveVideo] = useState(homeVideos[0] || null);
 
-  const topStripItems = [
-    { icon: "phone", label: "Call Now", value: CONTACT_PHONE, href: `tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}` },
-    { icon: "mail", label: "Email", value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
-    { icon: "map", label: "View Location", value: "Open Google Maps", href: GOOGLE_MAPS_URL }
-  ];
   const applyForGuidanceUrl = buildWhatsAppUrl(CONTACT_PHONE, "Homepage admission enquiry");
-
   const trustRow = [
     { title: "Founder Rahul Singh - Expert Advisor", text: "", icon: "founder" },
     { title: "Office Verified - Visit Us", text: "", icon: "verified" },
@@ -378,6 +352,42 @@ function HomePage() {
     setQuickDeskStatus({ type: "success", message: "WhatsApp opened with your prefilled admission enquiry." });
   }
 
+  function updateRegisterForm(field, value) {
+    setRegisterForm((old) => ({ ...old, [field]: value }));
+
+    if (registerStatus.type !== "idle") {
+      setRegisterStatus({ type: "idle", message: "" });
+    }
+  }
+
+  function handleRegisterSubmit(event) {
+    event.preventDefault();
+
+    if (!registerForm.fullName.trim()) {
+      setRegisterStatus({ type: "error", message: "Enter your full name before submitting." });
+      return;
+    }
+
+    if (!isValidPhone(registerForm.mobile)) {
+      setRegisterStatus({ type: "error", message: "Enter a valid mobile number before submitting." });
+      return;
+    }
+
+    const enquiryMessage = buildEnquiryMessage({
+      context: "Homepage registration enquiry",
+      name: registerForm.fullName.trim(),
+      phone: registerForm.mobile.trim(),
+      email: registerForm.email.trim(),
+      city: registerForm.city.trim(),
+      course: registerForm.course.trim(),
+      score: "",
+      message: "Interested in MGM, DY Patil, and other college guidance."
+    });
+
+    window.open(buildWhatsAppUrl(CONTACT_PHONE, enquiryMessage), "_blank", "noopener,noreferrer");
+    setRegisterStatus({ type: "success", message: "WhatsApp opened with your registration enquiry." });
+  }
+
   useLayoutEffect(() => {
     function getMinHeroHeight(viewportWidth, availableHeight) {
       if (viewportWidth <= 760) {
@@ -391,7 +401,7 @@ function HomePage() {
       return Math.max(420, availableHeight);
     }
 
-    function updateHeroLayout() {
+  function updateHeroLayout() {
       const topStripHeight = topStripRef.current?.getBoundingClientRect().height || 0;
       const headerHeight = headerRef.current?.getBoundingClientRect().height || 0;
       const viewportHeight =
@@ -455,86 +465,16 @@ function HomePage() {
         schema={homeSchema}
       />
 
-      <section className="portal-top-strip" ref={topStripRef}>
-        <div className="legacy-container portal-top-strip-inner">
-          <div className="portal-top-strip-links">
-            {topStripItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target={item.href.startsWith("http") ? "_blank" : undefined}
-                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-              >
-                <span className="portal-inline-icon" aria-hidden="true">
-                  <PortalIcon type={item.icon} />
-                </span>
-                <span>{item.label}:</span>
-                <strong>{item.value}</strong>
-              </a>
-            ))}
-          </div>
-          <p className="portal-top-strip-note">
-            NEET / Admission Updates: MBBS, MD/MS, management quota, and NRI guidance available.
-          </p>
-        </div>
-      </section>
+      <LegacyTopStrip sticky innerRef={topStripRef} />
 
-      <header
-        className="portal-home-header"
-        ref={headerRef}
-        style={{ top: `${heroLayout.topStripHeight}px` }}
-      >
-        <div className="legacy-container portal-home-header-inner">
-          <Link to="/" className="portal-home-brand">
-            <span className="portal-home-brand-mark">
-              <img src="/image/logo.png" alt="BalaJi logo" />
-            </span>
-            <span>BalaJi</span>
-          </Link>
-
-          <button
-            type="button"
-            className="portal-home-nav-toggle"
-            aria-expanded={mobileMenuOpen ? "true" : "false"}
-            aria-label="Toggle navigation"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-
-          <nav className={`portal-home-nav ${mobileMenuOpen ? "is-open" : ""}`}>
-            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
-              About Us
-            </Link>
-            <a href="#portal-colleges" onClick={() => setMobileMenuOpen(false)}>
-              Medical Colleges
-            </a>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-              MBBS Guidance
-            </Link>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-              MD/MS Guidance
-            </Link>
-            <Link to="/blogs" onClick={() => setMobileMenuOpen(false)}>
-              Admission Blogs
-            </Link>
-            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-              Contact Us
-            </Link>
-            <a
-              href={applyForGuidanceUrl}
-              className="portal-home-apply"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Apply For Guidance
-            </a>
-          </nav>
-        </div>
-      </header>
+      <div ref={headerRef}>
+        <LegacyNav
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+          aboutMode="scroll"
+          stickyTop={heroLayout.topStripHeight}
+        />
+      </div>
 
       <section className="portal-home-hero">
         <div className="portal-hero-stage" style={heroStageStyle}>
@@ -545,31 +485,38 @@ function HomePage() {
           />
 
           <div className="legacy-container portal-hero-stage-inner" style={heroStageStyle}>
-            <div className="portal-home-copy">
-              <span className="portal-home-kicker">Medical Admission Guidance Portal</span>
-              <h1>BalaJi Admission Guidance</h1>
-              <h2>India&apos;s Leading Medical Admissions Guidance Portal</h2>
-              <p className="portal-home-subtitle">
+            <motion.div className="portal-home-copy" variants={staggerContainer} initial="hidden" animate="show">
+              <motion.span className="portal-home-kicker" variants={staggerItem}>
+                Medical Admission Guidance Portal
+              </motion.span>
+              <motion.h1 variants={staggerItem}>BalaJi Admission Guidance</motion.h1>
+              <motion.h2 variants={staggerItem}>India&apos;s Leading Medical Admissions Guidance Portal</motion.h2>
+              <motion.p className="portal-home-subtitle" variants={staggerItem}>
                 Expert guidance for MBBS, MD/MS, private, deemed, management, and NRI
                 quota admissions to top medical colleges.
-              </p>
+              </motion.p>
 
-              <div className="portal-home-actions">
+              <motion.div className="portal-home-actions" variants={staggerItem}>
                 <Link to="/contact" className="legacy-btn legacy-btn-dark portal-home-primary">
                   Talk to Admissions Desk
                 </Link>
                 <a href="#portal-colleges" className="legacy-btn legacy-btn-outline portal-home-secondary">
                   Browse Colleges &amp; Cut-offs
                 </a>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
-          <div className="portal-trust-overlay">
+          <motion.div className="portal-trust-overlay" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
             <div className="legacy-container">
               <div className="portal-trust-row" ref={trustRowRef}>
                 {trustRow.map((item) => (
-                  <article key={item.title} className="portal-trust-item">
+                  <motion.article
+                    key={item.title}
+                    className="portal-trust-item"
+                    whileHover={cardHover}
+                    whileTap={softTap}
+                  >
                     <span className="portal-trust-icon" aria-hidden="true">
                       <PortalIcon type={item.icon} />
                     </span>
@@ -577,15 +524,15 @@ function HomePage() {
                       <strong>{item.title}</strong>
                       {item.text ? <span>{item.text}</span> : null}
                     </div>
-                  </article>
+                  </motion.article>
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className="portal-main-section">
+      <motion.section className="portal-main-section" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
         <div className="legacy-container portal-shot-grid">
           <div className="portal-shot-main">
             <div className="portal-shot-top">
@@ -663,7 +610,8 @@ function HomePage() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.28, delay: 0.14 + index * 0.04 }}
-                        whileHover={{ y: -3 }}
+                        whileHover={cardHover}
+                        whileTap={softTap}
                       >
                         {isHashLink ? (
                           <a href={item.to} className={className}>
@@ -787,20 +735,46 @@ function HomePage() {
               </div>
             </section>
 
-            <section className="portal-panel portal-video-card-wrap" id="portal-videos">
+            <motion.section
+              className="portal-panel portal-video-card-wrap portal-video-editorial"
+              id="portal-videos"
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.42, delay: 0.18 }}
+            >
               <div className="portal-section-head">
-                <span className="legacy-section-sub">Video Library</span>
-                <h2>Current college and counseling video resources</h2>
+                <span className="legacy-section-sub">YouTube Guidance Desk</span>
               </div>
 
               {activeVideo ? (
-                <div className="portal-video-feature">
-                  <div className="portal-video-copy">
-                    <span className="portal-panel-label">Now Playing</span>
+                <motion.article
+                  className="portal-video-article"
+                  key={activeVideo.url}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.28 }}
+                >
+                  <div className="portal-video-article-copy">
+                    <span className="portal-video-kicker">
+                      <Clapperboard size={15} strokeWidth={2.1} aria-hidden="true" />
+                      Featured Video
+                    </span>
                     <h3>{activeVideo.title}</h3>
-                    <p>{activeVideo.college}</p>
+                    <p>
+                      Watch a focused video breakdown for {activeVideo.college}. Use this section
+                      for campus feel, admission context, and quick orientation before opening the
+                      full college page.
+                    </p>
+                    <div className="portal-video-article-meta">
+                      <span>{activeVideo.college}</span>
+                      <a href={activeVideo.url} target="_blank" rel="noreferrer">
+                        Watch on YouTube
+                        <ArrowUpRight size={15} strokeWidth={2.1} aria-hidden="true" />
+                      </a>
+                    </div>
                   </div>
-                  <div className="portal-video-frame">
+                  <div className="portal-video-frame portal-video-frame-article">
                     <iframe
                       src={toPlayableEmbedUrl(activeVideo.url)}
                       title={activeVideo.title}
@@ -809,33 +783,44 @@ function HomePage() {
                       allowFullScreen
                     />
                   </div>
-                </div>
+                </motion.article>
               ) : null}
 
-              <div className="portal-video-grid">
-                {homeVideos.map((video) => {
+              <div className="portal-video-rail">
+                {homeVideos.map((video, index) => {
                   const videoId = extractYouTubeId(video.url);
                   return (
-                    <button
+                    <motion.button
                       type="button"
                       key={`${video.college}-${video.title}`}
-                      className={`portal-video-tile ${activeVideo?.url === video.url ? "is-active" : ""}`}
+                      className={`portal-video-story ${activeVideo?.url === video.url ? "is-active" : ""}`}
                       onClick={() => setActiveVideo(video)}
+                      initial={{ opacity: 0, y: 12 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.22, delay: 0.04 * index }}
+                      whileHover={cardHover}
+                      whileTap={softTap}
                     >
-                      <img
-                        src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-                        alt={video.title}
-                        className="portal-video-thumb"
-                      />
-                      <div className="portal-video-body">
+                      <div className="portal-video-story-thumb-wrap">
+                        <img
+                          src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                          alt={video.title}
+                          className="portal-video-story-thumb"
+                        />
+                        <span className="portal-video-story-play" aria-hidden="true">
+                          <PlayCircle size={18} strokeWidth={2.2} />
+                        </span>
+                      </div>
+                      <div className="portal-video-story-body">
                         <strong>{video.title}</strong>
                         <span>{video.college}</span>
                       </div>
-                    </button>
+                    </motion.button>
                   );
                 })}
               </div>
-            </section>
+            </motion.section>
 
             <div id="blogs">
               <LegacyBlogShowcase />
@@ -903,7 +888,99 @@ function HomePage() {
             </section>
           </motion.aside>
         </div>
-      </section>
+      </motion.section>
+
+      <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={pageReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+        <div className="portal-promo-banner-media">
+          <img src="/image/mgm-college.png" alt="MGM and DY Patil medical college guidance" />
+        </div>
+        <div className="portal-promo-banner-overlay" />
+        <div className="legacy-container portal-promo-banner-inner">
+          <div className="portal-promo-banner-copy">
+            <h2>MGM, DY Patil, and all college guidance in one place</h2>
+            <p>
+              Dedicated support for MGM and DY Patil colleges, with guidance across private,
+              deemed, state, and management options for the rest of the medical colleges.
+            </p>
+            <p>
+              Focused on the colleges families ask for most, while keeping the full admissions
+              process simple and clear. <strong>Contact us today!</strong>
+            </p>
+          </div>
+          <div className="portal-promo-banner-action">
+            <Link to="/contact" className="portal-promo-banner-btn">
+              Contact Us
+              <ArrowUpRight size={22} strokeWidth={2.1} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={pageReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+        <div className="portal-register-banner-media">
+          <img src="/image/register-guidance-banner.png" alt="Register for MGM and DY Patil guidance" />
+        </div>
+        <div className="portal-register-banner-overlay" />
+        <div className="legacy-container portal-register-banner-inner">
+          <div className="portal-register-card">
+            <span className="portal-register-kicker">Register Now To Apply</span>
+            <h2>Register for MGM, DY Patil, and all college guidance</h2>
+
+            <form className="portal-register-form" onSubmit={handleRegisterSubmit}>
+              <input
+                type="text"
+                value={registerForm.fullName}
+                onChange={(event) => updateRegisterForm("fullName", event.target.value)}
+                placeholder="Full Name"
+              />
+              <input
+                type="email"
+                value={registerForm.email}
+                onChange={(event) => updateRegisterForm("email", event.target.value)}
+                placeholder="Email"
+              />
+              <input
+                type="tel"
+                value={registerForm.mobile}
+                onChange={(event) => updateRegisterForm("mobile", event.target.value)}
+                placeholder="Mobile Number"
+              />
+              <input
+                type="text"
+                value={registerForm.city}
+                onChange={(event) => updateRegisterForm("city", event.target.value)}
+                placeholder="City you live in"
+              />
+              <select
+                value={registerForm.course}
+                onChange={(event) => updateRegisterForm("course", event.target.value)}
+              >
+                <option value="MBBS">MBBS (India &amp; Abroad)</option>
+                <option value="MD/MS">MD/MS Specialization</option>
+                <option value="Private MBBS">Private MBBS Admissions</option>
+                <option value="Deemed MBBS">Deemed University MBBS</option>
+              </select>
+              <textarea
+                rows="3"
+                value={registerForm.message}
+                onChange={(event) => updateRegisterForm("message", event.target.value)}
+                placeholder="Message"
+              />
+
+              <button type="submit" className="portal-register-submit">
+                Submit
+                <ArrowUpRight size={18} strokeWidth={2.1} aria-hidden="true" />
+              </button>
+
+              {registerStatus.type !== "idle" ? (
+                <p className={`portal-register-status is-${registerStatus.type}`}>
+                  {registerStatus.message}
+                </p>
+              ) : null}
+            </form>
+          </div>
+        </div>
+      </motion.section>
 
       <SeoScoreBadge />
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { LegacyFooter, LegacyNav, LegacySmartLink } from "../components/layout/LegacySiteChrome";
+import { LegacyFooter, LegacyNav, LegacySmartLink, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import {
   GOOGLE_MAPS_URL,
@@ -52,6 +52,7 @@ function AboutPage() {
         ]}
         schema={aboutSchema}
       />
+      <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <section className="legacy-contact-hero legacy-generic-hero">

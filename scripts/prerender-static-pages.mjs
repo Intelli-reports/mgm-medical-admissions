@@ -219,6 +219,35 @@ function contactFallback() {
   `;
 }
 
+function blogArticleFallback(blog) {
+  const sectionItems = blog.sections
+    .map(
+      (section) => `
+        <section>
+          <h2>${escapeHtml(section.heading)}</h2>
+          ${section.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+        </section>
+      `
+    )
+    .join("");
+
+  const takeawayItems = blog.takeaways.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+
+  return `
+    <main class="seo-fallback">
+      <p><a href="/blogs">Back to all blogs</a></p>
+      <h1>${escapeHtml(blog.title)}</h1>
+      <p>${escapeHtml(blog.date)} &bull; ${escapeHtml(blog.meta)}</p>
+      <p>${escapeHtml(blog.intro)}</p>
+      ${sectionItems}
+      <section>
+        <h2>Key takeaways</h2>
+        <ul>${takeawayItems}</ul>
+      </section>
+    </main>
+  `;
+}
+
 function privacyFallback() {
   return `
     <main class="seo-fallback">
@@ -326,6 +355,19 @@ const blogsHtml = withSeo(template, {
 
 generatedPages.set("/blogs", blogsHtml);
 generatedPages.set("/Blogs", blogsHtml);
+
+for (const blog of legacyBlogs) {
+  generatedPages.set(
+    `/blogs/${blog.slug}`,
+    withSeo(template, {
+      title: blog.title,
+      description: blog.excerpt,
+      canonicalPath: `/blogs/${blog.slug}`,
+      image: blog.image,
+      bodyHtml: blogArticleFallback(blog)
+    })
+  );
+}
 
 generatedPages.set(
   "/contact",

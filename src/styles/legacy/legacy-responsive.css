@@ -1,0 +1,693 @@
+@media (max-width: 1100px) {
+  .legacy-hero-content,
+  .legacy-about-grid,
+  .legacy-excellence-grid,
+  .legacy-college-grid,
+  .legacy-video-grid,
+  .legacy-contact-grid,
+  .legacy-testimonial-grid,
+  .legacy-course-grid,
+  .legacy-trust-grid,
+  .legacy-team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .legacy-mission-grid,
+  .legacy-mini-stats,
+  .legacy-hero-bottom-grid,
+  .legacy-contact-form-grid,
+  .legacy-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-hero {
+    min-height: auto;
+    padding: 120px 0 120px;
+  }
+
+  .legacy-stat-card {
+    padding: 24px;
+  }
+
+  .legacy-video-feature {
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .legacy-seo-badge-card {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1024px) {
+  .legacy-nav-links {
+    gap: 14px;
+    font-size: 0.95rem;
+  }
+
+  .legacy-dropdown-menu {
+    min-width: 220px;
+  }
+
+  .legacy-dropdown-submenu {
+    min-width: 380px;
+  }
+
+  .legacy-dropdown-submenu-right {
+    left: calc(100% + 10px);
+  }
+
+  .legacy-dropdown-submenu-left {
+    right: calc(100% + 10px);
+  }
+
+  .legacy-hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-hero-copy {
+    text-align: center;
+  }
+
+  .legacy-hero-buttons {
+    justify-content: center;
+  }
+
+  .legacy-college-grid,
+  .legacy-course-grid,
+  .legacy-video-grid,
+  .legacy-testimonial-grid,
+  .legacy-contact-grid,
+  .legacy-trust-grid,
+  .legacy-team-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .legacy-college-card img {
+    height: 210px;
+  }
+
+  .legacy-video-feature-frame iframe,
+  .legacy-video-thumb-wrap {
+    border-radius: 18px;
+  }
+
+  .legacy-video-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .legacy-contact-hero {
+    height: 290px;
+  }
+}
+
+@media (max-width: 900px) {
+  .legacy-nav-inner,
+  .legacy-simple-top-inner {
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .legacy-nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  .legacy-nav-links {
+    display: none;
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 18px;
+    background: rgba(10, 18, 33, 0.92);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+  }
+
+  .legacy-nav-links.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .legacy-nav-links > a,
+  .legacy-nav-links > button,
+  .legacy-dropdown > button {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+
+  .legacy-dropdown {
+    width: 100%;
+  }
+
+  .legacy-dropdown-menu {
+    position: static;
+    min-width: 0;
+    display: none;
+    margin-top: 8px;
+    padding: 10px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+  }
+
+  .legacy-dropdown.is-open .legacy-dropdown-menu {
+    display: block;
+  }
+
+  .legacy-dropdown-group-row {
+    position: static;
+  }
+
+  .legacy-dropdown-submenu {
+    position: static;
+    min-width: 0;
+    display: none;
+    margin-top: 8px;
+    padding: 14px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    transition: none;
+  }
+
+  .legacy-dropdown-submenu.is-open {
+    display: block;
+  }
+
+  .legacy-dropdown-group-trigger {
+    border-radius: 12px;
+  }
+
+  .legacy-hero {
+    min-height: auto;
+    padding: 86px 0 18px;
+  }
+
+  .legacy-hero-content {
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .legacy-hero-copy {
+    width: 100%;
+    max-width: 680px;
+    text-align: center;
+  }
+
+  .legacy-hero-kicker {
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    letter-spacing: 0.18em;
+  }
+
+  .legacy-hero-copy h1 {
+    max-width: none;
+    margin: 0 auto 16px;
+    font-size: clamp(2.35rem, 7vw, 3.8rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .legacy-hero-copy p {
+    margin: 0 auto;
+    max-width: 42ch;
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .legacy-hero-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: min(100%, 420px);
+    gap: 10px;
+    margin: 18px auto 0;
+    justify-content: center;
+  }
+
+  .legacy-btn,
+  .legacy-apply-btn {
+    width: auto;
+    min-width: 180px;
+  }
+
+  .legacy-hero-bottom {
+    position: static;
+    margin-top: 18px;
+    padding: 14px 0;
+    border-radius: 18px;
+  }
+
+  .legacy-hero-bottom-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    text-align: left;
+    scroll-snap-type: x proximity;
+  }
+
+  .legacy-hero-bottom-grid > div {
+    min-width: 0;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .legacy-container {
+    width: min(100%, calc(100% - 20px));
+  }
+
+  .legacy-hero-content,
+  .legacy-about-grid,
+  .legacy-course-grid,
+  .legacy-college-grid,
+  .legacy-video-grid,
+  .legacy-testimonial-grid,
+  .legacy-excellence-grid,
+  .legacy-contact-grid,
+  .legacy-contact-form-grid,
+  .legacy-contact-field-grid,
+  .legacy-trust-grid,
+  .legacy-team-grid,
+  .legacy-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-hero-content {
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+
+  .legacy-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legacy-logo {
+    max-width: calc(100% - 64px);
+  }
+
+  .legacy-logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .legacy-logo span:last-child {
+    font-size: 1rem;
+  }
+
+  .legacy-hero-copy {
+    text-align: center;
+  }
+
+  .legacy-hero-kicker {
+    margin-bottom: 12px;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+  }
+
+  .legacy-hero-copy h1 {
+    max-width: none;
+    margin: 0 auto 16px;
+    font-size: clamp(1.95rem, 8.2vw, 2.55rem);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+
+  .legacy-hero-copy p {
+    margin: 0 auto;
+    max-width: 34ch;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .legacy-hero-buttons {
+    flex-direction: column;
+    width: min(100%, 320px);
+    margin-top: 14px;
+  }
+
+  .legacy-btn,
+  .legacy-apply-btn {
+    min-width: 0;
+    width: 100%;
+    flex: none;
+  }
+
+  .legacy-hero-bottom {
+    background: transparent;
+    margin-top: 10px;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .legacy-hero-bottom-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+    gap: 10px;
+    overflow: visible;
+    padding-bottom: 0;
+    text-align: left;
+    scroll-snap-type: none;
+  }
+
+  .legacy-hero-bottom-grid > div {
+    min-height: 112px;
+    padding: 12px 10px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 12px 26px rgba(10, 23, 42, 0.18);
+    color: #233b5d;
+  }
+
+  .legacy-hero-bottom-grid > div:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .legacy-hero-bottom-grid h5 {
+    margin: 0 0 6px;
+    font-size: 0.9rem;
+    color: #203654;
+  }
+
+  .legacy-hero-bottom-grid p {
+    font-size: 0.8rem;
+    line-height: 1.38;
+    color: #4d617f;
+    opacity: 1;
+  }
+
+  .legacy-course-card,
+  .legacy-college-card,
+  .legacy-video-card,
+  .legacy-testimonial-card,
+  .legacy-contact-card {
+    border-radius: 18px;
+  }
+
+  .legacy-college-card img {
+    height: 200px;
+  }
+
+  .legacy-about,
+  .legacy-colleges,
+  .legacy-events,
+  .legacy-testimonials,
+  .legacy-excellence,
+  .legacy-courses,
+  .legacy-trust-section,
+  .legacy-team-section,
+  .legacy-proof-section {
+    padding: 64px 0;
+  }
+
+  .legacy-about h2,
+  .legacy-courses h2,
+  .legacy-colleges h2,
+  .legacy-testimonials h2,
+  .legacy-events h2,
+  .legacy-excellence h2 {
+    font-size: clamp(1.95rem, 8vw, 2.65rem);
+    line-height: 1.06;
+  }
+
+  .legacy-about-image {
+    min-height: 0;
+    height: 320px;
+  }
+
+  .legacy-contact-hero {
+    height: 250px;
+  }
+
+  .legacy-contact-copy h1 {
+    font-size: 2.2rem;
+  }
+
+  .legacy-contact-card {
+    padding: 18px;
+  }
+
+  .legacy-legal-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .legacy-video-feature {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .legacy-video-feature-frame iframe,
+  .legacy-video-thumb-wrap {
+    border-radius: 18px;
+  }
+
+  .legacy-video-play {
+    width: 70px;
+    height: 50px;
+    border-radius: 14px;
+  }
+
+  .legacy-video-body {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 2px 2px;
+  }
+
+  .legacy-video-card {
+    padding: 14px;
+    border-radius: 20px;
+  }
+
+  .legacy-video-thumb-wrap,
+  .legacy-video-modal-frame iframe {
+    border-radius: 18px;
+  }
+
+  .legacy-video-play {
+    width: 70px;
+    height: 50px;
+    border-radius: 14px;
+  }
+
+  .legacy-video-body {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 2px 2px;
+  }
+
+  .legacy-video-modal {
+    padding: 14px;
+  }
+
+  .legacy-video-modal-head,
+  .legacy-video-modal-frame {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .legacy-video-modal-head {
+    padding-top: 22px;
+    padding-bottom: 14px;
+  }
+
+  .legacy-video-modal-frame {
+    padding-bottom: 18px;
+  }
+
+  .legacy-map-frame {
+    height: 300px;
+  }
+
+  .legacy-seo-badge-section {
+    padding-bottom: 64px;
+  }
+
+  .legacy-seo-badge-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .legacy-container,
+  .kp-container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .legacy-section-heading h1,
+  .legacy-section-heading h2 {
+    font-size: 1.9rem;
+  }
+
+  .legacy-about,
+  .legacy-colleges,
+  .legacy-events,
+  .legacy-testimonials,
+  .legacy-excellence,
+  .legacy-contact-info,
+  .legacy-map-section {
+    padding: 54px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .legacy-nav-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .legacy-logo-mark {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+  }
+
+  .legacy-logo span:last-child {
+    font-size: 0.94rem;
+  }
+
+  .legacy-hero {
+    padding-top: 84px;
+  }
+
+  .legacy-hero-copy h1 {
+    font-size: 1.8rem;
+  }
+
+  .legacy-hero-copy p {
+    font-size: 0.95rem;
+  }
+
+  .legacy-btn,
+  .legacy-apply-btn {
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .legacy-stat-card,
+  .legacy-info-card,
+  .legacy-mini-stat,
+  .legacy-contact-card,
+  .legacy-college-body,
+  .legacy-placeholder-card {
+    padding: 14px;
+  }
+
+  .legacy-college-card img,
+  .legacy-course-card {
+    min-height: 180px;
+  }
+
+  .legacy-contact-hero {
+    height: 220px;
+  }
+
+  .legacy-map-frame {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .legacy-hero {
+    min-height: 100svh !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 40px 0 24px !important;
+  }
+
+  .legacy-hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    width: 100% !important;
+    text-align: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+  }
+
+  .legacy-hero-copy {
+    width: 100% !important;
+    max-width: 100% !important;
+    text-align: center !important;
+  }
+
+  .legacy-hero-kicker {
+    margin: 0 0 12px !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.45 !important;
+  }
+
+  .legacy-hero-copy h1 {
+    margin: 0 auto 14px !important;
+    font-size: clamp(2.1rem, 8.8vw, 2.75rem) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .legacy-hero-title-line {
+    display: block !important;
+    white-space: nowrap !important;
+  }
+
+  .legacy-hero-copy p {
+    margin: 0 auto !important;
+    max-width: 32ch !important;
+    font-size: 0.95rem !important;
+    line-height: 1.58 !important;
+  }
+
+  .legacy-hero-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    width: min(100%, 320px) !important;
+    margin: 18px auto 0 !important;
+    gap: 10px !important;
+  }
+
+  .legacy-btn,
+  .legacy-apply-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: none !important;
+  }
+
+  .legacy-hero-bottom {
+    display: none !important;
+  }
+
+  .legacy-about {
+    padding-top: 32px !important;
+  }
+
+  .legacy-about h2 {
+    font-size: clamp(2rem, 8vw, 2.7rem) !important;
+    line-height: 1.06 !important;
+  }
+}

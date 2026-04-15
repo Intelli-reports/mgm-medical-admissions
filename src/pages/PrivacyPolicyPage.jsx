@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
+import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { privacySections } from "../data/site/trust";
 import { SITE_NAME, makeAbsoluteUrl } from "../config/site";
@@ -21,6 +21,7 @@ function PrivacyPolicyPage() {
         canonicalPath="/privacy-policy"
         schema={schema}
       />
+      <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <section className="legacy-contact-hero legacy-generic-hero">

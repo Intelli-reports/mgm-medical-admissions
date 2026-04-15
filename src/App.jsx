@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import BlogArticlePage from "./pages/BlogArticlePage";
 import CollegePreviewPage from "./pages/CollegePreviewPage";
 import BlogsPage from "./pages/BlogsPage";
 import HomePage from "./pages/HomePage";
@@ -37,7 +38,9 @@ function App() {
           <Route path="preview/:slug" element={<CollegePreviewPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="blogs" element={<BlogsPage />} />
+          <Route path="blogs/:slug" element={<BlogArticlePage />} />
           <Route path="Blogs" element={<BlogsPage />} />
+          <Route path="Blogs/:slug" element={<BlogArticlePage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="terms-and-conditions" element={<TermsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

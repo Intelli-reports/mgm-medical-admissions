@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
+import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
 import { buildEnquiryMessage, buildMailtoUrl, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
@@ -197,6 +197,7 @@ function ContactPage() {
         ]}
         schema={contactSchema}
       />
+      <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
 
       <section className="legacy-contact-hero">

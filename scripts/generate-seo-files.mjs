@@ -6,6 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
 const publicDir = path.join(projectRoot, "public");
 const dataModule = await import(pathToFileURL(path.join(projectRoot, "src", "data", "collegePreviewData.js")).href);
+const blogModule = await import(pathToFileURL(path.join(projectRoot, "src", "data", "site", "blogs.js")).href);
 
 function readEnvFile(filePath) {
   if (!fs.existsSync(filePath)) return {};
@@ -40,6 +41,7 @@ const pages = [
   "/",
   "/about",
   "/blogs",
+  ...blogModule.legacyBlogs.map((blog) => `/blogs/${blog.slug}`),
   "/contact",
   "/privacy-policy",
   "/terms-and-conditions",
