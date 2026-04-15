@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { legacyNavGroups } from "../../data/legacyBundleData";
+import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "../../config/site";
+import { GOOGLE_MAPS_URL, legalLinks } from "../../data/site/trust";
+import { buildWhatsAppUrl } from "../../utils/enquiry";
 
-const admissionWhatsappUrl =
-  "https://wa.me/919179339042?text=Admission%20Enquiry";
+const admissionWhatsappUrl = buildWhatsAppUrl(
+  CONTACT_PHONE,
+  "Website admission enquiry"
+);
 
 export function scrollToSection(sectionId) {
   const element = document.getElementById(sectionId);
@@ -16,10 +21,24 @@ function isLegacyStaticLink(target) {
   return target.endsWith(".html");
 }
 
+function isExternalLink(target) {
+  return /^(https?:|mailto:|tel:)/i.test(target);
+}
+
+function isWebUrl(target) {
+  return /^https?:/i.test(target);
+}
+
 export function LegacySmartLink({ to, className, children, onClick }) {
-  if (isLegacyStaticLink(to)) {
+  if (isLegacyStaticLink(to) || isExternalLink(to)) {
     return (
-      <a href={to} className={className} onClick={onClick}>
+      <a
+        href={to}
+        className={className}
+        onClick={onClick}
+        target={isWebUrl(to) ? "_blank" : undefined}
+        rel={isWebUrl(to) ? "noreferrer" : undefined}
+      >
         {children}
       </a>
     );
@@ -145,7 +164,7 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
               About Us
             </button>
           ) : (
-            <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
               About Us
             </Link>
           )}
@@ -231,10 +250,14 @@ export function LegacyFooter() {
             <img src="/image/logo.png" alt="BalaJi logo" />
             <span>BalaJi</span>
           </div>
-          <p>
-            Haware Infotech Park, A-1401, Sector 30, Near Vashi Railway Station,
-            Vashi, Navi Mumbai - 400703.
-          </p>
+          <p>{CONTACT_ADDRESS}.</p>
+          <div className="legacy-footer-meta">
+            <a href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}>{CONTACT_PHONE}</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer">
+              View Office on Google Maps
+            </a>
+          </div>
           <div className="legacy-social-row">
             <span>T</span>
             <span>F</span>
@@ -246,7 +269,7 @@ export function LegacyFooter() {
           <h4>Useful Links</h4>
           <div className="legacy-footer-links">
             <Link to="/">Home</Link>
-            <Link to="/">About Us</Link>
+            <Link to="/about">About Us</Link>
             <Link to="/blogs">Blogs</Link>
             <Link to="/contact">Contact</Link>
           </div>
@@ -261,12 +284,22 @@ export function LegacyFooter() {
                 <LegacySmartLink key={item.label} to={item.to}>
                   {item.label}
                 </LegacySmartLink>
-              ))}
+            ))}
+          </div>
+        </div>
+        <div>
+          <h4>Trust & Legal</h4>
+          <div className="legacy-footer-links">
+            {legalLinks.map((item) => (
+              <Link key={item.label} to={item.to}>
+                {item.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
       <div className="legacy-footer-bottom">
-        Copyright MGM MEDICAL MBBS CAREER GUIDANCE All Rights Reserved
+        Copyright BalaJi Admission Guidance. All rights reserved.
       </div>
     </footer>
   );

@@ -729,6 +729,11 @@
   font-weight: 600;
 }
 
+.kp-sinq-success.is-error {
+  background: rgba(120, 13, 13, 0.3);
+  color: #fff0f0;
+}
+
 .kp-footer {
   background: var(--kp-dark);
   color: #ddd;

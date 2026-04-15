@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { collegePreviewData } from "../data/collegePreviewData";
 import SeoHead from "../components/layout/SeoHead";
 import { DEFAULT_OG_IMAGE, makeAbsoluteUrl } from "../config/site";
+import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
 
 function estimateRank(score) {
   return Math.round(Math.max(1, (720 - score) * 115));
@@ -18,8 +19,6 @@ function tableHeaders(type) {
   return ["Course", "Duration", "Intake", "Annual Fees"];
 }
 
-const admissionWhatsappUrl =
-  "https://wa.me/919623208649?text=Admission%20Enquiry";
 const admissionPhone = "+91 9623208649";
 
 function ContactInlineIcon({ type }) {
@@ -183,15 +182,12 @@ function CollegePreviewPage() {
   const [predScore, setPredScore] = useState("");
   const [predCat, setPredCat] = useState("general");
   const [inquiry, setInquiry] = useState({ name: "", phone: "", score: "", course: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [inquiryStatus, setInquiryStatus] = useState({ type: "idle", message: "" });
   const collegeLabel = data?.brandName || data?.fullName;
   const logoSrc = data?.logo || "https://i.ibb.co/twXMG4DP/image.png";
   const logoAlt = `${collegeLabel} Logo`;
   const phoneHref = `tel:${admissionPhone.replace(/[^+\d]/g, "")}`;
   const emailHref = `mailto:${data?.email || ""}`;
-  const footerContactLines = data.footerLinks.contactBody.split("\n");
-  const [footerEmail = "", , ...footerAddressParts] = footerContactLines;
-  const footerAddress = footerAddressParts.join(" ");
 
   const rankEstimate = useMemo(() => {
     const score = Number(sideScore);
@@ -238,6 +234,14 @@ function CollegePreviewPage() {
     );
   }
 
+  const footerContactLines = data.footerLinks.contactBody.split("\n");
+  const [footerEmail = "", , ...footerAddressParts] = footerContactLines;
+  const footerAddress = footerAddressParts.join(" ");
+  const admissionWhatsappUrl = buildWhatsAppUrl(
+    admissionPhone,
+    `${collegeLabel} admission enquiry`
+  );
+
   const seoDescription = `${data.fullName} admission guide with fees, cutoff trends, eligibility, facilities, videos, FAQs, and contact details for ${data.locationLine}.`;
   const collegeSchema = [
     {
@@ -273,10 +277,34 @@ function CollegePreviewPage() {
 
   function submitInquiry(event) {
     event.preventDefault();
-    if (!inquiry.name.trim() || !inquiry.phone.trim()) return;
-    setSubmitted(true);
+
+    if (!inquiry.name.trim()) {
+      setInquiryStatus({ type: "error", message: "Enter your name before sending the enquiry." });
+      return;
+    }
+
+    if (!isValidPhone(inquiry.phone)) {
+      setInquiryStatus({ type: "error", message: "Enter a valid mobile number before sending the enquiry." });
+      return;
+    }
+
+    const enquiryMessage = buildEnquiryMessage({
+      context: `College page enquiry: ${data.fullName}`,
+      name: inquiry.name.trim(),
+      phone: inquiry.phone.trim(),
+      course: inquiry.course,
+      score: inquiry.score.trim(),
+      message: `Requested from ${makeAbsoluteUrl(`/preview/${slug}`)}`
+    });
+
+    window.open(
+      buildWhatsAppUrl(admissionPhone, enquiryMessage),
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+    setInquiryStatus({ type: "success", message: "WhatsApp opened with your prefilled enquiry." });
     setInquiry({ name: "", phone: "", score: "", course: "" });
-    setTimeout(() => setSubmitted(false), 3000);
   }
 
   const tab = data.tabs[activeTab].content;
@@ -332,7 +360,7 @@ function CollegePreviewPage() {
                 <span className="kp-inline-contact-icon">
                   <ContactInlineIcon type="phone" />
                 </span>
-                  <span>{admissionPhone}</span>
+                <span>{admissionPhone}</span>
               </a>
               <a href={emailHref} className="kp-inline-contact">
                 <span className="kp-inline-contact-icon">
@@ -626,28 +654,48 @@ function CollegePreviewPage() {
 
           <form className="kp-sidebar-inquiry" onSubmit={submitInquiry}>
             <h3>Quick Admission Inquiry</h3>
-            <p>Our counselor will call you within 24 hrs</p>
+            <p>Send a prefilled WhatsApp enquiry to our counselor in one step.</p>
             <input
               type="text"
               placeholder="Your Name *"
               value={inquiry.name}
-              onChange={(event) => setInquiry((old) => ({ ...old, name: event.target.value }))}
+              onChange={(event) => {
+                setInquiry((old) => ({ ...old, name: event.target.value }));
+                if (inquiryStatus.type !== "idle") {
+                  setInquiryStatus({ type: "idle", message: "" });
+                }
+              }}
             />
             <input
               type="tel"
               placeholder="Mobile Number *"
               value={inquiry.phone}
-              onChange={(event) => setInquiry((old) => ({ ...old, phone: event.target.value }))}
+              onChange={(event) => {
+                setInquiry((old) => ({ ...old, phone: event.target.value }));
+                if (inquiryStatus.type !== "idle") {
+                  setInquiryStatus({ type: "idle", message: "" });
+                }
+              }}
             />
             <input
               type="number"
               placeholder="NEET Score (if known)"
               value={inquiry.score}
-              onChange={(event) => setInquiry((old) => ({ ...old, score: event.target.value }))}
+              onChange={(event) => {
+                setInquiry((old) => ({ ...old, score: event.target.value }));
+                if (inquiryStatus.type !== "idle") {
+                  setInquiryStatus({ type: "idle", message: "" });
+                }
+              }}
             />
             <select
               value={inquiry.course}
-              onChange={(event) => setInquiry((old) => ({ ...old, course: event.target.value }))}
+              onChange={(event) => {
+                setInquiry((old) => ({ ...old, course: event.target.value }));
+                if (inquiryStatus.type !== "idle") {
+                  setInquiryStatus({ type: "idle", message: "" });
+                }
+              }}
             >
               <option value="">Course Interested In</option>
               {data.coursesInterested.map((course) => (
@@ -655,9 +703,13 @@ function CollegePreviewPage() {
               ))}
             </select>
             <button type="submit" className="kp-sinq-submit">
-              Send Inquiry
+              Send on WhatsApp
             </button>
-            {submitted ? <div className="kp-sinq-success">Thank you! We&apos;ll call you soon.</div> : null}
+            {inquiryStatus.type !== "idle" ? (
+              <div className={`kp-sinq-success ${inquiryStatus.type === "error" ? "is-error" : ""}`}>
+                {inquiryStatus.message}
+              </div>
+            ) : null}
           </form>
 
           <div id="contact" className="kp-quick-info">

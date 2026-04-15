@@ -38,8 +38,11 @@ const siteUrl = rawSiteUrl ? rawSiteUrl.replace(/\/+$/, "") : "https://mgmmbbsmd
 
 const pages = [
   "/",
+  "/about",
   "/blogs",
   "/contact",
+  "/privacy-policy",
+  "/terms-and-conditions",
   ...Object.keys(dataModule.collegePreviewData).map((slug) => `/preview/${slug}`)
 ];
 

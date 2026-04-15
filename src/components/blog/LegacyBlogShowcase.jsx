@@ -16,7 +16,7 @@ function BlogSideCard({ blog }) {
         <div className="legacy-blog-body">
           <h4>{blog.title}</h4>
           <p className="legacy-blog-meta">
-            {blog.date} • {blog.meta}
+            {blog.date} &bull; {blog.meta}
           </p>
         </div>
       </Link>
@@ -58,7 +58,7 @@ function LegacyBlogShowcase({ pageMode = false }) {
               <div className="legacy-blog-body">
                 <h3>{featuredBlog.title}</h3>
                 <p className="legacy-blog-meta">
-                  {featuredBlog.date} • {featuredBlog.meta}
+                  {featuredBlog.date} &bull; {featuredBlog.meta}
                 </p>
                 <p>{featuredBlog.excerpt}</p>
               </div>

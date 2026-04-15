@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LegacyFooter, LegacyNav } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
+import { buildEnquiryMessage, buildMailtoUrl, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
 
 function ContactInfoIcon({ type }) {
   if (type === "address") {
@@ -61,6 +62,16 @@ function ContactInfoIcon({ type }) {
 
 function ContactPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    city: "",
+    course: "",
+    score: "",
+    message: ""
+  });
+  const [status, setStatus] = useState({ type: "idle", message: "" });
   const info = [
     {
       type: "address",
@@ -84,6 +95,13 @@ function ContactPage() {
       href: "tel:+919324652984"
     }
   ];
+  const courseOptions = [
+    "MBBS Admission Guidance",
+    "MD / MS Counseling",
+    "Management Quota Guidance",
+    "NRI Quota Guidance",
+    "College Shortlisting Support"
+  ];
   const contactSchema = [
     {
       "@type": "Organization",
@@ -102,6 +120,69 @@ function ContactPage() {
       url: makeAbsoluteUrl("/contact")
     }
   ];
+
+  function updateField(field, value) {
+    setForm((old) => ({ ...old, [field]: value }));
+    if (status.type !== "idle") {
+      setStatus({ type: "idle", message: "" });
+    }
+  }
+
+  function validateForm() {
+    if (!form.name.trim()) {
+      return "Enter your name.";
+    }
+
+    if (!isValidPhone(form.phone)) {
+      return "Enter a valid mobile number.";
+    }
+
+    return "";
+  }
+
+  function buildFormMessage() {
+    return buildEnquiryMessage({
+      context: "Website contact form enquiry",
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      city: form.city.trim(),
+      course: form.course,
+      score: form.score.trim(),
+      message: form.message.trim()
+    });
+  }
+
+  function handleWhatsAppSubmit(event) {
+    event.preventDefault();
+
+    const error = validateForm();
+    if (error) {
+      setStatus({ type: "error", message: error });
+      return;
+    }
+
+    const whatsappUrl = buildWhatsAppUrl(CONTACT_PHONE, buildFormMessage());
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    setStatus({ type: "success", message: "WhatsApp opened with your prefilled enquiry." });
+  }
+
+  function handleEmailSubmit() {
+    const error = validateForm();
+    if (error) {
+      setStatus({ type: "error", message: error });
+      return;
+    }
+
+    const mailtoUrl = buildMailtoUrl(
+      CONTACT_EMAIL,
+      `Admission enquiry from ${form.name.trim()}`,
+      buildFormMessage()
+    );
+
+    window.location.href = mailtoUrl;
+    setStatus({ type: "success", message: "Your email app opened with the enquiry details." });
+  }
 
   return (
     <div className="legacy-page">
@@ -149,6 +230,127 @@ function ContactPage() {
               </a>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="legacy-contact-form-section">
+        <div className="legacy-container legacy-contact-form-grid">
+          <div className="legacy-contact-panel legacy-contact-panel-copy">
+            <p className="legacy-section-sub">Admission Enquiry</p>
+            <h2>Send your details directly to our counseling team</h2>
+            <p>
+              The site now supports a real enquiry handoff. Fill in your basic details and
+              we will open a prefilled WhatsApp or email draft so you can send your request
+              without retyping anything.
+            </p>
+            <div className="legacy-contact-direct-links">
+              <a href={`tel:${CONTACT_PHONE.replace(/[^+\d]/g, "")}`}>Call {CONTACT_PHONE}</a>
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            </div>
+          </div>
+
+          <div className="legacy-contact-panel">
+            <form className="legacy-contact-form" onSubmit={handleWhatsAppSubmit}>
+              <div className="legacy-contact-field-grid">
+                <label className="legacy-contact-field">
+                  <span>Name *</span>
+                  <input
+                    type="text"
+                    value={form.name}
+                    onChange={(event) => updateField("name", event.target.value)}
+                    placeholder="Student or parent name"
+                  />
+                </label>
+
+                <label className="legacy-contact-field">
+                  <span>Mobile Number *</span>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(event) => updateField("phone", event.target.value)}
+                    placeholder="+91 98XXXXXXXX"
+                  />
+                </label>
+
+                <label className="legacy-contact-field">
+                  <span>Email</span>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(event) => updateField("email", event.target.value)}
+                    placeholder="name@example.com"
+                  />
+                </label>
+
+                <label className="legacy-contact-field">
+                  <span>City / State</span>
+                  <input
+                    type="text"
+                    value={form.city}
+                    onChange={(event) => updateField("city", event.target.value)}
+                    placeholder="Mumbai, Maharashtra"
+                  />
+                </label>
+
+                <label className="legacy-contact-field">
+                  <span>Guidance Needed</span>
+                  <select
+                    value={form.course}
+                    onChange={(event) => updateField("course", event.target.value)}
+                  >
+                    <option value="">Select an option</option>
+                    {courseOptions.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="legacy-contact-field">
+                  <span>NEET Score</span>
+                  <input
+                    type="number"
+                    min="0"
+                    max="720"
+                    value={form.score}
+                    onChange={(event) => updateField("score", event.target.value)}
+                    placeholder="Optional"
+                  />
+                </label>
+              </div>
+
+              <label className="legacy-contact-field">
+                <span>Message</span>
+                <textarea
+                  rows="5"
+                  value={form.message}
+                  onChange={(event) => updateField("message", event.target.value)}
+                  placeholder="Tell us which colleges, quota, or counseling stage you want help with."
+                />
+              </label>
+
+              <div className="legacy-contact-form-actions">
+                <button type="submit" className="legacy-btn legacy-btn-dark">
+                  Send on WhatsApp
+                </button>
+                <button
+                  type="button"
+                  className="legacy-btn legacy-btn-outline"
+                  onClick={handleEmailSubmit}
+                >
+                  Send by Email
+                </button>
+              </div>
+
+              <p className="legacy-contact-form-note">
+                Required fields: name and mobile number. The form opens your selected channel
+                with a prefilled enquiry message.
+              </p>
+
+              {status.type !== "idle" ? (
+                <p className={`legacy-contact-form-status is-${status.type}`}>{status.message}</p>
+              ) : null}
+            </form>
+          </div>
         </div>
       </section>
 
