@@ -1,9 +1,12 @@
+import { blocksToBlogHtml, deriveExcerptFromHtml, normalizeBlogHtml } from "./blogContentHtml";
+import { deriveLegacyBlogContent, normalizeBlogBlocks } from "./blogBlocks";
+
 export const ADMIN_STORAGE_KEY = "medical-college-admin-store-v1";
 
 export const LEAD_STATUSES = ["new", "contacted", "closed"];
 export const LEAD_SOURCES = ["quick-desk", "registration", "contact-form"];
 export const NOTICE_STATUSES = ["draft", "published"];
-export const BLOG_STATUSES = ["draft", "published"];
+export const BLOG_STATUSES = ["draft", "published", "scheduled"];
 export const COLLEGE_STATUSES = ["open", "consult", "closed"];
 
 export function makeAdminId(prefix) {
@@ -80,20 +83,112 @@ export function normalizeNotice(input) {
   };
 }
 
+function clampFocal(value, fallback = 50) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  return Math.min(100, Math.max(0, number));
+}
+
+function normalizeMediaRecord(input = {}) {
+  return {
+    id: input.id || makeAdminId("media"),
+    type: input.type || "image",
+    label: input.label?.trim() || input.name?.trim() || "Media item",
+    path: input.path?.trim() || input.dataUrl?.trim() || "",
+    alt: input.alt?.trim() || "",
+    caption: input.caption?.trim() || "",
+    focalX: clampFocal(input.focalX),
+    focalY: clampFocal(input.focalY),
+    createdAt: input.createdAt || isoNow(),
+    updatedAt: input.updatedAt || isoNow()
+  };
+}
+
+export function normalizeMedia(input) {
+  return normalizeMediaRecord(input);
+}
+
+function normalizeFaqItems(items) {
+  if (!Array.isArray(items)) return [];
+  return items
+    .map((item) => ({
+      id: item?.id || makeAdminId("faq"),
+      question: item?.question?.trim() || "",
+      answer: item?.answer?.trim() || ""
+    }))
+    .filter((item) => item.question && item.answer);
+}
+
+function normalizeStringList(items) {
+  if (!Array.isArray(items)) return [];
+  return [...new Set(items.map((item) => item?.trim?.() || "").filter(Boolean))];
+}
+
+function normalizeCta(input = {}) {
+  return {
+    title: input.title?.trim() || "",
+    text: input.text?.trim() || "",
+    buttonLabel: input.buttonLabel?.trim() || "",
+    buttonUrl: input.buttonUrl?.trim() || ""
+  };
+}
+
+function inferReadingTime(contentHtml, excerpt = "") {
+  const source = `${contentHtml || ""} ${excerpt || ""}`
+    .replace(/<!--[\s\S]*?-->/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const words = source ? source.split(" ").filter(Boolean).length : 0;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
 export function normalizeBlog(input) {
+  const contentBlocks = normalizeBlogBlocks(input.contentBlocks, input);
+  const contentHtml = normalizeBlogHtml(input.contentHtml) || blocksToBlogHtml(contentBlocks);
+  const legacyContent = deriveLegacyBlogContent(contentBlocks, input);
+  const featuredImage = normalizeMediaRecord({
+    id: input.featuredImage?.id || input.mediaId || "",
+    type: "image",
+    label: input.featuredImage?.label || input.title || "Featured image",
+    path: input.featuredImage?.path || input.image || "",
+    alt: input.featuredImage?.alt || "",
+    caption: input.featuredImage?.caption || "",
+    focalX: input.featuredImage?.focalX,
+    focalY: input.featuredImage?.focalY
+  });
+  const categories = normalizeStringList(input.categories || (input.tag ? [input.tag] : []));
+  const tags = normalizeStringList(input.tags || (input.tag ? [input.tag] : []));
+  const excerpt = input.excerpt?.trim() || deriveExcerptFromHtml(contentHtml);
+
   return {
     id: input.id || makeAdminId("blog"),
     slug: slugify(input.slug || input.title || "article"),
     title: input.title?.trim() || "",
-    tag: input.tag?.trim() || "General",
+    tag: input.tag?.trim() || categories[0] || tags[0] || "General",
+    categories,
+    tags,
     date: input.date?.trim() || new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }),
     meta: input.meta?.trim() || "",
-    excerpt: input.excerpt?.trim() || "",
-    image: input.image?.trim() || "/image/outer_blog_1.webp",
-    intro: input.intro?.trim() || "",
-    sections: Array.isArray(input.sections) ? input.sections : [],
-    takeaways: Array.isArray(input.takeaways) ? input.takeaways : [],
+    excerpt,
+    image: featuredImage.path || "/image/outer_blog_1.webp",
+    featuredImage,
+    intro: legacyContent.intro,
+    sections: legacyContent.sections,
+    contentBlocks,
+    contentHtml,
+    takeaways: legacyContent.takeaways,
     status: BLOG_STATUSES.includes(input.status) ? input.status : "draft",
+    publishAt: input.publishAt?.trim() || "",
+    author: input.author?.trim() || "BalaJi Editorial Desk",
+    canonicalUrl: input.canonicalUrl?.trim() || "",
+    seoTitle: input.seoTitle?.trim() || "",
+    seoDescription: input.seoDescription?.trim() || excerpt,
+    readingTime: Number.isFinite(Number(input.readingTime)) ? Number(input.readingTime) : inferReadingTime(contentHtml, excerpt),
+    faqItems: normalizeFaqItems(input.faqItems),
+    relatedBlogIds: normalizeStringList(input.relatedBlogIds),
+    cta: normalizeCta(input.cta),
+    templateKey: input.templateKey?.trim() || "blank",
     featured: Boolean(input.featured),
     createdAt: input.createdAt || isoNow(),
     updatedAt: input.updatedAt || isoNow()

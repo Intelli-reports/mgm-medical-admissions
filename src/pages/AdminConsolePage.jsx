@@ -4,7 +4,6 @@ import {
   BookOpenText,
   ChevronRight,
   Database,
-  FileText,
   Filter,
   FolderKanban,
   LayoutDashboard,
@@ -15,21 +14,33 @@ import {
   Search,
   Settings,
   Sparkles,
-  SquarePen,
   Users
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { createBlogDraft } from "../admin/blogDrafts";
+import { getBlogTemplate } from "../admin/blogTemplates";
+import {
+  clearBlogEditorDraft,
+  clearBlogEditorLock,
+  createBlogEditorSessionId,
+  loadBlogEditorDraft,
+  readBlogEditorLock,
+  refreshBlogEditorLock,
+  saveBlogEditorDraft
+} from "../admin/blogEditorStorage";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import BlogPostEditorScreen from "../components/admin/BlogPostEditorScreen";
+import BlogPostsLibrary from "../components/admin/BlogPostsLibrary";
 import SeoHead from "../components/layout/SeoHead";
 import {
   deleteBlog,
   deleteNotice,
-  getBlogContract,
   getCollegeContract,
   getDashboardSummary,
   getLeadContract,
   getNoticeContract,
   getSettings,
+  listBlogVersions,
   listBlogs,
   listColleges,
   listLeads,
@@ -38,12 +49,12 @@ import {
   listNotices,
   saveBlog,
   saveCollege,
+  saveMedia,
   saveNotice,
   saveSettings,
   updateLeadStatus
 } from "../admin/api";
 import {
-  BLOG_STATUSES,
   COLLEGE_STATUSES,
   LEAD_STATUSES,
   NOTICE_STATUSES,
@@ -55,7 +66,7 @@ const sectionConfig = [
   { key: "dashboard", label: "Dashboard", Icon: LayoutDashboard },
   { key: "leads", label: "Leads", Icon: Users },
   { key: "notices", label: "Notices", Icon: Bell },
-  { key: "blogs", label: "Blogs", Icon: FileText },
+  { key: "blogs", label: "Blogs", Icon: Database },
   { key: "colleges", label: "Colleges", Icon: FolderKanban },
   { key: "media", label: "Media", Icon: Database },
   { key: "settings", label: "Settings", Icon: Settings }
@@ -80,38 +91,6 @@ function EmptyState({ title, text }) {
 
 function LoadingState({ text = "Loading..." }) {
   return <div className="admin-loading-state">{text}</div>;
-}
-
-function serializeSections(sections) {
-  return sections
-    .map((section) => [section.heading, ...(section.paragraphs || [])].join("\n"))
-    .join("\n\n");
-}
-
-function parseSections(value) {
-  return value
-    .split(/\n\s*\n/)
-    .map((block) => block.split("\n").map((line) => line.trim()).filter(Boolean))
-    .filter((lines) => lines.length)
-    .map(([heading, ...paragraphs]) => ({ heading, paragraphs }));
-}
-
-function createBlogDraft(blog) {
-  return {
-    id: blog?.id || "",
-    title: blog?.title || "",
-    slug: blog?.slug || "",
-    tag: blog?.tag || "NEET UG",
-    date: blog?.date || "",
-    meta: blog?.meta || "",
-    image: blog?.image || "/image/outer_blog_1.webp",
-    excerpt: blog?.excerpt || "",
-    intro: blog?.intro || "",
-    status: blog?.status || "draft",
-    featured: Boolean(blog?.featured),
-    takeawaysText: (blog?.takeaways || []).join("\n"),
-    sectionsText: serializeSections(blog?.sections || [])
-  };
 }
 
 function createNoticeDraft(notice) {
@@ -150,8 +129,12 @@ function StatusChip({ value }) {
 
 function AdminConsolePage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const section = location.pathname.split("/")[2] || "dashboard";
+  const blogMode = location.pathname.split("/")[3] || "";
+  const blogEditId = location.pathname.split("/")[4] || "";
   const activeSection = sectionConfig.find((item) => item.key === section) ? section : "dashboard";
+  const isBlogEditorRoute = activeSection === "blogs" && (blogMode === "new" || blogMode === "edit");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -168,8 +151,13 @@ function AdminConsolePage() {
   const [selectedLeadId, setSelectedLeadId] = useState("");
   const [noticeDraft, setNoticeDraft] = useState(createNoticeDraft());
   const [blogDraft, setBlogDraft] = useState(createBlogDraft());
+  const [blogVersionHistory, setBlogVersionHistory] = useState([]);
+  const [blogEditorKey, setBlogEditorKey] = useState(0);
+  const [autoSaveState, setAutoSaveState] = useState({ status: "idle", savedAt: "" });
+  const [editorLockWarning, setEditorLockWarning] = useState("");
   const [collegeDraft, setCollegeDraft] = useState(createCollegeDraft());
   const [flash, setFlash] = useState({ type: "idle", message: "" });
+  const blogEditorSessionId = useMemo(() => createBlogEditorSessionId(), []);
 
   async function loadAdminData() {
     setLoading(true);
@@ -207,6 +195,84 @@ function AdminConsolePage() {
   useEffect(() => {
     loadAdminData();
   }, []);
+
+  useEffect(() => {
+    const cachedDraft = loadBlogEditorDraft();
+    if (cachedDraft?.draft && activeSection === "blogs" && !isBlogEditorRoute) {
+      setBlogDraft(createBlogDraft(cachedDraft.draft));
+      setBlogEditorKey((current) => current + 1);
+      setAutoSaveState({ status: "restored", savedAt: cachedDraft.savedAt || "" });
+    }
+  }, [activeSection, isBlogEditorRoute]);
+
+  useEffect(() => {
+    if (activeSection !== "blogs" || !blogs.length || blogMode !== "edit" || !blogEditId) return;
+    const targetBlog = blogs.find((blog) => blog.id === blogEditId);
+    if (targetBlog) {
+      setBlogDraft(createBlogDraft(targetBlog));
+      setBlogEditorKey((current) => current + 1);
+    }
+  }, [activeSection, blogMode, blogEditId, blogs]);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      saveBlogEditorDraft(blogDraft);
+      setAutoSaveState({ status: "saved", savedAt: new Date().toISOString() });
+    }, 800);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [blogDraft]);
+
+  useEffect(() => {
+    const articleKey = blogDraft.id || blogDraft.slug || "new-article";
+
+    function evaluateLock() {
+      const articleLocks = readBlogEditorLock()?.[articleKey];
+      const hasOtherFreshLock = Object.values(articleLocks || {}).some((lock) => {
+        const updatedAt = lock?.updatedAt ? new Date(lock.updatedAt).getTime() : 0;
+        return lock?.sessionId !== blogEditorSessionId && Date.now() - updatedAt < 15000;
+      });
+      if (hasOtherFreshLock) {
+        setEditorLockWarning("Another browser tab is editing this article. Last heartbeat is still active.");
+      } else {
+        setEditorLockWarning("");
+      }
+    }
+
+    evaluateLock();
+    refreshBlogEditorLock(blogEditorSessionId, articleKey);
+
+    const intervalId = window.setInterval(() => {
+      refreshBlogEditorLock(blogEditorSessionId, articleKey);
+      evaluateLock();
+    }, 5000);
+
+    return () => {
+      window.clearInterval(intervalId);
+      clearBlogEditorLock(blogEditorSessionId, articleKey);
+    };
+  }, [blogDraft.id, blogDraft.slug, blogEditorSessionId]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadVersions() {
+      if (!blogDraft.id) {
+        setBlogVersionHistory([]);
+        return;
+      }
+
+      const versions = await listBlogVersions(blogDraft.id);
+      if (active) {
+        setBlogVersionHistory(versions);
+      }
+    }
+
+    loadVersions();
+    return () => {
+      active = false;
+    };
+  }, [blogDraft.id, blogs]);
 
   const selectedLead = leads.find((lead) => lead.id === selectedLeadId) || null;
 
@@ -257,16 +323,100 @@ function AdminConsolePage() {
   }
 
   async function handleBlogSave(event) {
-    event.preventDefault();
-    await saveBlog({
+    if (event?.preventDefault) event.preventDefault();
+    let nextFeaturedImage = {
+      ...blogDraft.featuredImage,
+      path: blogDraft.featuredImage?.path || blogDraft.image
+    };
+
+    if (nextFeaturedImage.path) {
+      nextFeaturedImage = await saveMedia({
+        ...nextFeaturedImage,
+        label: nextFeaturedImage.label || blogDraft.title || "Featured image",
+        type: "blog"
+      });
+    }
+
+    const savedBlog = await saveBlog({
       ...blogDraft,
       slug: blogDraft.slug || slugify(blogDraft.title),
+      categories: blogDraft.categoriesText.split(",").map((item) => item.trim()).filter(Boolean),
+      tags: blogDraft.tagsText.split(",").map((item) => item.trim()).filter(Boolean),
       takeaways: blogDraft.takeawaysText.split("\n").map((item) => item.trim()).filter(Boolean),
-      sections: parseSections(blogDraft.sectionsText)
+      featuredImage: nextFeaturedImage,
+      image: nextFeaturedImage.path || blogDraft.image
     });
-    setBlogDraft(createBlogDraft());
+    clearBlogEditorDraft();
+    setAutoSaveState({ status: "idle", savedAt: "" });
+    setBlogDraft(createBlogDraft(savedBlog));
+    setBlogEditorKey((current) => current + 1);
+    navigate(`/admin/blogs/edit/${savedBlog.id}`);
     await loadAdminData();
     showFlash("success", "Blog saved.");
+  }
+
+  function handleBlogDraftReset(nextDraft = createBlogDraft()) {
+    clearBlogEditorDraft();
+    setAutoSaveState({ status: "idle", savedAt: "" });
+    setBlogDraft(nextDraft);
+    setBlogEditorKey((current) => current + 1);
+  }
+
+  function handleOpenNewBlog() {
+    const nextDraft = createBlogDraft();
+    setBlogDraft(nextDraft);
+    setBlogEditorKey((current) => current + 1);
+    navigate("/admin/blogs/new");
+  }
+
+  function handleOpenEditBlog(blog) {
+    const nextDraft = createBlogDraft(blog);
+    setBlogDraft(nextDraft);
+    setBlogEditorKey((current) => current + 1);
+    navigate(`/admin/blogs/edit/${blog.id}`);
+  }
+
+  function handleRestoreBlogVersion(versionBlog) {
+    clearBlogEditorDraft();
+    setAutoSaveState({ status: "idle", savedAt: "" });
+    setBlogDraft(createBlogDraft(versionBlog));
+    setBlogEditorKey((current) => current + 1);
+  }
+
+  async function handleUploadMedia(input) {
+    const mediaItem = await saveMedia(input);
+    await loadAdminData();
+    return mediaItem;
+  }
+
+  function handleApplyBlogTemplate(template) {
+    const nextTemplate = getBlogTemplate(template.key);
+    setBlogDraft((old) => ({
+      ...old,
+      templateKey: nextTemplate.key,
+      contentHtml: nextTemplate.contentHtml,
+      excerpt: old.excerpt || "",
+      faqItems: old.faqItems.length ? old.faqItems : []
+    }));
+    setBlogEditorKey((current) => current + 1);
+  }
+
+  function handleAppendBlogSnippet(snippet) {
+    setBlogDraft((old) => ({
+      ...old,
+      contentHtml: `${old.contentHtml || ""}\n${snippet.contentHtml}`.trim()
+    }));
+    setBlogEditorKey((current) => current + 1);
+  }
+
+  async function handleDeleteBlog(id) {
+    await deleteBlog(id);
+    if (blogDraft.id === id) {
+      handleBlogDraftReset();
+      navigate("/admin/blogs");
+    }
+    await loadAdminData();
+    showFlash("success", "Blog deleted.");
   }
 
   async function handleCollegeSave(event) {
@@ -314,8 +464,8 @@ function AdminConsolePage() {
         canonicalPath="/admin"
       />
 
-      <div className="admin-console">
-        <aside className="admin-sidebar">
+      <div className={`admin-console ${isBlogEditorRoute ? "is-editor-mode" : ""}`}>
+        {!isBlogEditorRoute ? <aside className="admin-sidebar">
           <div className="admin-brand">
             <span className="admin-brand-badge">BA</span>
             <div>
@@ -338,10 +488,10 @@ function AdminConsolePage() {
             <span>Current focus</span>
             <strong>Leads first, content next</strong>
           </div>
-        </aside>
+        </aside> : null}
 
         <main className="admin-main">
-          <header className="admin-topbar">
+          {!isBlogEditorRoute ? <header className="admin-topbar">
             <div className="admin-topbar-copy">
               <p className="admin-topbar-kicker">Internal Operations</p>
               <h1>{sectionConfig.find((item) => item.key === activeSection)?.label || "Dashboard"}</h1>
@@ -362,7 +512,7 @@ function AdminConsolePage() {
                 <span>{notifications.length}</span>
               </div>
             </div>
-          </header>
+          </header> : null}
 
           {flash.type !== "idle" ? (
             <motion.div
@@ -584,98 +734,34 @@ function AdminConsolePage() {
             </section>
           ) : null}
 
-          {!loading && !error && activeSection === "blogs" ? (
-            <section className="admin-section-grid admin-section-grid-wide">
-              <div className="admin-card">
-                <div className="admin-card-head">
-                  <p>{`Contract: ${getBlogContract().required.join(", ")}`}</p>
-                  <strong>Blog manager</strong>
-                </div>
-                {filteredBlogs.length ? (
-                  <div className="admin-list">
-                    {filteredBlogs.map((blog) => (
-                      <article key={blog.id} className="admin-list-item">
-                        <div>
-                          <strong>{blog.title}</strong>
-                          <p>{blog.slug}</p>
-                        </div>
-                        <div className="admin-list-actions">
-                          {blog.featured ? <StatusChip value="featured" /> : null}
-                          <StatusChip value={blog.status} />
-                          <button type="button" onClick={() => setBlogDraft(createBlogDraft(blog))}>Edit</button>
-                          <button type="button" className="is-danger" onClick={() => deleteBlog(blog.id).then(loadAdminData)}>Delete</button>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                ) : (
-                  <EmptyState title="No blog records found" text="Drafts and published articles will appear here." />
-                )}
-              </div>
+          {!loading && !error && activeSection === "blogs" && !isBlogEditorRoute ? (
+            <BlogPostsLibrary
+              blogs={filteredBlogs}
+              searchQuery={searchQuery}
+              onOpenNew={handleOpenNewBlog}
+              onOpenEdit={handleOpenEditBlog}
+              onDeleteBlog={handleDeleteBlog}
+            />
+          ) : null}
 
-              <div className="admin-card">
-                <div className="admin-card-head">
-                  <p>Editor</p>
-                  <strong>{blogDraft.id ? "Edit article" : "Create article"}</strong>
-                </div>
-                <form className="admin-form-grid" onSubmit={handleBlogSave}>
-                  <label className="admin-form-field">
-                    <span>Title</span>
-                    <input value={blogDraft.title} onChange={(event) => setBlogDraft((old) => ({ ...old, title: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field">
-                    <span>Slug</span>
-                    <input value={blogDraft.slug} onChange={(event) => setBlogDraft((old) => ({ ...old, slug: slugify(event.target.value) }))} />
-                  </label>
-                  <label className="admin-form-field">
-                    <span>Tag</span>
-                    <input value={blogDraft.tag} onChange={(event) => setBlogDraft((old) => ({ ...old, tag: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field">
-                    <span>Status</span>
-                    <select value={blogDraft.status} onChange={(event) => setBlogDraft((old) => ({ ...old, status: event.target.value }))}>
-                      {BLOG_STATUSES.map((status) => <option key={status} value={status}>{status}</option>)}
-                    </select>
-                  </label>
-                  <label className="admin-form-field">
-                    <span>Date</span>
-                    <input value={blogDraft.date} onChange={(event) => setBlogDraft((old) => ({ ...old, date: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field">
-                    <span>Meta</span>
-                    <input value={blogDraft.meta} onChange={(event) => setBlogDraft((old) => ({ ...old, meta: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-form-field-wide">
-                    <span>Image path</span>
-                    <input value={blogDraft.image} onChange={(event) => setBlogDraft((old) => ({ ...old, image: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-form-field-wide">
-                    <span>Excerpt</span>
-                    <textarea rows="3" value={blogDraft.excerpt} onChange={(event) => setBlogDraft((old) => ({ ...old, excerpt: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-form-field-wide">
-                    <span>Intro</span>
-                    <textarea rows="4" value={blogDraft.intro} onChange={(event) => setBlogDraft((old) => ({ ...old, intro: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-form-field-wide">
-                    <span>Takeaways (one per line)</span>
-                    <textarea rows="4" value={blogDraft.takeawaysText} onChange={(event) => setBlogDraft((old) => ({ ...old, takeawaysText: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-form-field-wide">
-                    <span>Sections (blank line between sections)</span>
-                    <textarea rows="8" value={blogDraft.sectionsText} onChange={(event) => setBlogDraft((old) => ({ ...old, sectionsText: event.target.value }))} />
-                  </label>
-                  <label className="admin-form-field admin-checkbox">
-                    <input type="checkbox" checked={blogDraft.featured} onChange={(event) => setBlogDraft((old) => ({ ...old, featured: event.target.checked }))} />
-                    <span>Featured article</span>
-                  </label>
-                  <div className="admin-form-actions">
-                    <button type="submit"><SquarePen size={16} /> Save article</button>
-                    <button type="button" className="is-ghost" onClick={() => setBlogDraft(createBlogDraft())}>Reset</button>
-                  </div>
-                </form>
-              </div>
-            </section>
+          {!loading && !error && activeSection === "blogs" && isBlogEditorRoute ? (
+            <BlogPostEditorScreen
+              editorKey={blogEditorKey}
+              blogDraft={blogDraft}
+              setBlogDraft={setBlogDraft}
+              onBack={() => navigate("/admin/blogs")}
+              onSave={handleBlogSave}
+              onResetDraft={() => handleBlogDraftReset()}
+              onRestoreVersion={handleRestoreBlogVersion}
+              onUploadMedia={handleUploadMedia}
+              onApplyTemplate={handleApplyBlogTemplate}
+              onAppendSnippet={handleAppendBlogSnippet}
+              autoSaveState={autoSaveState}
+              editorLockWarning={editorLockWarning}
+              blogVersionHistory={blogVersionHistory}
+              mediaItems={media.filter((item) => item.path)}
+              relatedBlogs={blogs.filter((blog) => blog.id !== blogDraft.id)}
+            />
           ) : null}
 
           {!loading && !error && activeSection === "colleges" ? (

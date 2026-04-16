@@ -9,6 +9,7 @@ import {
   normalizeBlog,
   normalizeCollege,
   normalizeLead,
+  normalizeMedia,
   normalizeNotice,
   slugify
 } from "./contracts";
@@ -56,9 +57,19 @@ function createSeedStore() {
     ),
     blogs,
     colleges,
+    blogVersions: {},
     notifications: [],
     media: [
-      ...blogs.map((blog) => ({ id: `media-blog-${blog.id}`, type: "blog", label: blog.title, path: blog.image })),
+      ...blogs.map((blog) => normalizeMedia({
+        id: `media-blog-${blog.id}`,
+        type: "blog",
+        label: blog.title,
+        path: blog.image,
+        alt: blog.featuredImage?.alt || blog.title,
+        caption: blog.featuredImage?.caption || "",
+        focalX: blog.featuredImage?.focalX,
+        focalY: blog.featuredImage?.focalY
+      })),
       ...colleges.map((college) => ({
         id: `media-college-${college.id}`,
         type: "college",
@@ -79,6 +90,55 @@ function createSeedStore() {
 
 let memoryStore = createSeedStore();
 
+function normalizeStoreShape(store) {
+  return {
+    leads: Array.isArray(store?.leads) ? store.leads.map((lead) => normalizeLead(lead)) : [],
+    notices: Array.isArray(store?.notices) ? store.notices.map((notice) => normalizeNotice(notice)) : [],
+    blogs: Array.isArray(store?.blogs) ? store.blogs.map((blog) => normalizeBlog(blog)) : [],
+    colleges: Array.isArray(store?.colleges) ? store.colleges.map((college) => normalizeCollege(college)) : [],
+    blogVersions: store?.blogVersions && typeof store.blogVersions === "object" ? store.blogVersions : {},
+    notifications: Array.isArray(store?.notifications) ? store.notifications : [],
+    media: Array.isArray(store?.media) ? store.media.map((item) => normalizeMedia(item)) : [],
+    settings: store?.settings || createSeedStore().settings
+  };
+}
+
+function syncBlogMedia(store, blog) {
+  const mediaId = `media-blog-${blog.id}`;
+  const nextMediaItem = {
+    id: mediaId,
+    type: "blog",
+    label: blog.title,
+    path: blog.image,
+    alt: blog.featuredImage?.alt || blog.title,
+    caption: blog.featuredImage?.caption || "",
+    focalX: blog.featuredImage?.focalX,
+    focalY: blog.featuredImage?.focalY
+  };
+
+  const existingIndex = store.media.findIndex((item) => item.id === mediaId);
+  if (existingIndex >= 0) {
+    store.media[existingIndex] = nextMediaItem;
+  } else {
+    store.media.push(nextMediaItem);
+  }
+}
+
+function appendBlogVersion(store, blog, source = "manual-save") {
+  const versionEntry = {
+    id: `version-${Date.now()}`,
+    source,
+    savedAt: new Date().toISOString(),
+    blog: clone(blog)
+  };
+
+  const currentVersions = Array.isArray(store.blogVersions?.[blog.id]) ? store.blogVersions[blog.id] : [];
+  store.blogVersions = {
+    ...store.blogVersions,
+    [blog.id]: [versionEntry, ...currentVersions].slice(0, 20)
+  };
+}
+
 function hasStorage() {
   return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
 }
@@ -88,33 +148,38 @@ function clone(value) {
 }
 
 function ensureStore() {
-  if (!hasStorage()) return clone(memoryStore);
+  if (!hasStorage()) return clone(normalizeStoreShape(memoryStore));
 
   const raw = window.localStorage.getItem(ADMIN_STORAGE_KEY);
   if (!raw) {
     const seeded = createSeedStore();
-    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(seeded));
-    return clone(seeded);
+    const normalized = normalizeStoreShape(seeded);
+    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(normalized));
+    return clone(normalized);
   }
 
   try {
     const parsed = JSON.parse(raw);
-    return clone(parsed);
+    const normalized = normalizeStoreShape(parsed);
+    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(normalized));
+    return clone(normalized);
   } catch {
     const seeded = createSeedStore();
-    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(seeded));
-    return clone(seeded);
+    const normalized = normalizeStoreShape(seeded);
+    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(normalized));
+    return clone(normalized);
   }
 }
 
 function commitStore(store) {
-  memoryStore = clone(store);
+  const normalized = normalizeStoreShape(store);
+  memoryStore = clone(normalized);
 
   if (hasStorage()) {
-    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(store));
+    window.localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(normalized));
   }
 
-  return clone(store);
+  return clone(normalized);
 }
 
 function readStore() {
@@ -188,8 +253,8 @@ export function getNoticeContract() {
 
 export function getBlogContract() {
   return {
-    required: ["slug", "title", "tag", "excerpt", "intro", "sections", "status"],
-    optional: ["date", "meta", "image", "takeaways", "featured"]
+    required: ["slug", "title", "tag", "status"],
+    optional: ["excerpt", "contentBlocks", "contentHtml", "date", "meta", "image", "featuredImage", "takeaways", "featured", "intro", "sections", "categories", "tags", "publishAt", "author", "canonicalUrl", "seoTitle", "seoDescription", "readingTime", "faqItems", "relatedBlogIds", "cta", "templateKey"]
   };
 }
 
@@ -261,18 +326,24 @@ export function getPublicNoticesSync() {
 }
 
 export async function listBlogs() {
-  return sortBlogs(readStore().blogs);
+  return sortBlogs(readStore().blogs.map((blog) => normalizeBlog(blog)));
 }
 
 export async function saveBlog(input) {
   const blog = normalizeBlog(input);
   const nextStore = writeStore((store) => {
     const existingIndex = store.blogs.findIndex((item) => item.id === blog.id || item.slug === blog.slug);
+    const previousBlog = existingIndex >= 0 ? store.blogs[existingIndex] : null;
     if (existingIndex >= 0) {
       store.blogs[existingIndex] = { ...store.blogs[existingIndex], ...blog, updatedAt: new Date().toISOString() };
     } else {
       store.blogs.push(blog);
     }
+    if (previousBlog) {
+      appendBlogVersion(store, previousBlog, "pre-save");
+    }
+    appendBlogVersion(store, { ...blog, updatedAt: new Date().toISOString() }, "manual-save");
+    syncBlogMedia(store, blog);
     return store;
   });
   return nextStore.blogs.find((item) => item.id === blog.id || item.slug === blog.slug) || blog;
@@ -281,16 +352,30 @@ export async function saveBlog(input) {
 export async function deleteBlog(id) {
   writeStore((store) => {
     store.blogs = store.blogs.filter((blog) => blog.id !== id);
+    store.media = store.media.filter((item) => item.id !== `media-blog-${id}`);
+    if (store.blogVersions?.[id]) {
+      delete store.blogVersions[id];
+    }
     return store;
   });
 }
 
 export function getPublishedBlogsSync() {
-  return sortBlogs(readStore().blogs).filter((blog) => blog.status === "published");
+  return sortBlogs(readStore().blogs.map((blog) => normalizeBlog(blog))).filter((blog) => {
+    if (blog.status === "published") return true;
+    if (blog.status !== "scheduled") return false;
+    const publishAt = blog.publishAt ? new Date(blog.publishAt).getTime() : 0;
+    return publishAt && publishAt <= Date.now();
+  });
 }
 
 export function getPublishedBlogBySlugSync(slug) {
   return getPublishedBlogsSync().find((blog) => blog.slug === slug) || null;
+}
+
+export async function listBlogVersions(blogId) {
+  const store = readStore();
+  return Array.isArray(store.blogVersions?.[blogId]) ? store.blogVersions[blogId] : [];
 }
 
 export async function listColleges() {
@@ -330,6 +415,31 @@ export function getManagedCollegeBySlugSync(slug) {
 
 export async function listMedia() {
   return readStore().media;
+}
+
+export async function saveMedia(input) {
+  const mediaItem = normalizeMedia(input);
+  const nextStore = writeStore((store) => {
+    const existingIndex = store.media.findIndex((item) => item.id === mediaItem.id);
+    if (existingIndex >= 0) {
+      store.media[existingIndex] = {
+        ...store.media[existingIndex],
+        ...mediaItem,
+        updatedAt: new Date().toISOString()
+      };
+    } else {
+      store.media.unshift(mediaItem);
+    }
+    return store;
+  });
+  return nextStore.media.find((item) => item.id === mediaItem.id) || mediaItem;
+}
+
+export async function deleteMedia(id) {
+  writeStore((store) => {
+    store.media = store.media.filter((item) => item.id !== id);
+    return store;
+  });
 }
 
 export async function listNotifications() {
