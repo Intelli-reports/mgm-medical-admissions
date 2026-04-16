@@ -17,12 +17,11 @@ import {
   UserRound
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { createLead, getManagedCollegesSync, getPublicNoticesSync, getPublishedBlogsSync } from "../admin/api";
 import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
 import SeoScoreBadge from "../components/common/SeoScoreBadge";
 import { LegacyFooter, LegacyNav, LegacySmartLink, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
-import { collegePreviewData } from "../data/collegePreviewData";
-import { legacyBlogs } from "../data/legacyBundleData";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, makeAbsoluteUrl } from "../config/site";
 import {
   GOOGLE_MAPS_URL,
@@ -45,7 +44,7 @@ function toPlayableEmbedUrl(url) {
 }
 
 function buildHomeVideoItems() {
-  return Object.values(collegePreviewData)
+  return getManagedCollegesSync()
     .flatMap((college) => {
       const items = [];
 
@@ -209,6 +208,8 @@ function HomePage() {
   const [registerStatus, setRegisterStatus] = useState({ type: "idle", message: "" });
   const [directoryQuery, setDirectoryQuery] = useState("");
   const [directoryFilter, setDirectoryFilter] = useState("all");
+  const managedBlogs = getPublishedBlogsSync();
+  const managedColleges = getManagedCollegesSync();
   const homeVideos = buildHomeVideoItems();
   const [activeVideo, setActiveVideo] = useState(homeVideos[0] || null);
 
@@ -235,11 +236,7 @@ function HomePage() {
     { title: "Bond & Hostel Notes", Icon: NotebookText }
   ];
 
-  const noticeBoardItems = [
-    { date: "[20 Jun]", text: "Karnataka NEET UG Mock Allotment Out" },
-    { date: "[16 Jul]", text: "UP DGME Releases Round 1 Seat Matrix" },
-    { date: "[15 Jul]", text: "2 New Medical Colleges Approved in Maharashtra" }
-  ];
+  const noticeBoardItems = getPublicNoticesSync();
 
   const processSteps = [
     "Profile Review & Analysis",
@@ -269,13 +266,13 @@ function HomePage() {
     }
   ];
 
-  const collegeEntries = Object.entries(collegePreviewData).map(([slug, college]) => ({
-    slug,
+  const collegeEntries = managedColleges.map((college) => ({
+    slug: college.slug,
     name: college.fullName,
     location: college.locationLine,
     region: inferCollegeRegion(college.locationLine),
     type: inferCollegeType(college),
-    route: `/preview/${slug}`
+    route: `/preview/${college.slug}`
   }));
 
   const filteredColleges = collegeEntries.filter((college) => {
@@ -302,8 +299,8 @@ function HomePage() {
     },
     {
       eyebrow: "Blog Article",
-      title: legacyBlogs[0].title,
-      text: legacyBlogs[0].excerpt,
+      title: managedBlogs[0]?.title || "Admission blog",
+      text: managedBlogs[0]?.excerpt || "Latest counseling guidance and admission planning articles.",
       href: "#blogs"
     },
     {
@@ -322,7 +319,7 @@ function HomePage() {
     }
   }
 
-  function handleQuickDeskSubmit(event) {
+  async function handleQuickDeskSubmit(event) {
     event.preventDefault();
 
     if (!quickDesk.name.trim()) {
@@ -348,6 +345,16 @@ function HomePage() {
         : "Need admission guidance and shortlist support."
     });
 
+    await createLead({
+      source: "quick-desk",
+      name: quickDesk.name.trim(),
+      phone: quickDesk.phone.trim(),
+      city: quickDesk.preferredState,
+      course: quickDesk.course,
+      message: quickDesk.budget.trim() ? `Estimated budget: ${quickDesk.budget.trim()}` : "Need admission guidance and shortlist support.",
+      sourcePage: "/",
+      metadata: { preferredState: quickDesk.preferredState.trim(), budget: quickDesk.budget.trim() }
+    });
     window.open(buildWhatsAppUrl(CONTACT_PHONE, enquiryMessage), "_blank", "noopener,noreferrer");
     setQuickDeskStatus({ type: "success", message: "WhatsApp opened with your prefilled admission enquiry." });
   }
@@ -360,7 +367,7 @@ function HomePage() {
     }
   }
 
-  function handleRegisterSubmit(event) {
+  async function handleRegisterSubmit(event) {
     event.preventDefault();
 
     if (!registerForm.fullName.trim()) {
@@ -384,6 +391,17 @@ function HomePage() {
       message: "Interested in MGM, DY Patil, and other college guidance."
     });
 
+    await createLead({
+      source: "registration",
+      name: registerForm.fullName.trim(),
+      phone: registerForm.mobile.trim(),
+      email: registerForm.email.trim(),
+      city: registerForm.city.trim(),
+      course: registerForm.course.trim(),
+      message: "Interested in MGM, DY Patil, and other college guidance.",
+      sourcePage: "/",
+      metadata: { form: "register-banner" }
+    });
     window.open(buildWhatsAppUrl(CONTACT_PHONE, enquiryMessage), "_blank", "noopener,noreferrer");
     setRegisterStatus({ type: "success", message: "WhatsApp opened with your registration enquiry." });
   }

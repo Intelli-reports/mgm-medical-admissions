@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { CalendarDays, ChevronRight, MessageCircle, Phone, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
-import { findLegacyBlogBySlug, legacyBlogs } from "../data/legacyBundleData";
 import { CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
 import { buildWhatsAppUrl } from "../utils/enquiry";
 import { bannerReveal, cardHover, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
@@ -12,7 +12,8 @@ import { bannerReveal, cardHover, headlineReveal, sectionReveal, staggerContaine
 function BlogArticlePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { slug = "" } = useParams();
-  const blog = findLegacyBlogBySlug(slug);
+  const blog = getPublishedBlogBySlugSync(slug);
+  const legacyBlogs = getPublishedBlogsSync();
 
   if (!blog) {
     return <Navigate to="/blogs" replace />;

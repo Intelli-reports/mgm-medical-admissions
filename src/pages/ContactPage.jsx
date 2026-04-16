@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createLead } from "../admin/api";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
@@ -153,7 +154,7 @@ function ContactPage() {
     });
   }
 
-  function handleWhatsAppSubmit(event) {
+  async function handleWhatsAppSubmit(event) {
     event.preventDefault();
 
     const error = validateForm();
@@ -162,18 +163,42 @@ function ContactPage() {
       return;
     }
 
+    await createLead({
+      source: "contact-form",
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      city: form.city.trim(),
+      course: form.course,
+      score: form.score.trim(),
+      message: form.message.trim(),
+      sourcePage: "/contact",
+      metadata: { channel: "whatsapp" }
+    });
     const whatsappUrl = buildWhatsAppUrl(CONTACT_PHONE, buildFormMessage());
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     setStatus({ type: "success", message: "WhatsApp opened with your prefilled enquiry." });
   }
 
-  function handleEmailSubmit() {
+  async function handleEmailSubmit() {
     const error = validateForm();
     if (error) {
       setStatus({ type: "error", message: error });
       return;
     }
 
+    await createLead({
+      source: "contact-form",
+      name: form.name.trim(),
+      phone: form.phone.trim(),
+      email: form.email.trim(),
+      city: form.city.trim(),
+      course: form.course,
+      score: form.score.trim(),
+      message: form.message.trim(),
+      sourcePage: "/contact",
+      metadata: { channel: "email" }
+    });
     const mailtoUrl = buildMailtoUrl(
       CONTACT_EMAIL,
       `Admission enquiry from ${form.name.trim()}`,

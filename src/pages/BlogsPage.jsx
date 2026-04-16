@@ -1,20 +1,21 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { getPublishedBlogsSync } from "../admin/api";
 import LegacyBlogShowcase from "../components/blog/LegacyBlogShowcase";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
-import { legacyBlogs } from "../data/legacyBundleData";
 import { SITE_NAME, makeAbsoluteUrl } from "../config/site";
 import { bannerReveal, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
 
 function BlogsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const blogs = getPublishedBlogsSync();
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "Admission Blogs and NEET Guidance Updates 2026",
     url: makeAbsoluteUrl("/blogs"),
-    about: legacyBlogs.map((blog) => blog.title)
+    about: blogs.map((blog) => blog.title)
   };
 
   return (

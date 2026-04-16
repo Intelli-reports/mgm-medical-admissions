@@ -5,6 +5,7 @@ import CollegePreviewPage from "./pages/CollegePreviewPage";
 import BlogsPage from "./pages/BlogsPage";
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
+import AdminConsolePage from "./pages/AdminConsolePage";
 import AboutPage from "./pages/AboutPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsPage from "./pages/TermsPage";
@@ -41,6 +42,7 @@ function App() {
           <Route path="blogs/:slug" element={<BlogArticlePage />} />
           <Route path="Blogs" element={<BlogsPage />} />
           <Route path="Blogs/:slug" element={<BlogArticlePage />} />
+          <Route path="admin/*" element={<AdminConsolePage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="terms-and-conditions" element={<TermsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
