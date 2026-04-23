@@ -15,8 +15,14 @@ const TermsPage          = lazy(() => import("./pages/TermsPage"));
 
 function PageLoader() {
   return (
-    <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#5d728c", fontSize: "0.95rem" }}>
-      Loading…
+    <div className="branded-loader-wrap">
+      <div className="branded-loader-logo">
+        <img src="/image/logo.webp" alt="BalaJi logo" />
+      </div>
+      <div className="branded-loader-text">
+        <h2>Medical Admissions Trust</h2>
+        <p>Your journey to excellence starts here...</p>
+      </div>
     </div>
   );
 }
