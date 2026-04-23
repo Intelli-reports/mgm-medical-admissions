@@ -239,11 +239,12 @@
   }
 
   .portal-hero-stage {
-    min-height: 520px;
+    min-height: auto;
+    overflow: visible;
   }
 
   .portal-hero-stage-inner {
-    min-height: 520px;
+    min-height: auto;
     align-items: start;
     padding-top: 30px;
     padding-bottom: 26px;
@@ -306,11 +307,12 @@
   }
 
   .portal-hero-stage {
-    min-height: 460px;
+    min-height: auto;
+    overflow: visible;
   }
 
   .portal-hero-stage-inner {
-    min-height: 460px;
+    min-height: auto;
     padding-top: 24px;
     padding-bottom: 18px;
   }
