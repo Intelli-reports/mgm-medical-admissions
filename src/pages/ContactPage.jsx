@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createLead } from "../admin/api";
+import { createLead } from "../admin/api-write";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
 import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";

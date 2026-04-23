@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { CalendarDays, ChevronRight, MessageCircle, Phone, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api";
+import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api-blogs";
 import BlogContentBlocks from "../components/blog/BlogContentBlocks";
 import BlogHtmlContent from "../components/blog/BlogHtmlContent";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
