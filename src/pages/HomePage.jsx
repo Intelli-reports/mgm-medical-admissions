@@ -494,7 +494,7 @@ function HomePage() {
         />
       </div>
 
-      <motion.section className="portal-home-hero" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
+      <motion.section className="portal-home-hero" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
         <div className="portal-hero-stage" style={heroStageStyle}>
           <img
             src="/image/mgm-college.webp"
@@ -529,7 +529,7 @@ function HomePage() {
             </motion.div>
           </div>
 
-          <motion.div className="portal-trust-overlay" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
+          <motion.div className="portal-trust-overlay" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
             <div className="legacy-container">
               <div className="portal-trust-row" ref={trustRowRef}>
                 {trustRow.map((item) => (
@@ -554,7 +554,7 @@ function HomePage() {
         </div>
       </motion.section>
 
-      <motion.section className="portal-main-section" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }}>
+      <motion.section className="portal-main-section" variants={sectionReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
         <div className="legacy-container portal-shot-grid">
           <div className="portal-shot-main">
             <div className="portal-shot-top">
@@ -562,7 +562,7 @@ function HomePage() {
                 className="portal-shot-panel portal-shot-quick"
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 transition={{ duration: 0.42, delay: dashboardPanels.quick.delay }}
               >
                 <h2>QUICK ADMISSION DESK</h2>
@@ -615,7 +615,7 @@ function HomePage() {
                 className="portal-shot-panel portal-shot-categories"
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 transition={{ duration: 0.42, delay: dashboardPanels.category.delay }}
               >
                 <h2>ADMISSION CATEGORIES</h2>
@@ -630,7 +630,7 @@ function HomePage() {
                         key={item.title}
                         initial={{ opacity: 0, scale: 0.96 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: true, amount: 0.01 }}
                         transition={{ duration: 0.28, delay: 0.14 + index * 0.04 }}
                         whileHover={cardHover}
                         whileTap={softTap}
@@ -656,7 +656,7 @@ function HomePage() {
               id="portal-colleges"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.18 }}
+              viewport={{ once: true, amount: 0.01 }}
               transition={{ duration: 0.42, delay: dashboardPanels.directory.delay }}
             >
               <h2>COLLEGE DIRECTORY</h2>
@@ -718,7 +718,7 @@ function HomePage() {
               className="portal-shot-panel portal-shot-info"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.22 }}
+              viewport={{ once: true, amount: 0.01 }}
               transition={{ duration: 0.42, delay: dashboardPanels.info.delay }}
             >
               <h2>MBBS / MD/MS INFORMATION BLOCKS</h2>
@@ -730,7 +730,7 @@ function HomePage() {
                     className="portal-shot-info-card"
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.01 }}
                     transition={{ duration: 0.28, delay: 0.2 + index * 0.05 }}
                   >
                     <Icon size={24} strokeWidth={1.9} aria-hidden="true" />
@@ -762,7 +762,7 @@ function HomePage() {
               id="portal-videos"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.18 }}
+              viewport={{ once: true, amount: 0.01 }}
               transition={{ duration: 0.42, delay: 0.18 }}
             >
               <div className="portal-section-head">
@@ -819,7 +819,7 @@ function HomePage() {
                       onClick={() => setActiveVideo(video)}
                       initial={{ opacity: 0, y: 12 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.3 }}
+                      viewport={{ once: true, amount: 0.01 }}
                       transition={{ duration: 0.22, delay: 0.04 * index }}
                       whileHover={cardHover}
                       whileTap={softTap}
@@ -855,7 +855,7 @@ function HomePage() {
             className="portal-shot-sidebar"
             initial={{ opacity: 0, x: 18 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.01 }}
             transition={{ duration: 0.42, delay: dashboardPanels.sidebar.delay }}
           >
             <section className="portal-shot-sidecard">
@@ -914,7 +914,7 @@ function HomePage() {
         </div>
       </motion.section>
 
-      <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+      <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
         <div className="portal-promo-banner-media">
           <img
             src="/image/mgm-college.webp"
@@ -928,7 +928,7 @@ function HomePage() {
         <div className="portal-promo-banner-overlay" />
         <div className="legacy-container portal-promo-banner-inner">
           <div className="portal-promo-banner-copy">
-            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
+            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
               MGM, DY Patil, and all college guidance in one place
             </motion.h2>
             <p>
@@ -949,7 +949,7 @@ function HomePage() {
         </div>
       </motion.section>
 
-      <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+      <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
         <div className="portal-register-banner-media">
           <img
             src="/image/register-guidance-banner.webp"
@@ -964,7 +964,7 @@ function HomePage() {
         <div className="legacy-container portal-register-banner-inner">
           <div className="portal-register-card">
             <span className="portal-register-kicker">Register Now To Apply</span>
-            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.35 }}>
+            <motion.h2 variants={headlineReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
               Register for MGM, DY Patil, and all college guidance
             </motion.h2>
 

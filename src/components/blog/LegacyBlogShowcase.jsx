@@ -14,7 +14,7 @@ function BlogRowCard({ blog, delay = 0, featured = false }) {
       variants={staggerItem}
       initial="hidden"
       whileInView="show"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.01 }}
       transition={{ delay }}
       whileHover={cardHover}
     >
@@ -57,7 +57,7 @@ function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
             variants={sectionReveal}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
+            viewport={{ once: true, amount: 0.01 }}
           >
             <p className="legacy-section-sub">{pageMode ? "Blog Updates" : "Latest Articles"}</p>
             {pageMode ? <motion.h2 variants={headlineReveal}>Admission blog</motion.h2> : null}
@@ -65,7 +65,7 @@ function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
           </motion.div>
         ) : null}
 
-        <motion.div className="legacy-blog-list" variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.18 }}>
+        <motion.div className="legacy-blog-list" variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
           {blogs.map((blog, index) => (
             <BlogRowCard
               key={blog.title}

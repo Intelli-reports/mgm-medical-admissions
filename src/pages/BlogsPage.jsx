@@ -34,7 +34,7 @@ function BlogsPage() {
       />
       <LegacyTopStrip />
       <LegacyNav mobileMenuOpen={mobileMenuOpen} setMobileMenuOpen={setMobileMenuOpen} />
-      <motion.section className="legacy-blog-list-banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
+      <motion.section className="legacy-blog-list-banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.01 }}>
         <div className="legacy-blog-list-banner-media">
           <img
             src="/image/outer_blog_2.webp"
@@ -52,7 +52,7 @@ function BlogsPage() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.01 }}
           >
             <motion.p className="legacy-blog-list-banner-kicker" variants={staggerItem}>
               Blog Updates
@@ -70,7 +70,7 @@ function BlogsPage() {
         variants={sectionReveal}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
+        viewport={{ once: true, amount: 0.01 }}
       >
         <div className="legacy-blog-list-pill">Home / Blogs / Admission blog</div>
       </motion.div>

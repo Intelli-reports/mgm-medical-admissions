@@ -200,7 +200,7 @@ function BlogArticlePage() {
                 variants={staggerItem}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 whileHover={cardHover}
               >
                 <h3>Recent Articles</h3>
@@ -219,7 +219,7 @@ function BlogArticlePage() {
                 variants={staggerItem}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 whileHover={cardHover}
               >
                 <h3>Category</h3>
@@ -252,7 +252,7 @@ function BlogArticlePage() {
                 variants={staggerItem}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 whileHover={cardHover}
               >
                 <h3>Admissions Desk</h3>
@@ -271,7 +271,7 @@ function BlogArticlePage() {
                 variants={staggerItem}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.01 }}
                 whileHover={cardHover}
               >
                 <h3>Article Takeaways</h3>
