@@ -155,6 +155,8 @@ function BlogArticlePage() {
                 <div className="legacy-blog-publication-cover">
                   <img
                     src={blog.image}
+                    srcSet={blog.image.replace(".webp", "-480w.webp") + " 480w, " + blog.image + " 800w"}
+                    sizes="(max-width: 480px) 480px, 800px"
                     alt={blog.featuredImage?.alt || blog.title}
                     style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
                     loading="lazy"

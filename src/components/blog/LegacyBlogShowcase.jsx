@@ -20,7 +20,14 @@ function BlogRowCard({ blog, delay = 0, featured = false }) {
     >
       <Link to={`/blogs/${blog.slug}`}>
         <div className="legacy-blog-image-wrap">
-          <img src={blog.image} alt={blog.title} />
+          <img
+            src={blog.image}
+            srcSet={blog.image.replace(".webp", "-480w.webp") + " 480w, " + blog.image + " 800w"}
+            sizes="(max-width: 480px) 480px, 400px"
+            alt={blog.title}
+            loading="lazy"
+            decoding="async"
+          />
           <span className={blogTagClass(blog.tag)}>{blog.tag}</span>
           <div className="legacy-blog-image-overlay" />
         </div>

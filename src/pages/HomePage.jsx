@@ -498,6 +498,8 @@ function HomePage() {
         <div className="portal-hero-stage" style={heroStageStyle}>
           <img
             src="/image/mgm-college.webp"
+            srcSet="/image/mgm-college-480w.webp 480w, /image/mgm-college-800w.webp 800w, /image/mgm-college.webp 1200w"
+            sizes="(max-width: 480px) 480px, (max-width: 800px) 800px, 1200px"
             alt="MGM medical college admissions office"
             className="portal-hero-stage-office"
             fetchpriority="high"
@@ -914,7 +916,14 @@ function HomePage() {
 
       <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-promo-banner-media">
-          <img src="/image/mgm-college.webp" alt="MGM and DY Patil medical college guidance" loading="lazy" decoding="async" />
+          <img
+            src="/image/mgm-college.webp"
+            srcSet="/image/mgm-college-480w.webp 480w, /image/mgm-college-800w.webp 800w, /image/mgm-college.webp 1200w"
+            sizes="(max-width: 480px) 480px, (max-width: 800px) 800px, 1200px"
+            alt="MGM and DY Patil medical college guidance"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="portal-promo-banner-overlay" />
         <div className="legacy-container portal-promo-banner-inner">
@@ -942,7 +951,14 @@ function HomePage() {
 
       <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-register-banner-media">
-          <img src="/image/register-guidance-banner.webp" alt="Register for MGM and DY Patil guidance" loading="lazy" decoding="async" />
+          <img
+            src="/image/register-guidance-banner.webp"
+            srcSet="/image/register-guidance-banner-480w.webp 480w, /image/register-guidance-banner-800w.webp 800w, /image/register-guidance-banner.webp 1200w"
+            sizes="(max-width: 480px) 480px, (max-width: 800px) 800px, 1200px"
+            alt="Register for MGM and DY Patil guidance"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
         <div className="portal-register-banner-overlay" />
         <div className="legacy-container portal-register-banner-inner">
