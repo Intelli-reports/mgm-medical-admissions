@@ -2,60 +2,79 @@ import { motion } from "framer-motion";
 import { CalendarDays, ChevronRight, MessageCircle, Phone, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api";
+import BlogContentBlocks from "../components/blog/BlogContentBlocks";
+import BlogHtmlContent from "../components/blog/BlogHtmlContent";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
 import SeoHead from "../components/layout/SeoHead";
-import { findLegacyBlogBySlug, legacyBlogs } from "../data/legacyBundleData";
 import { CONTACT_PHONE, SITE_NAME, makeAbsoluteUrl } from "../config/site";
 import { buildWhatsAppUrl } from "../utils/enquiry";
-import { bannerReveal, cardHover, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
+import { bannerReveal, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../utils/motion";
 
 function BlogArticlePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { slug = "" } = useParams();
-  const blog = findLegacyBlogBySlug(slug);
+  const blog = getPublishedBlogBySlugSync(slug);
+  const legacyBlogs = getPublishedBlogsSync();
 
   if (!blog) {
     return <Navigate to="/blogs" replace />;
   }
 
   const relatedBlogs = legacyBlogs.filter((entry) => entry.slug !== blog.slug).slice(0, 3);
+  const curatedRelatedBlogs = (blog.relatedBlogIds || [])
+    .map((id) => legacyBlogs.find((entry) => entry.id === id))
+    .filter(Boolean);
   const categoryBlogs = legacyBlogs
     .filter((entry) => entry.tag === blog.tag && entry.slug !== blog.slug)
     .slice(0, 3);
-  const articleSections = blog.sections.map((section, index) => ({
-    ...section,
-    id: `section-${index + 1}`,
-    number: String(index + 1).padStart(2, "0")
-  }));
+  const sidebarRelatedBlogs = curatedRelatedBlogs.length ? curatedRelatedBlogs : relatedBlogs;
   const whatsappUrl = buildWhatsAppUrl(CONTACT_PHONE, `Blog enquiry: ${blog.title}`);
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: blog.title,
-    description: blog.excerpt,
-    datePublished: blog.date,
-    image: makeAbsoluteUrl(blog.image),
-    mainEntityOfPage: makeAbsoluteUrl(`/blogs/${blog.slug}`),
-    author: {
-      "@type": "Organization",
-      name: SITE_NAME
-    },
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME
+  const canonicalPath = blog.canonicalUrl || `/blogs/${blog.slug}`;
+  const articleSchema = [
+    {
+      "@type": "BlogPosting",
+      headline: blog.seoTitle || blog.title,
+      description: blog.seoDescription || blog.excerpt,
+      datePublished: blog.publishAt || blog.date,
+      image: makeAbsoluteUrl(blog.image),
+      mainEntityOfPage: makeAbsoluteUrl(canonicalPath),
+      author: {
+        "@type": "Person",
+        name: blog.author || SITE_NAME
+      },
+      publisher: {
+        "@type": "Organization",
+        name: SITE_NAME
+      }
     }
-  };
+  ];
+
+  if (blog.faqItems?.length) {
+    articleSchema.push({
+      "@type": "FAQPage",
+      mainEntity: blog.faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer
+        }
+      }))
+    });
+  }
 
   return (
     <div className="legacy-page legacy-blog-article-page">
       <SeoHead
         title={blog.title}
-        description={blog.excerpt}
-        canonicalPath={`/blogs/${blog.slug}`}
+        description={blog.seoDescription || blog.excerpt}
+        canonicalPath={canonicalPath}
         image={blog.image}
         type="article"
         keywords={[
-          blog.tag,
+          ...(blog.categories || []),
+          ...(blog.tags || []),
           "medical admission blog",
           "MBBS counseling guidance",
           "medical college strategy"
@@ -67,7 +86,11 @@ function BlogArticlePage() {
 
       <motion.section className="legacy-blog-banner" variants={bannerReveal} initial="hidden" animate="show">
         <div className="legacy-blog-banner-media">
-          <img src={blog.image} alt={blog.title} />
+          <img
+            src={blog.image}
+            alt={blog.featuredImage?.alt || blog.title}
+            style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+          />
         </div>
         <div className="legacy-blog-banner-overlay" />
         <div className="legacy-container legacy-blog-banner-inner">
@@ -114,7 +137,7 @@ function BlogArticlePage() {
                   <div className="legacy-blog-publication-meta">
                     <span>
                       <User2 size={18} />
-                      BalaJi Editorial Desk
+                      {blog.author || "BalaJi Editorial Desk"}
                     </span>
                     <span>
                       <CalendarDays size={18} />
@@ -122,36 +145,45 @@ function BlogArticlePage() {
                     </span>
                     <span>
                       <MessageCircle size={18} />
-                      {blog.meta}
+                      {blog.readingTime} min read
                     </span>
                   </div>
                 </div>
 
                 <div className="legacy-blog-publication-cover">
-                  <img src={blog.image} alt={blog.title} />
+                  <img
+                    src={blog.image}
+                    alt={blog.featuredImage?.alt || blog.title}
+                    style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+                  />
                 </div>
 
                 <div className="legacy-blog-publication-content">
-                  <p className="legacy-blog-article-intro">{blog.intro}</p>
-
-                  {articleSections.map((section) => (
-                    <motion.section
-                      key={section.heading}
-                      id={section.id}
-                      className="legacy-blog-article-section"
-                      variants={staggerItem}
-                      whileInView="show"
-                      initial="hidden"
-                      viewport={{ once: true, amount: 0.3 }}
-                      whileHover={cardHover}
-                    >
-                      <div className="legacy-blog-article-section-marker">{section.number}</div>
-                      <h2>{section.heading}</h2>
-                      {section.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </motion.section>
-                  ))}
+                  {blog.contentHtml ? <BlogHtmlContent html={blog.contentHtml} /> : <BlogContentBlocks blocks={blog.contentBlocks || []} />}
+                  {blog.cta?.title || blog.cta?.text ? (
+                    <div className="legacy-blog-inline-cta">
+                      {blog.cta.title ? <h3>{blog.cta.title}</h3> : null}
+                      {blog.cta.text ? <p>{blog.cta.text}</p> : null}
+                      {blog.cta.buttonLabel && blog.cta.buttonUrl ? (
+                        <a href={blog.cta.buttonUrl} target="_blank" rel="noreferrer">
+                          {blog.cta.buttonLabel}
+                        </a>
+                      ) : null}
+                    </div>
+                  ) : null}
+                  {blog.faqItems?.length ? (
+                    <div className="legacy-blog-faq-panel">
+                      <h3>Frequently asked questions</h3>
+                      <div className="legacy-blog-faq-list">
+                        {blog.faqItems.map((item) => (
+                          <details key={item.id} className="legacy-blog-faq-item">
+                            <summary>{item.question}</summary>
+                            <p>{item.answer}</p>
+                          </details>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </article>
             </motion.div>
@@ -167,7 +199,7 @@ function BlogArticlePage() {
               >
                 <h3>Recent Articles</h3>
                 <div className="legacy-blog-sidebar-list">
-                  {relatedBlogs.map((entry) => (
+                  {sidebarRelatedBlogs.map((entry) => (
                     <Link key={entry.slug} to={`/blogs/${entry.slug}`} className="legacy-blog-sidebar-link">
                       <strong>{entry.title}</strong>
                       <span>{entry.date}</span>

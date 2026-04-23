@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { legacyBlogs } from "../../data/legacyBundleData";
+import { getPublishedBlogsSync } from "../../admin/api";
 import { cardHover, headlineReveal, sectionReveal, staggerContainer, staggerItem } from "../../utils/motion";
 
 function blogTagClass(tag) {
@@ -39,6 +39,8 @@ function BlogRowCard({ blog, delay = 0, featured = false }) {
 }
 
 function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
+  const blogs = getPublishedBlogsSync();
+
   return (
     <section className={pageMode ? "legacy-blog-page" : "legacy-blogs"}>
       <div className="legacy-container">
@@ -57,7 +59,7 @@ function LegacyBlogShowcase({ pageMode = false, hidePageHeader = false }) {
         ) : null}
 
         <motion.div className="legacy-blog-list" variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.18 }}>
-          {legacyBlogs.map((blog, index) => (
+          {blogs.map((blog, index) => (
             <BlogRowCard
               key={blog.title}
               blog={blog}

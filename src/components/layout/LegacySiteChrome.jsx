@@ -250,7 +250,7 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
       <div className="legacy-container legacy-nav-inner">
         <Link to="/" className="legacy-logo">
           <span className="legacy-logo-mark legacy-logo-mark-image">
-            <img src="/image/logo.png" alt="BalaJi logo" />
+            <img src="/image/logo.webp" alt="BalaJi logo" fetchpriority="high" decoding="async" />
           </span>
           <span>BalaJi</span>
         </Link>
@@ -346,7 +346,7 @@ export function LegacyFooter() {
       <div className="legacy-container legacy-footer-grid">
         <div>
           <div className="legacy-footer-brand">
-            <img src="/image/logo.png" alt="BalaJi logo" />
+            <img src="/image/logo.webp" alt="BalaJi logo" loading="lazy" decoding="async" />
             <span>BalaJi</span>
           </div>
           <p>{CONTACT_ADDRESS}.</p>

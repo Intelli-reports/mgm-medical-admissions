@@ -12,5 +12,6 @@
 @import "./legacy/home-topbar-nav.css";
 @import "./legacy/home-hero.css";
 @import "./legacy/home-dashboard.css";
+@import "./admin.css";
 @import "./college-kp.css";
 @import "./college-responsive.css";

@@ -1,6 +1,6 @@
 ﻿import { Link, useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
-import { collegePreviewData } from "../data/collegePreviewData";
+import { getManagedCollegeBySlugSync } from "../admin/api";
 import SeoHead from "../components/layout/SeoHead";
 import { DEFAULT_OG_IMAGE, makeAbsoluteUrl } from "../config/site";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
@@ -174,7 +174,7 @@ function HighlightIcon({ label }) {
 
 function CollegePreviewPage() {
   const { slug } = useParams();
-  const data = collegePreviewData[slug];
+  const data = getManagedCollegeBySlugSync(slug);
 
   const [activeTab, setActiveTab] = useState("courses");
   const [openFaq, setOpenFaq] = useState(null);
