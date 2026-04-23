@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { CalendarDays, ChevronRight, MessageCircle, Phone, User2 } from "lucide-react";
 import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api";
+import { getPublishedBlogBySlugSync, getPublishedBlogsSync } from "../admin/api-blogs";
 import BlogContentBlocks from "../components/blog/BlogContentBlocks";
 import BlogHtmlContent from "../components/blog/BlogHtmlContent";
 import { LegacyFooter, LegacyNav, LegacyTopStrip } from "../components/layout/LegacySiteChrome";
@@ -90,6 +90,8 @@ function BlogArticlePage() {
             src={blog.image}
             alt={blog.featuredImage?.alt || blog.title}
             style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
         <div className="legacy-blog-banner-overlay" />
@@ -153,8 +155,12 @@ function BlogArticlePage() {
                 <div className="legacy-blog-publication-cover">
                   <img
                     src={blog.image}
+                    srcSet={blog.image.replace(".webp", "-480w.webp") + " 480w, " + blog.image + " 800w"}
+                    sizes="(max-width: 480px) 480px, 800px"
                     alt={blog.featuredImage?.alt || blog.title}
                     style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 

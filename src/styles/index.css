@@ -12,6 +12,6 @@
 @import "./legacy/home-topbar-nav.css";
 @import "./legacy/home-hero.css";
 @import "./legacy/home-dashboard.css";
-@import "./admin.css";
-@import "./college-kp.css";
-@import "./college-responsive.css";
+/* admin.css      → imported in AdminConsolePage.jsx only */
+/* college-kp.css → imported in CollegePreviewPage.jsx only */
+/* college-responsive.css → imported in CollegePreviewPage.jsx only */

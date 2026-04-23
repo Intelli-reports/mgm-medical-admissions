@@ -43,7 +43,14 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      <div key={pathname} className="route-shell">
+      <div
+        key={pathname}
+        className="route-shell"
+        ref={(el) => {
+          if (!el) return;
+          el.addEventListener("animationend", () => el.classList.add("animation-done"), { once: true });
+        }}
+      >
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route index element={<HomePage />} />

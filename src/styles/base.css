@@ -158,8 +158,15 @@ img { display: block; max-width: 100%; }
 
 .route-shell {
   animation: routeFadeSlide 0.34s ease both;
+  /* will-change only during animation — removed afterwards to free GPU layer */
   will-change: opacity, transform;
+  animation-fill-mode: forwards;
   overflow-x: clip;
+}
+
+/* Free GPU memory once animation ends */
+.route-shell.animation-done {
+  will-change: auto;
 }
 
 @keyframes routeFadeSlide {

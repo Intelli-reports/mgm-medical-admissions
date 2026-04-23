@@ -1,3 +1,4 @@
+import "../styles/admin.css";
 import { motion } from "framer-motion";
 import {
   Bell,

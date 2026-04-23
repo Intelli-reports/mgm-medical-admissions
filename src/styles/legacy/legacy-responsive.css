@@ -275,17 +275,99 @@
     width: min(100%, calc(100% - 20px));
   }
 
+  /* ── 2-column college grid: see more colleges without scrolling ── */
+  .legacy-college-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+  }
+
+  .legacy-college-card img {
+    height: 140px !important;
+    object-fit: cover;
+  }
+
+  .legacy-college-body {
+    padding: 10px !important;
+  }
+
+  .legacy-college-card h3 {
+    font-size: 0.82rem !important;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .legacy-college-card p {
+    font-size: 0.74rem !important;
+    line-height: 1.4;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── 2-column stats ── */
+  .legacy-stat-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+  }
+
+  .legacy-stat-card {
+    padding: 14px 12px !important;
+  }
+
+  .legacy-stat-card h3 {
+    font-size: 1.6rem !important;
+  }
+
+  /* ── 2-col trust cards ── */
+  .legacy-trust-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px;
+  }
+
+  .legacy-trust-card {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  /* ── 2-col footer ── */
+  .legacy-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+
+  /* ── Tighter section spacing ── */
+  .legacy-about,
+  .legacy-colleges,
+  .legacy-events,
+  .legacy-testimonials,
+  .legacy-excellence,
+  .legacy-courses,
+  .legacy-trust-section,
+  .legacy-team-section,
+  .legacy-proof-section {
+    padding: 40px 0;
+  }
+
+  .legacy-section-heading {
+    margin-bottom: 20px;
+  }
+
+  .legacy-section-sub {
+    font-size: 0.72rem;
+    margin-bottom: 6px;
+  }
+
+  /* ── Single column stacks ── */
   .legacy-hero-content,
   .legacy-about-grid,
   .legacy-course-grid,
-  .legacy-college-grid,
   .legacy-video-grid,
   .legacy-testimonial-grid,
   .legacy-excellence-grid,
   .legacy-contact-grid,
   .legacy-contact-form-grid,
   .legacy-contact-field-grid,
-  .legacy-trust-grid,
   .legacy-team-grid,
   .legacy-proof-grid {
     grid-template-columns: 1fr;
@@ -295,14 +377,6 @@
     align-items: center;
     text-align: center;
     gap: 18px;
-  }
-
-  .legacy-footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .legacy-stat-grid {
-    grid-template-columns: 1fr;
   }
 
   .legacy-logo {
@@ -401,54 +475,27 @@
   }
 
   .legacy-course-card,
-  .legacy-college-card,
   .legacy-video-card,
   .legacy-testimonial-card,
   .legacy-contact-card {
     border-radius: 18px;
   }
 
-  .legacy-college-card img {
-    height: 200px;
-  }
-
-  .legacy-about,
-  .legacy-colleges,
-  .legacy-events,
-  .legacy-testimonials,
-  .legacy-excellence,
-  .legacy-courses,
-  .legacy-trust-section,
-  .legacy-team-section,
-  .legacy-proof-section {
-    padding: 64px 0;
-  }
-
-  .legacy-about h2,
-  .legacy-courses h2,
-  .legacy-colleges h2,
-  .legacy-testimonials h2,
-  .legacy-events h2,
-  .legacy-excellence h2 {
-    font-size: clamp(1.95rem, 8vw, 2.65rem);
-    line-height: 1.06;
-  }
-
   .legacy-about-image {
     min-height: 0;
-    height: 320px;
+    height: 280px;
   }
 
   .legacy-contact-hero {
-    height: 250px;
+    height: 200px;
   }
 
   .legacy-contact-copy h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .legacy-contact-card {
-    padding: 18px;
+    padding: 16px;
   }
 
   .legacy-legal-card {
@@ -457,13 +504,13 @@
   }
 
   .legacy-video-feature {
-    padding: 16px;
-    border-radius: 22px;
+    padding: 14px;
+    border-radius: 18px;
   }
 
   .legacy-video-feature-frame iframe,
   .legacy-video-thumb-wrap {
-    border-radius: 18px;
+    border-radius: 14px;
   }
 
   .legacy-video-play {
@@ -475,29 +522,17 @@
   .legacy-video-body {
     flex-direction: column;
     gap: 8px;
-    padding: 14px 2px 2px;
+    padding: 12px 2px 2px;
   }
 
   .legacy-video-card {
-    padding: 14px;
-    border-radius: 20px;
+    padding: 12px;
+    border-radius: 18px;
   }
 
   .legacy-video-thumb-wrap,
   .legacy-video-modal-frame iframe {
-    border-radius: 18px;
-  }
-
-  .legacy-video-play {
-    width: 70px;
-    height: 50px;
     border-radius: 14px;
-  }
-
-  .legacy-video-body {
-    flex-direction: column;
-    gap: 8px;
-    padding: 14px 2px 2px;
   }
 
   .legacy-video-modal {
@@ -506,43 +541,70 @@
 
   .legacy-video-modal-head,
   .legacy-video-modal-frame {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .legacy-video-modal-head {
-    padding-top: 22px;
-    padding-bottom: 14px;
+    padding-top: 20px;
+    padding-bottom: 12px;
   }
 
   .legacy-video-modal-frame {
-    padding-bottom: 18px;
+    padding-bottom: 16px;
   }
 
   .legacy-map-frame {
-    height: 300px;
+    height: 280px;
   }
 
   .legacy-seo-badge-section {
-    padding-bottom: 64px;
+    padding-bottom: 48px;
   }
 
   .legacy-seo-badge-card {
-    padding: 20px;
-    border-radius: 20px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  /* ── Blog list: 2 columns on mobile ── */
+  .legacy-blog-list-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px;
+  }
+
+  .legacy-blog-card {
+    border-radius: 14px !important;
+  }
+
+  .legacy-blog-card-img {
+    height: 140px !important;
+  }
+
+  .legacy-blog-card-body {
+    padding: 10px !important;
+  }
+
+  .legacy-blog-card-title {
+    font-size: 0.84rem !important;
+    line-height: 1.35;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
 @media (max-width: 520px) {
   .legacy-container,
   .kp-container {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .legacy-section-heading h1,
   .legacy-section-heading h2 {
-    font-size: 1.9rem;
+    font-size: 1.75rem;
   }
 
   .legacy-about,
@@ -552,7 +614,50 @@
   .legacy-excellence,
   .legacy-contact-info,
   .legacy-map-section {
-    padding: 54px 0;
+    padding: 36px 0;
+  }
+
+  /* ── Top strip: ultra-compact — show only call/whatsapp row ── */
+  .portal-top-strip-links {
+    display: none !important;
+  }
+
+  .portal-top-strip-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-top-strip-social {
+    padding: 6px 0;
+    min-height: auto;
+    justify-content: space-between;
+  }
+
+  .portal-top-strip-social-label {
+    font-size: 0.8rem;
+  }
+
+  /* ── Nav header: compact ── */
+  .portal-home-header-inner {
+    min-height: 56px;
+  }
+
+  .portal-home-brand-mark {
+    width: 42px;
+    height: 42px;
+  }
+
+  .portal-home-brand {
+    font-size: 0.88rem;
+    gap: 8px;
+  }
+
+  /* ── Blog list 1-col below 520px ── */
+  .legacy-blog-list-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .legacy-blog-card-img {
+    height: 180px !important;
   }
 }
 
@@ -577,11 +682,11 @@
   }
 
   .legacy-hero-copy h1 {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
   }
 
   .legacy-hero-copy p {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
   }
 
   .legacy-btn,
@@ -596,20 +701,20 @@
   .legacy-contact-card,
   .legacy-college-body,
   .legacy-placeholder-card {
-    padding: 14px;
+    padding: 12px;
   }
 
   .legacy-college-card img,
   .legacy-course-card {
-    min-height: 180px;
+    min-height: 160px;
   }
 
   .legacy-contact-hero {
-    height: 220px;
+    height: 180px;
   }
 
   .legacy-map-frame {
-    height: 240px;
+    height: 220px;
   }
 }
 

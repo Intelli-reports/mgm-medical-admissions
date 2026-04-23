@@ -80,8 +80,12 @@ function AboutPage() {
             </div>
             <img
               src={organizationOverview.image}
+              srcSet="/image/mgm-admissions-office-480w.webp 480w, /image/mgm-admissions-office-800w.webp 800w, /image/mgm-admissions-office.webp 1200w"
+              sizes="(max-width: 480px) 480px, (max-width: 800px) 800px, 600px"
               alt="BalaJi Admission Guidance office support"
               className="legacy-about-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -150,7 +154,14 @@ function AboutPage() {
               </article>
 
               <article className="portal-proof-mini portal-proof-mini-office">
-                <img src={organizationOverview.image} alt="BalaJi admissions office" />
+                <img
+                  src={organizationOverview.image}
+                  srcSet="/image/mgm-admissions-office-480w.webp 480w, /image/mgm-admissions-office-800w.webp 800w, /image/mgm-admissions-office.webp 1200w"
+                  sizes="(max-width: 480px) 480px, 300px"
+                  alt="BalaJi admissions office"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <strong>Visit our Vashi office</strong>
                   <p>{CONTACT_ADDRESS}</p>
