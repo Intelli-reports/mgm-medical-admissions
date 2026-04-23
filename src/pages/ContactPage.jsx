@@ -394,6 +394,7 @@ function ContactPage() {
             title="Office map"
             src="https://www.google.com/maps?q=Haware%20Infotech%20Park%20Vashi&output=embed"
             className="legacy-map-frame"
+            loading="lazy"
           />
         </div>
       </section>

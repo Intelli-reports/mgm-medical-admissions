@@ -7,6 +7,17 @@ import { CONTACT_ADDRESS, CONTACT_EMAIL, CONTACT_PHONE } from "../../config/site
 import { GOOGLE_MAPS_URL, legalLinks } from "../../data/site/trust";
 import { buildWhatsAppUrl } from "../../utils/enquiry";
 
+// Prefetch a page chunk on hover so navigation feels instant
+function usePrefetch(importFn) {
+  const prefetched = useRef(false);
+  return function handleMouseEnter() {
+    if (!prefetched.current) {
+      prefetched.current = true;
+      importFn().catch(() => {});
+    }
+  };
+}
+
 const admissionWhatsappUrl = buildWhatsAppUrl(
   CONTACT_PHONE,
   "Website admission enquiry"
@@ -184,6 +195,12 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
   const dropdownRef = useRef(null);
   const closeTimerRef = useRef(null);
 
+  // Prefetch page chunks on nav hover — loads JS before click
+  const prefetchContact  = usePrefetch(() => import("../../pages/ContactPage"));
+  const prefetchAbout    = usePrefetch(() => import("../../pages/AboutPage"));
+  const prefetchBlogs    = usePrefetch(() => import("../../pages/BlogsPage"));
+  const prefetchCollege  = usePrefetch(() => import("../../pages/CollegePreviewPage"));
+
   useEffect(() => {
     function handlePointerDown(event) {
       if (!dropdownRef.current?.contains(event.target)) {
@@ -276,7 +293,7 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
               About Us
             </button>
           ) : (
-            <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
+            <Link to="/about" onMouseEnter={prefetchAbout} onClick={() => setMobileMenuOpen(false)}>
               About Us
             </Link>
           )}
@@ -288,6 +305,7 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
                 onMouseEnter={(event) => {
                   cancelCloseTimer();
                   handleGroupSelect(group.title, event);
+                  prefetchCollege();
                 }}
               >
                 <button
@@ -319,10 +337,10 @@ export function LegacyNav({ mobileMenuOpen, setMobileMenuOpen, aboutMode = "home
               </div>
             ))}
           </div>
-          <Link to="/blogs" onClick={() => setMobileMenuOpen(false)}>
+          <Link to="/blogs" onMouseEnter={prefetchBlogs} onClick={() => setMobileMenuOpen(false)}>
             Blogs
           </Link>
-          <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+          <Link to="/contact" onMouseEnter={prefetchContact} onClick={() => setMobileMenuOpen(false)}>
             Contact
           </Link>
           <a

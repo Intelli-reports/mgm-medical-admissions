@@ -90,6 +90,8 @@ function BlogArticlePage() {
             src={blog.image}
             alt={blog.featuredImage?.alt || blog.title}
             style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
         <div className="legacy-blog-banner-overlay" />
@@ -155,6 +157,8 @@ function BlogArticlePage() {
                     src={blog.image}
                     alt={blog.featuredImage?.alt || blog.title}
                     style={{ objectPosition: `${blog.featuredImage?.focalX ?? 50}% ${blog.featuredImage?.focalY ?? 50}%` }}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 

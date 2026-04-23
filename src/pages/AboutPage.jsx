@@ -82,6 +82,8 @@ function AboutPage() {
               src={organizationOverview.image}
               alt="BalaJi Admission Guidance office support"
               className="legacy-about-image"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -150,7 +152,7 @@ function AboutPage() {
               </article>
 
               <article className="portal-proof-mini portal-proof-mini-office">
-                <img src={organizationOverview.image} alt="BalaJi admissions office" />
+                <img src={organizationOverview.image} alt="BalaJi admissions office" loading="lazy" decoding="async" />
                 <div>
                   <strong>Visit our Vashi office</strong>
                   <p>{CONTACT_ADDRESS}</p>

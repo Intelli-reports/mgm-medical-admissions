@@ -1,9 +1,65 @@
-﻿import { Link, useParams } from "react-router-dom";
+import "../styles/college-kp.css";
+import "../styles/college-responsive.css";
+import { Link, useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { getManagedCollegeBySlugSync } from "../admin/api";
 import SeoHead from "../components/layout/SeoHead";
 import { DEFAULT_OG_IMAGE, makeAbsoluteUrl } from "../config/site";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
+
+// Lazy YouTube: shows thumbnail, loads iframe only on click
+// Eliminates ~15 extra network requests per video on page load
+function LazyYouTube({ src, title, small = false }) {
+  const [active, setActive] = useState(false);
+
+  // Extract video ID from embed URL
+  const videoId = src?.match(/embed\/([^?&/]+)/)?.[1] || "";
+  const thumbSrc = videoId
+    ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+    : "";
+
+  if (active) {
+    const autoSrc = src?.includes("?") ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+    return (
+      <div className={`kp-video-container${small ? " small" : ""}`}>
+        <iframe
+          src={autoSrc}
+          title={title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`kp-video-container${small ? " small" : ""} kp-video-facade`}
+      onClick={() => setActive(true)}
+      style={{ cursor: "pointer", position: "relative", background: "#000" }}
+      role="button"
+      aria-label={`Play: ${title}`}
+      tabIndex={0}
+      onKeyDown={(e) => e.key === "Enter" && setActive(true)}
+    >
+      {thumbSrc && (
+        <img
+          src={thumbSrc}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", opacity: 0.85 }}
+        />
+      )}
+      <span style={{
+        position: "absolute", inset: 0, display: "flex",
+        alignItems: "center", justifyContent: "center",
+        color: "#fff", fontSize: small ? "2.5rem" : "3.5rem",
+        pointerEvents: "none"
+      }}>▶</span>
+    </div>
+  );
+}
 
 function estimateRank(score) {
   return Math.round(Math.max(1, (720 - score) * 115));
@@ -346,7 +402,7 @@ function CollegePreviewPage() {
         <div className="kp-container kp-header-content">
           <div className="kp-logo-area">
             <div className="kp-logo-icon">
-              <img src={logoSrc} alt={logoAlt} />
+              <img src={logoSrc} alt={logoAlt} loading="lazy" decoding="async" />
             </div>
             <div className="kp-header-title">
               <h1>{data.fullName}</h1>
@@ -398,18 +454,11 @@ function CollegePreviewPage() {
 
           <p className="kp-welcome-text">{data.welcomeText}</p>
 
-          <img className="kp-college-image" src={data.image} alt={`${data.fullName} Campus`} />
+          <img className="kp-college-image" src={data.image} alt={`${data.fullName} Campus`} loading="lazy" decoding="async" />
 
           <div id="videos" className="kp-video-section">
             <h3>{collegeLabel} - Video Overview</h3>
-            <div className="kp-video-container">
-              <iframe
-                src={data.video}
-                title={`${data.fullName} Video Overview`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
+            <LazyYouTube src={data.video} title={`${data.fullName} Video Overview`} />
           </div>
 
           <div id="events" className="kp-upcoming-events">
@@ -559,14 +608,7 @@ function CollegePreviewPage() {
             <div className="kp-videos-grid">
               {data.extraVideos.map(([title, url]) => (
                 <div className="kp-video-grid-item" key={title}>
-                  <div className="kp-video-container small">
-                    <iframe
-                      src={url}
-                      title={title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
+                  <LazyYouTube src={url} title={title} small />
                 </div>
               ))}
             </div>
