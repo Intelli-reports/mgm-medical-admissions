@@ -16,12 +16,14 @@ const TermsPage          = lazy(() => import("./pages/TermsPage"));
 function PageLoader() {
   return (
     <div className="branded-loader-wrap">
-      <div className="branded-loader-logo">
-        <img src="/image/logo.webp" alt="BalaJi logo" />
-      </div>
-      <div className="branded-loader-text">
-        <h2>Medical Admissions Trust</h2>
-        <p>Your journey to excellence starts here...</p>
+      <div className="branded-loader-inner">
+        <div className="branded-loader-logo">
+          <img src="/image/logo.webp" alt="BalaJi logo" />
+        </div>
+        <div className="branded-loader-text">
+          <h2>Medical Admissions Trust</h2>
+          <p>Your journey to excellence starts here...</p>
+        </div>
       </div>
     </div>
   );

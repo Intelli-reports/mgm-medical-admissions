@@ -8,6 +8,9 @@ export default defineConfig({
     // Split CSS per chunk (admin CSS won't load on home page)
     cssCodeSplit: true,
 
+    // Target older browsers (fixes white screen on many mobile devices)
+    target: "es2015",
+
     // Warn if any single chunk exceeds 400KB
     chunkSizeWarningLimit: 400,
 
