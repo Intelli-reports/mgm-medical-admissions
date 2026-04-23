@@ -1,14 +1,25 @@
-import { useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import BlogArticlePage from "./pages/BlogArticlePage";
-import CollegePreviewPage from "./pages/CollegePreviewPage";
-import BlogsPage from "./pages/BlogsPage";
-import HomePage from "./pages/HomePage";
-import ContactPage from "./pages/ContactPage";
-import AdminConsolePage from "./pages/AdminConsolePage";
-import AboutPage from "./pages/AboutPage";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import TermsPage from "./pages/TermsPage";
+
+// Route-based code splitting — each page is a separate JS chunk
+// loaded only when the user navigates to that route
+const HomePage           = lazy(() => import("./pages/HomePage"));
+const AboutPage          = lazy(() => import("./pages/AboutPage"));
+const CollegePreviewPage = lazy(() => import("./pages/CollegePreviewPage"));
+const ContactPage        = lazy(() => import("./pages/ContactPage"));
+const BlogsPage          = lazy(() => import("./pages/BlogsPage"));
+const BlogArticlePage    = lazy(() => import("./pages/BlogArticlePage"));
+const AdminConsolePage   = lazy(() => import("./pages/AdminConsolePage"));
+const PrivacyPolicyPage  = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsPage          = lazy(() => import("./pages/TermsPage"));
+
+function PageLoader() {
+  return (
+    <div style={{ minHeight: "60vh", display: "flex", alignItems: "center", justifyContent: "center", color: "#5d728c", fontSize: "0.95rem" }}>
+      Loading…
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,20 +44,22 @@ function App() {
     <>
       <ScrollToTop />
       <div key={pathname} className="route-shell">
-        <Routes>
-          <Route index element={<HomePage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="preview/:slug" element={<CollegePreviewPage />} />
-          <Route path="contact" element={<ContactPage />} />
-          <Route path="blogs" element={<BlogsPage />} />
-          <Route path="blogs/:slug" element={<BlogArticlePage />} />
-          <Route path="Blogs" element={<BlogsPage />} />
-          <Route path="Blogs/:slug" element={<BlogArticlePage />} />
-          <Route path="admin/*" element={<AdminConsolePage />} />
-          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
-          <Route path="terms-and-conditions" element={<TermsPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route index element={<HomePage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="preview/:slug" element={<CollegePreviewPage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="blogs" element={<BlogsPage />} />
+            <Route path="blogs/:slug" element={<BlogArticlePage />} />
+            <Route path="Blogs" element={<BlogsPage />} />
+            <Route path="Blogs/:slug" element={<BlogArticlePage />} />
+            <Route path="admin/*" element={<AdminConsolePage />} />
+            <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="terms-and-conditions" element={<TermsPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </div>
     </>
   );

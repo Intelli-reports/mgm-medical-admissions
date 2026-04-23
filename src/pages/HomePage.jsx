@@ -497,9 +497,11 @@ function HomePage() {
       <motion.section className="portal-home-hero" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }}>
         <div className="portal-hero-stage" style={heroStageStyle}>
           <img
-            src="/image/mgm-college.png"
+            src="/image/mgm-college.webp"
             alt="MGM medical college admissions office"
             className="portal-hero-stage-office"
+            fetchpriority="high"
+            decoding="async"
           />
 
           <div className="legacy-container portal-hero-stage-inner" style={heroStageStyle}>
@@ -825,6 +827,8 @@ function HomePage() {
                           src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
                           alt={video.title}
                           className="portal-video-story-thumb"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <span className="portal-video-story-play" aria-hidden="true">
                           <PlayCircle size={18} strokeWidth={2.2} />
@@ -910,7 +914,7 @@ function HomePage() {
 
       <motion.section className="portal-promo-banner" aria-label="MBBS admission assistance banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-promo-banner-media">
-          <img src="/image/mgm-college.png" alt="MGM and DY Patil medical college guidance" />
+          <img src="/image/mgm-college.webp" alt="MGM and DY Patil medical college guidance" loading="lazy" decoding="async" />
         </div>
         <div className="portal-promo-banner-overlay" />
         <div className="legacy-container portal-promo-banner-inner">
@@ -938,7 +942,7 @@ function HomePage() {
 
       <motion.section className="portal-register-banner" aria-label="Registration form banner" variants={bannerReveal} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
         <div className="portal-register-banner-media">
-          <img src="/image/register-guidance-banner.png" alt="Register for MGM and DY Patil guidance" />
+          <img src="/image/register-guidance-banner.webp" alt="Register for MGM and DY Patil guidance" loading="lazy" decoding="async" />
         </div>
         <div className="portal-register-banner-overlay" />
         <div className="legacy-container portal-register-banner-inner">

@@ -3,15 +3,52 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/image/logo.png" />
+
+    <!-- Favicon (WebP is smaller) -->
+    <link rel="icon" type="image/webp" href="/image/logo.webp" />
+
+    <!-- ============================================================
+         PERFORMANCE: Preconnect to external origins used on every page
+         This eliminates DNS lookup + TLS handshake time for fonts & YouTube
+         ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://img.youtube.com" />
+
+    <!-- Non-blocking font load — display=swap shows system font instantly -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" />
+    </noscript>
+
+    <!-- ============================================================
+         PERFORMANCE: Preload the hero image (LCP element)
+         Browser starts fetching it in parallel with HTML parsing,
+         before React even boots — biggest single FCP/LCP improvement.
+         ============================================================ -->
+    <link
+      rel="preload"
+      as="image"
+      href="/image/mgm-college.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
+    <!-- SEO & Social -->
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#17385f" />
     <meta name="author" content="BalaJi Admission Guidance" />
     <meta property="og:site_name" content="BalaJi Admission Guidance" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/image/mgm-admissions-office.png" />
+    <meta property="og:image" content="/image/mgm-admissions-office.webp" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/image/mgm-admissions-office.png" />
+    <meta name="twitter:image" content="/image/mgm-admissions-office.webp" />
+
     <title>BalaJi Admission Guidance</title>
     <meta
       name="description"
