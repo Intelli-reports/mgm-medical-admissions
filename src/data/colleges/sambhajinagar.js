@@ -6,10 +6,10 @@ export const sambhajinagarCollege = {
   "locationLine": "MGM Campus, N-6, CIDCO, Chhatrapati Sambhajinagar (Aurangabad) - 431003",
   "headerSubtitle": "MGM Campus, N-6, CIDCO, Chhatrapati Sambhajinagar(Aurangabad) - 431003 | NMC Approved | Deemed University",
   "badgeText": "Excellence in Medical Education Since 1990",
-  "phone": "+91 240 237 5111",
-  "helpLine": "+91 240 237 5115",
-  "emergency": "+91 240 237 5112",
-  "email": "mgmahc@mgmuhs.com",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/Wv0KhdPF/Sambhaji-Nagar.jpg",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const sambhajinagarCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | MGM Auditorium",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 240 237 5115"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to MGM Medical College Chhatrapati Sambhajinagar (Aurangabad) MBBS Career Guidance. We are dedicated to shaping the leaders and innovators of tomorrow by ensuring every student has a clear, purposeful career path. Our team of expert counselors and industry professionals provides personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -104,7 +104,7 @@ export const sambhajinagarCollege = {
     ],
     [
       "Contact",
-      "+91 240 237 5115 | admissions@mgmuhs.com"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Chhatrapati Sambhajinagar Campus",
@@ -153,15 +153,15 @@ export const sambhajinagarCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 240 237 5115"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 240 237 5112"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@mgmuhs.com"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -284,7 +284,7 @@ export const sambhajinagarCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 240 237 5115"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -374,10 +374,10 @@ export const sambhajinagarCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: MGM Medical College, MGM Campus, N-6, CIDCO, Chhatrapati Sambhajinagar (Aurangabad) - 431003, Maharashtra",
-          "Phone: +91 240 237 5111 / 237 5112",
-          "Email: info@mgmuhs.com | admissions@mgmuhs.com",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.mgmuhs.com",
-          "Admission Helpline: +91 240 237 5115",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -424,7 +424,7 @@ export const sambhajinagarCollege = {
     ],
     [
       "How to apply for NRI quota at MGM Medical College?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 240 237 5115."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to MGM Medical College Sambhajinagar?",
@@ -451,7 +451,7 @@ export const sambhajinagarCollege = {
       ]
     ],
     "contactTitle": "Contact Sambhajinagar",
-    "contactBody": "admissions@mgmuhs.com\n+91 240 237 5111\nMGM Campus, N-6, CIDCO, Chhatrapati Sambhajinagar - 431003"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nMGM Campus, N-6, CIDCO, Chhatrapati Sambhajinagar - 431003"
   },
   "themeKey": "mgm"
 };

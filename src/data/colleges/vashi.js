@@ -6,10 +6,10 @@ export const vashiCollege = {
   "locationLine": "Sector 30A, Vashi, Navi Mumbai - 400703",
   "headerSubtitle": "Sector 30A, Vashi, Navi Mumbai - 400703 | NMC Approved | Deemed University",
   "badgeText": "Excellence in Medical Education Since 1995",
-  "phone": "+91 22 2767 1600",
-  "helpLine": "+91 22 2767 1650",
-  "emergency": "+91 22 2767 1601",
-  "email": "admissions@mgmvashi.edu.in",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/XxGDBXzm/Vashi.jpg",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const vashiCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | MGM Auditorium",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 2767 1650"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to MGM Medical College Vashi MBBS Career Guidance. We are dedicated to shaping the leaders and innovators of tomorrow by ensuring every student has a clear, purposeful career path. Our team of expert counselors and industry professionals provides personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -104,7 +104,7 @@ export const vashiCollege = {
     ],
     [
       "Contact",
-      "+91 22 2767 1650 | admissions@mgmvashi.edu.in"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Vashi Campus",
@@ -153,15 +153,15 @@ export const vashiCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 2767 1650"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 2767 1601"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@mgmvashi.edu.in"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -264,7 +264,7 @@ export const vashiCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 22 2767 1650"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -353,10 +353,10 @@ export const vashiCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: MGM Medical College, Sector 30A, Vashi, Navi Mumbai - 400703, Maharashtra",
-          "Phone: +91 22 2767 1600 / 2767 1601",
-          "Email: info@mgmvashi.edu.in | admissions@mgmvashi.edu.in",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.mgmvashi.edu.in",
-          "Admission Helpline: +91 22 2767 1650",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -403,7 +403,7 @@ export const vashiCollege = {
     ],
     [
       "How to apply for NRI quota at MGM Medical College Vashi?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 22 2767 1650."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to MGM Medical College Vashi?",
@@ -430,7 +430,7 @@ export const vashiCollege = {
       ]
     ],
     "contactTitle": "Contact Vashi",
-    "contactBody": "admissions@mgmvashi.edu.in\n+91 22 2767 1600\nSector 30A, Vashi, Navi Mumbai - 400703"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 30A, Vashi, Navi Mumbai - 400703"
   },
   "themeKey": "mgm"
 };

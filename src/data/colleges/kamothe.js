@@ -6,10 +6,10 @@ export const kamotheCollege = {
   "locationLine": "MGM Campus, Kamothe, Navi Mumbai - 410209",
   "headerSubtitle": "MGM Campus, Kamothe, Navi Mumbai - 410209 | NMC Approved | Deemed University",
   "badgeText": "Excellence in Medical Education | Modern Infrastructure",
-  "phone": "+91 22 2743 4000",
-  "helpLine": "+91 22 2743 4010",
-  "emergency": "+91 22 2743 4111",
-  "email": "mgmkamothe@mgmuhs.com",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/wNg3GzrN/kamote.png",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const kamotheCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | MGM Kamothe Auditorium",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 2743 4010"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to MGM Medical College Kamothe MBBS Career Guidance. We are dedicated to shaping the leaders and innovators of tomorrow by ensuring every student has a clear, purposeful career path. Our team of expert counselors and industry professionals provides personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -104,7 +104,7 @@ export const kamotheCollege = {
     ],
     [
       "Contact",
-      "+91 22 2743 4010 | mgmkamothe@mgmuhs.com"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Kamothe Campus",
@@ -153,15 +153,15 @@ export const kamotheCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 2743 4010"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 2743 4111"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "mgmkamothe@mgmuhs.com"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -284,7 +284,7 @@ export const kamotheCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 22 2743 4010"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -374,10 +374,10 @@ export const kamotheCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: MGM Medical College, MGM Campus, Kamothe, Navi Mumbai - 410209, Maharashtra",
-          "Phone: +91 22 2743 4000 / 2743 4001",
-          "Email: mgmkamothe@mgmuhs.com | admissions@mgmuhs.com",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.mgmuhs.com",
-          "Admission Helpline: +91 22 2743 4010",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -424,7 +424,7 @@ export const kamotheCollege = {
     ],
     [
       "How to apply for NRI quota at MGM Medical College Kamothe?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 22 2743 4010."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to MGM Medical College Kamothe?",
@@ -451,7 +451,7 @@ export const kamotheCollege = {
       ]
     ],
     "contactTitle": "Contact Kamothe",
-    "contactBody": "mgmkamothe@mgmuhs.com\n+91 22 2743 4000\nMGM Campus, Kamothe, Navi Mumbai - 410209"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nMGM Campus, Kamothe, Navi Mumbai - 410209"
   },
   "themeKey": "mgm"
 };

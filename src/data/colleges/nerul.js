@@ -6,10 +6,10 @@ export const nerulCollege = {
   "locationLine": "Sector 1, Nerul, Navi Mumbai - 400706",
   "headerSubtitle": "Sector 1, Nerul, Navi Mumbai | NMC Approved | Deemed University",
   "badgeText": "Excellence in Education for Over 20+ Years",
-  "phone": "+91 22 2772 0001",
-  "helpLine": "+91 22 2772 0030",
-  "emergency": "+91 22 2772 0002",
-  "email": "info@mgmnerul.edu",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/svNTbpVr/Nerul.png",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const nerulCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | MGM Auditorium, Nerul",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 2772 0030"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to MGM Medical MBBS Career Guidance. We are dedicated to shaping the leaders and innovators of tomorrow by ensuring every student has a clear, purposeful career path. Our team of expert counselors and industry professionals provides personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -104,7 +104,7 @@ export const nerulCollege = {
     ],
     [
       "Contact",
-      "+91 22 2772 0030 | info@mgmnerul.edu"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Nerul Campus",
@@ -153,15 +153,15 @@ export const nerulCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 2772 0030"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 2772 0002"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@mgmnerul.edu"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -308,7 +308,7 @@ export const nerulCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 22 2772 0030"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -398,10 +398,10 @@ export const nerulCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: MGM Medical College, Sector 1, Nerul, Navi Mumbai - 400706",
-          "Phone: +91 22 2772 0001 / 2772 0002",
-          "Email: info@mgmnerul.edu | admissions@mgmnerul.edu",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.mgmuhs.com",
-          "Admission Helpline: +91 22 2772 0030",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -448,7 +448,7 @@ export const nerulCollege = {
     ],
     [
       "How to apply for NRI quota at MGM Medical College?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 22 2772 0030."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to MGM Medical College Nerul?",
@@ -475,7 +475,7 @@ export const nerulCollege = {
       ]
     ],
     "contactTitle": "Contact Nerul",
-    "contactBody": "info@mgmnerul.edu\n+91 22 2772 0001\nSector 1, Nerul, Navi Mumbai - 400706"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 1, Nerul, Navi Mumbai - 400706"
   },
   "themeKey": "mgm"
 };

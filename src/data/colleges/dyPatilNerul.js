@@ -8,10 +8,10 @@ export const dyPatilNerulCollege = {
   "locationLine": "Sector 5, Nerul, Navi Mumbai - 400706",
   "headerSubtitle": "Sector 5, Nerul, Navi Mumbai | NMC Approved | NAAC A++ | Deemed University",
   "badgeText": "Excellence in Education for Over 30+ Years",
-  "phone": "+91 22 2775 7000",
-  "helpLine": "+91 22 2775 7020",
-  "emergency": "+91 22 2775 7100",
-  "email": "admissions@dypatilnerul.edu",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/nsdpzwgY/122.jpg",
   "video": "https://www.youtube.com/embed/25ITuPBcVB8",
   "tickerItems": [
@@ -22,7 +22,7 @@ export const dyPatilNerulCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | DY Patil Auditorium, Nerul",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 2775 7020"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to Dr. D.Y. Patil Medical College, Nerul - a premier institution under the D.Y. Patil Deemed to be University, Navi Mumbai. We are dedicated to shaping the leaders and innovators of tomorrow by providing world-class medical education, state-of-the-art infrastructure, and exceptional clinical exposure. Our expert faculty and industry professionals provide personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -100,7 +100,7 @@ export const dyPatilNerulCollege = {
     ],
     [
       "Contact",
-      "+91 22 2775 7020 | admissions@dypatilnerul.edu"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "DY Patil Nerul Campus",
@@ -149,15 +149,15 @@ export const dyPatilNerulCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 2775 7020"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 2775 7100"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@dypatilnerul.edu"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -280,7 +280,7 @@ export const dyPatilNerulCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 22 2775 7020"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -371,10 +371,10 @@ export const dyPatilNerulCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: Dr. D.Y. Patil Medical College, Sector 5, Nerul, Navi Mumbai - 400706",
-          "Phone: +91 22 2775 7000 / 2775 7001",
-          "Email: admissions@dypatilnerul.edu | info@dypatilnerul.edu",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.dypatiluniversity.org",
-          "Admission Helpline: +91 22 2775 7020",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -421,7 +421,7 @@ export const dyPatilNerulCollege = {
     ],
     [
       "How to apply for NRI quota at DY Patil Medical College?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 22 2775 7020."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to DY Patil Medical College Nerul?",
@@ -448,7 +448,7 @@ export const dyPatilNerulCollege = {
       ]
     ],
     "contactTitle": "Contact Nerul",
-    "contactBody": "admissions@dypatilnerul.edu\n+91 22 2775 7000\nSector 5, Nerul, Navi Mumbai - 400706"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 5, Nerul, Navi Mumbai - 400706"
   },
   "themeKey": "dyPatil"
 };

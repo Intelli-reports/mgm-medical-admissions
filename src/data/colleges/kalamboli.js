@@ -6,10 +6,10 @@ export const kalamboliCollege = {
   "locationLine": "MGM Campus, Kalamboli, Navi Mumbai - 410218",
   "headerSubtitle": "MGM Campus, Kalamboli, Navi Mumbai - 410218 | NMC Approved | Deemed University",
   "badgeText": "Excellence in Medical Education | State-of-Art Infrastructure",
-  "phone": "+91 22 2742 5000",
-  "helpLine": "+91 22 2742 5010",
-  "emergency": "+91 22 2742 5111",
-  "email": "mgmkalamboli@mgmuhs.com",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/wFYW6bNb/kalamboli.png",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const kalamboliCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | MGM Kalamboli Auditorium",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 2742 5010"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to MGM Medical College Kalamboli MBBS Career Guidance. We are dedicated to shaping the leaders and innovators of tomorrow by ensuring every student has a clear, purposeful career path. Our team of expert counselors and industry professionals provides personalized guidance at every stage of your academic and professional journey.",
   "events": [
@@ -104,7 +104,7 @@ export const kalamboliCollege = {
     ],
     [
       "Contact",
-      "+91 22 2742 5010 | mgmkalamboli@mgmuhs.com"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Kalamboli Campus",
@@ -153,15 +153,15 @@ export const kalamboliCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 2742 5010"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 2742 5111"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "mgmkalamboli@mgmuhs.com"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -284,7 +284,7 @@ export const kalamboliCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 22 2742 5010"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -374,10 +374,10 @@ export const kalamboliCollege = {
         "title": "Contact Information",
         "paragraphs": [
           "Address: MGM Medical College, MGM Campus, Kalamboli, Navi Mumbai - 410218, Maharashtra",
-          "Phone: +91 22 2742 5000 / 2742 5001",
-          "Email: mgmkalamboli@mgmuhs.com | admissions@mgmuhs.com",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.mgmuhs.com",
-          "Admission Helpline: +91 22 2742 5010",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -424,7 +424,7 @@ export const kalamboliCollege = {
     ],
     [
       "How to apply for NRI quota at MGM Medical College Kalamboli?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 22 2742 5010."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to MGM Medical College Kalamboli?",
@@ -451,7 +451,7 @@ export const kalamboliCollege = {
       ]
     ],
     "contactTitle": "Contact Kalamboli",
-    "contactBody": "mgmkalamboli@mgmuhs.com\n+91 22 2742 5000\nMGM Campus, Kalamboli, Navi Mumbai - 410218"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nMGM Campus, Kalamboli, Navi Mumbai - 410218"
   },
   "themeKey": "mgm"
 };

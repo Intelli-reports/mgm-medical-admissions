@@ -8,10 +8,10 @@ export const dyPatilPuneCollege = {
   "locationLine": "Pimpri, Pune - 411018",
   "headerSubtitle": "Pimpri, Pune | NMC Approved | NAAC A++ | Deemed University",
   "badgeText": "Excellence in Medical Education Since 1996",
-  "phone": "+91 20 2742 0021",
-  "helpLine": "+91 20 2742 0030",
-  "emergency": "+91 20 2742 0100",
-  "email": "admissions@dypatilpune.edu",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/GfhkX873/Infrastructure-01.jpg",
   "video": "https://www.youtube.com/embed/_vU1ilTUYdE",
   "tickerItems": [
@@ -22,7 +22,7 @@ export const dyPatilPuneCollege = {
     "NEET 2026 Guidance Seminar - Apr 12 | DPU Auditorium, Pune",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 20 2742 0030"
+    "Admission Helpline: +91-9324652984"
   ],
   "welcomeText": "Welcome to Dr. D.Y. Patil Medical College, Pune - a premier institution under Dr. D.Y. Patil Vidyapeeth (Deemed to be University). Established in 1996, we are dedicated to shaping future medical leaders through world-class education, state-of-the-art infrastructure, and exceptional clinical exposure at our 1700+ bed teaching hospital.",
   "events": [
@@ -106,7 +106,7 @@ export const dyPatilPuneCollege = {
     ],
     [
       "Contact",
-      "+91 20 2742 0030 | admissions@dypatilpune.edu"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "DY Patil Pune Campus",
@@ -155,15 +155,15 @@ export const dyPatilPuneCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 20 2742 0030"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 20 2742 0100"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@dypatilpune.edu"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -307,7 +307,7 @@ export const dyPatilPuneCollege = {
           "Candidate must be NRI / OCI / PIO or sponsored by NRI parents / relatives",
           "NEET qualification is mandatory",
           "Valid passport, visa and NRI sponsorship documents required",
-          "Contact Admission Office directly: +91 20 2742 0030"
+          "Contact Admission Office directly: +91-9324652984"
         ]
       }
     },
@@ -401,10 +401,10 @@ export const dyPatilPuneCollege = {
         "title": "Contact Information - Pune Campus",
         "paragraphs": [
           "Address: Dr. D.Y. Patil Medical College, Pimpri, Pune, Maharashtra - 411018",
-          "Phone: +91 20 2742 0021 / 2742 0022",
-          "Email: info@dypatilpune.edu | admissions@dypatilpune.edu",
+          "Phone: +91-9324652984",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.dpu.edu.in",
-          "Admission Helpline: +91 20 2742 0030",
+          "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
         ]
       }
@@ -451,7 +451,7 @@ export const dyPatilPuneCollege = {
     ],
     [
       "How to apply for NRI quota at DY Patil Medical College Pune?",
-      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91 20 2742 0030."
+      "NRI quota admissions are managed directly by the institution. Candidates must be NRI/OCI/PIO or sponsored by NRI parents. NEET qualification is mandatory. Contact the admission office at +91-9324652984."
     ],
     [
       "What is the hospital attached to DY Patil Medical College Pune?",
@@ -478,7 +478,7 @@ export const dyPatilPuneCollege = {
       ]
     ],
     "contactTitle": "Contact Pune",
-    "contactBody": "admissions@dypatilpune.edu\n+91 20 2742 0021\nPimpri, Pune - 411018"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nPimpri, Pune - 411018"
   },
   "themeKey": "dyPatil"
 };

@@ -8,10 +8,10 @@ export const ternaNerulCollege = {
   "locationLine": "Sector 12, Nerul, Navi Mumbai - 400706 | MUHS Nashik | Terna Public Charitable Trust",
   "headerSubtitle": "Sector 12, Nerul, Navi Mumbai | NMC Approved | NAAC A | MUHS Nashik",
   "badgeText": "Excellence in Education for Over 30+ Years | Affordable Excellence",
-  "phone": "+91 22 6153 3320",
-  "helpLine": "+91 22 6153 3300",
-  "emergency": "+91 22 6153 3400",
-  "email": "admissions@ternamedical.org",
+  "phone": "+91-9324652984",
+  "helpLine": "+91-9324652984",
+  "emergency": "+91-9324652984",
+  "email": "balajieducationservices17@gmail.com",
   "image": "https://i.ibb.co/9kp250kK/mcv21363-Screenshot-1118.png",
   "video": "https://www.youtube.com/embed/v7qE_-tgAwU",
   "tickerItems": [
@@ -20,7 +20,7 @@ export const ternaNerulCollege = {
     "NEET 2026 Guidance Seminar - Apr 10 | Terna Auditorium, Nerul",
     "MBBS Admission Counseling - Apr 15 | On Campus",
     "Live Q&A - Ask a Doctor - Apr 25 | Online via Zoom",
-    "Admission Helpline: +91 22 6153 3320",
+    "Admission Helpline: +91-9324652984",
     "Affordable MBBS - Annual Fees Rs. 18.5 Lakhs Only!",
     "NEET UG 2026 Counseling Starts Soon - Register Now!"
   ],
@@ -110,7 +110,7 @@ export const ternaNerulCollege = {
     ],
     [
       "Contact",
-      "+91 22 6153 3320 | admissions@ternamedical.org"
+      "+91-9324652984 | balajieducationservices17@gmail.com"
     ]
   ],
   "sidebarTitle": "Terna Nerul Campus",
@@ -159,15 +159,15 @@ export const ternaNerulCollege = {
   "quickContact": [
     [
       "Admission",
-      "+91 22 6153 3320"
+      "+91-9324652984"
     ],
     [
       "Emergency",
-      "+91 22 6153 3400"
+      "+91-9324652984"
     ],
     [
       "Email",
-      "admissions@ternamedical.org"
+      "balajieducationservices17@gmail.com"
     ],
     [
       "Address",
@@ -392,10 +392,10 @@ export const ternaNerulCollege = {
         "title": "Contact Information - Terna Campus",
         "paragraphs": [
           "Address: Terna Medical College, Sector 12, Nerul, Navi Mumbai - 400706, Maharashtra",
-          "Phone: +91 22 6153 3300 / 6153 3301",
-          "Admission Helpline: +91 22 6153 3320",
+          "Phone: +91-9324652984",
+          "Admission Helpline: +91-9324652984",
           "Emergency: +91 22 6153 3400",
-          "Email: admissions@ternamedical.org | info@ternamedical.org",
+          "Email: balajieducationservices17@gmail.com",
           "Website: www.ternamedical.org"
         ]
       }
@@ -465,7 +465,7 @@ export const ternaNerulCollege = {
       ]
     ],
     "contactTitle": "Contact Terna",
-    "contactBody": "admissions@ternamedical.org\n+91 22 6153 3300\nSector 12, Nerul, Navi Mumbai - 400706"
+    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 12, Nerul, Navi Mumbai - 400706"
   },
   "themeKey": "terna"
 };
