@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useMemo, useState } from "react";
 import { getManagedCollegeBySlugSync } from "../admin/api";
 import SeoHead from "../components/layout/SeoHead";
-import { DEFAULT_OG_IMAGE, makeAbsoluteUrl } from "../config/site";
+import { DEFAULT_OG_IMAGE, makeAbsoluteUrl, CONTACT_PHONE, CONTACT_EMAIL } from "../config/site";
 import { buildEnquiryMessage, buildWhatsAppUrl, isValidPhone } from "../utils/enquiry";
 
 // Lazy YouTube: shows thumbnail, loads iframe only on click
@@ -75,7 +75,8 @@ function tableHeaders(type) {
   return ["Course", "Duration", "Intake", "Annual Fees"];
 }
 
-const admissionPhone = "+91 9623208649";
+const admissionPhone = CONTACT_PHONE;
+const admissionEmail = CONTACT_EMAIL;
 
 function ContactInlineIcon({ type }) {
   const common = {
@@ -291,7 +292,8 @@ function CollegePreviewPage() {
   }
 
   const footerContactLines = data.footerLinks.contactBody.split("\n");
-  const [footerEmail = "", , ...footerAddressParts] = footerContactLines;
+  const footerEmail = admissionEmail;
+  const footerAddressParts = footerContactLines.slice(2);
   const footerAddress = footerAddressParts.join(" ");
   const admissionWhatsappUrl = buildWhatsAppUrl(
     admissionPhone,
