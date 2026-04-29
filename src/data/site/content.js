@@ -42,16 +42,7 @@ export const legacyFeaturedColleges = [
     "image": "https://i.ibb.co/PvjPkW5G/vashi-college.jpg",
     "route": "/preview/vashi"
   },
-  {
-    "name": "Dr. D.Y. Patil Medical College, Pune",
-    "image": "https://i.ibb.co/GfhkX873/Infrastructure-01.jpg",
-    "route": "/preview/dy-patil-pune"
-  },
-  {
-    "name": "Dr. D.Y. Patil Medical College, Nerul",
-    "image": "https://i.ibb.co/nsdpzwgY/122.jpg",
-    "route": "/preview/dy-patil-nerul"
-  },
+
   {
     "name": "Terna Medical College, Nerul",
     "image": "https://i.ibb.co/9kp250kK/mcv21363-Screenshot-1118.png",

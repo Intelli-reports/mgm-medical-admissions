@@ -24,19 +24,8 @@ export const legacyNavGroups = [
       }
     ]
   },
-  {
-    "title": "DY Patil",
-    "items": [
-      {
-        "label": "Dr. D.Y. Patil Medical College, Pune",
-        "to": "/preview/dy-patil-pune"
-      },
-      {
-        "label": "Dr. D.Y. Patil Medical College, Nerul",
-        "to": "/preview/dy-patil-nerul"
-      }
-    ]
-  },
+
+
   {
     "title": "Terna",
     "items": [

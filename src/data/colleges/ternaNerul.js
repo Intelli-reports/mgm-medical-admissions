@@ -448,12 +448,12 @@ export const ternaNerulCollege = {
   "footerLinks": {
     "otherColleges": [
       [
-        "DY Patil Pune",
-        "/preview/dy-patil-pune"
+        "MGM Kamothe",
+        "/preview/kamothe"
       ],
       [
-        "DY Patil Nerul",
-        "/preview/dy-patil-nerul"
+        "MGM Kalamboli",
+        "/preview/kalamboli"
       ],
       [
         "MGM Nerul",
