@@ -84,9 +84,9 @@ function ContactPage() {
     {
       type: "email",
       title: "Email Address",
-      text: "balajieducationservices17@gmail.com",
+      text: "admission@mgmmbbsmdms.com",
       actionLabel: "Send Email",
-      href: "mailto:balajieducationservices17@gmail.com"
+      href: "mailto:admission@mgmmbbsmdms.com"
     },
     {
       type: "phone",

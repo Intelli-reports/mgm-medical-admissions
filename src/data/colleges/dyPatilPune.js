@@ -11,7 +11,7 @@ export const dyPatilPuneCollege = {
   "phone": "+91-9324652984",
   "helpLine": "+91-9324652984",
   "emergency": "+91-9324652984",
-  "email": "balajieducationservices17@gmail.com",
+  "email": "admission@mgmmbbsmdms.com",
   "image": "https://i.ibb.co/GfhkX873/Infrastructure-01.jpg",
   "video": "https://www.youtube.com/embed/_vU1ilTUYdE",
   "tickerItems": [
@@ -106,7 +106,7 @@ export const dyPatilPuneCollege = {
     ],
     [
       "Contact",
-      "+91-9324652984 | balajieducationservices17@gmail.com"
+      "+91-9324652984 | admission@mgmmbbsmdms.com"
     ]
   ],
   "sidebarTitle": "DY Patil Pune Campus",
@@ -163,7 +163,7 @@ export const dyPatilPuneCollege = {
     ],
     [
       "Email",
-      "balajieducationservices17@gmail.com"
+      "admission@mgmmbbsmdms.com"
     ],
     [
       "Address",
@@ -402,7 +402,7 @@ export const dyPatilPuneCollege = {
         "paragraphs": [
           "Address: Dr. D.Y. Patil Medical College, Pimpri, Pune, Maharashtra - 411018",
           "Phone: +91-9324652984",
-          "Email: balajieducationservices17@gmail.com",
+          "Email: admission@mgmmbbsmdms.com",
           "Website: www.dpu.edu.in",
           "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
@@ -478,7 +478,7 @@ export const dyPatilPuneCollege = {
       ]
     ],
     "contactTitle": "Contact Pune",
-    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nPimpri, Pune - 411018"
+    "contactBody": "admission@mgmmbbsmdms.com\n+91-9324652984\nPimpri, Pune - 411018"
   },
   "themeKey": "dyPatil"
 };

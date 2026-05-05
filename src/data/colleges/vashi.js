@@ -9,7 +9,7 @@ export const vashiCollege = {
   "phone": "+91-9324652984",
   "helpLine": "+91-9324652984",
   "emergency": "+91-9324652984",
-  "email": "balajieducationservices17@gmail.com",
+  "email": "admission@mgmmbbsmdms.com",
   "image": "https://i.ibb.co/XxGDBXzm/Vashi.jpg",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -104,7 +104,7 @@ export const vashiCollege = {
     ],
     [
       "Contact",
-      "+91-9324652984 | balajieducationservices17@gmail.com"
+      "+91-9324652984 | admission@mgmmbbsmdms.com"
     ]
   ],
   "sidebarTitle": "Vashi Campus",
@@ -161,7 +161,7 @@ export const vashiCollege = {
     ],
     [
       "Email",
-      "balajieducationservices17@gmail.com"
+      "admission@mgmmbbsmdms.com"
     ],
     [
       "Address",
@@ -354,7 +354,7 @@ export const vashiCollege = {
         "paragraphs": [
           "Address: MGM Medical College, Sector 30A, Vashi, Navi Mumbai - 400703, Maharashtra",
           "Phone: +91-9324652984",
-          "Email: balajieducationservices17@gmail.com",
+          "Email: admission@mgmmbbsmdms.com",
           "Website: www.mgmvashi.edu.in",
           "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
@@ -430,7 +430,7 @@ export const vashiCollege = {
       ]
     ],
     "contactTitle": "Contact Vashi",
-    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 30A, Vashi, Navi Mumbai - 400703"
+    "contactBody": "admission@mgmmbbsmdms.com\n+91-9324652984\nSector 30A, Vashi, Navi Mumbai - 400703"
   },
   "themeKey": "mgm"
 };

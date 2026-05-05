@@ -11,7 +11,7 @@ export const ternaNerulCollege = {
   "phone": "+91-9324652984",
   "helpLine": "+91-9324652984",
   "emergency": "+91-9324652984",
-  "email": "balajieducationservices17@gmail.com",
+  "email": "admission@mgmmbbsmdms.com",
   "image": "https://i.ibb.co/9kp250kK/mcv21363-Screenshot-1118.png",
   "video": "https://www.youtube.com/embed/v7qE_-tgAwU",
   "tickerItems": [
@@ -110,7 +110,7 @@ export const ternaNerulCollege = {
     ],
     [
       "Contact",
-      "+91-9324652984 | balajieducationservices17@gmail.com"
+      "+91-9324652984 | admission@mgmmbbsmdms.com"
     ]
   ],
   "sidebarTitle": "Terna Nerul Campus",
@@ -167,7 +167,7 @@ export const ternaNerulCollege = {
     ],
     [
       "Email",
-      "balajieducationservices17@gmail.com"
+      "admission@mgmmbbsmdms.com"
     ],
     [
       "Address",
@@ -395,7 +395,7 @@ export const ternaNerulCollege = {
           "Phone: +91-9324652984",
           "Admission Helpline: +91-9324652984",
           "Emergency: +91 22 6153 3400",
-          "Email: balajieducationservices17@gmail.com",
+          "Email: admission@mgmmbbsmdms.com",
           "Website: www.ternamedical.org"
         ]
       }
@@ -465,7 +465,7 @@ export const ternaNerulCollege = {
       ]
     ],
     "contactTitle": "Contact Terna",
-    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nSector 12, Nerul, Navi Mumbai - 400706"
+    "contactBody": "admission@mgmmbbsmdms.com\n+91-9324652984\nSector 12, Nerul, Navi Mumbai - 400706"
   },
   "themeKey": "terna"
 };

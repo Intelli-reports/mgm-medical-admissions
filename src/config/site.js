@@ -3,7 +3,7 @@ export const SITE_SHORT_NAME = "BalaJi";
 export const DEFAULT_DESCRIPTION =
   "Medical admission guidance platform for NEET UG counseling, college shortlisting, state-wise options, and detailed medical college research.";
 export const DEFAULT_OG_IMAGE = "/image/mgm-admissions-office.png";
-export const CONTACT_EMAIL = "balajieducationservices17@gmail.com";
+export const CONTACT_EMAIL = "admission@mgmmbbsmdms.com";
 export const CONTACT_PHONE = "+91-9324652984";
 export const CONTACT_ADDRESS =
   "Haware Infotech Park, A-1401, Sector 30, Near Vashi Railway Station, Vashi, Navi Mumbai - 400703";

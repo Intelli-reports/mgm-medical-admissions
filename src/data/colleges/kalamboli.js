@@ -9,7 +9,7 @@ export const kalamboliCollege = {
   "phone": "+91-9324652984",
   "helpLine": "+91-9324652984",
   "emergency": "+91-9324652984",
-  "email": "balajieducationservices17@gmail.com",
+  "email": "admission@mgmmbbsmdms.com",
   "image": "https://i.ibb.co/wFYW6bNb/kalamboli.png",
   "video": "https://www.youtube.com/embed/JbVfnONzjoI",
   "tickerItems": [
@@ -104,7 +104,7 @@ export const kalamboliCollege = {
     ],
     [
       "Contact",
-      "+91-9324652984 | balajieducationservices17@gmail.com"
+      "+91-9324652984 | admission@mgmmbbsmdms.com"
     ]
   ],
   "sidebarTitle": "Kalamboli Campus",
@@ -161,7 +161,7 @@ export const kalamboliCollege = {
     ],
     [
       "Email",
-      "balajieducationservices17@gmail.com"
+      "admission@mgmmbbsmdms.com"
     ],
     [
       "Address",
@@ -375,7 +375,7 @@ export const kalamboliCollege = {
         "paragraphs": [
           "Address: MGM Medical College, MGM Campus, Kalamboli, Navi Mumbai - 410218, Maharashtra",
           "Phone: +91-9324652984",
-          "Email: balajieducationservices17@gmail.com",
+          "Email: admission@mgmmbbsmdms.com",
           "Website: www.mgmuhs.com",
           "Admission Helpline: +91-9324652984",
           "Office Hours: Monday to Saturday, 9:00 AM to 5:00 PM"
@@ -451,7 +451,7 @@ export const kalamboliCollege = {
       ]
     ],
     "contactTitle": "Contact Kalamboli",
-    "contactBody": "balajieducationservices17@gmail.com\n+91-9324652984\nMGM Campus, Kalamboli, Navi Mumbai - 410218"
+    "contactBody": "admission@mgmmbbsmdms.com\n+91-9324652984\nMGM Campus, Kalamboli, Navi Mumbai - 410218"
   },
   "themeKey": "mgm"
 };
